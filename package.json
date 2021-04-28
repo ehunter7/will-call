@@ -1,0 +1,23 @@
+{
+  "name": "will-call",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehunter7/will-call.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ehunter7/will-call/issues"
+  },
+  "homepage": "https://github.com/ehunter7/will-call#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
