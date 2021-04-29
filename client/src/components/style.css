@@ -1,0 +1,13 @@
+.selectionGroup {
+    display: flex;
+    justify-content: center;
+    background-color: blanchedalmond;
+}
+
+.completedButton {
+    margin-left: 4em;
+}
+
+.orderCard {
+    background-color: coral;
+}

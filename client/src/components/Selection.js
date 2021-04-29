@@ -3,15 +3,11 @@ import "./style.css";
 const Selection = () => {
   return (
     <div className="selectionGroup">
-      <div>
+<div className="selectionButtons">
         <button>Create New Pick-up</button>
-      </div>
-      <div>
-        <button>View Active Pick-ups</button>
-      </div>
-      <div>
-        <button>Completed</button>
-      </div>
+
+        <button className="completedButton">Completed</button>
+        </div>
     </div>
   );
 };
