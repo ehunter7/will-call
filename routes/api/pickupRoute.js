@@ -4,6 +4,7 @@ const Pickup = require("../../models/pickupSchema");
 
 router.post("/newPickup", async (req, res) => {
   const { pro, carrier, puDate, puTime } = req.body;
+  
   try {
     const newPU = new Pickup({
 
@@ -18,7 +19,6 @@ router.post("/newPickup", async (req, res) => {
       comments: "",
       confirmingReceiver: "",
       confirmingCSR: "",
-      puDate: null,
     });
 
     await newPU.save();

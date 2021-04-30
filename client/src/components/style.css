@@ -10,4 +10,5 @@
 
 .orderCard {
     background-color: blueviolet;
+    display: flex;
 }
