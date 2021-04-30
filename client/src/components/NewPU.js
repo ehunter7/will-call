@@ -18,7 +18,7 @@ const NewPU = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     API.newPickup(pickup).then(() => {
-      console.log("Another Boom!");
+      //! Do something to update state
     });
   };
 

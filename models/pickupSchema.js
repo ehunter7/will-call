@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
+const Schema  = mongoose.Schema;
+const autoIncrement = require('mongoose-auto-increment');
 
-const pickupSchema = {
-    pickupNumber: {type: Number, index: true},
+var connection = mongoose.createConnection("mongodb://localhost/willcallDB");
+
+autoIncrement.initialize(connection);
+
+const pickupSchema = new Schema({
     csr: String,
     pro: {type: Number, required: "Enter PRO number", trim: true},
     carrier: {type: String, required: "Enter Carrier name"},
@@ -14,8 +19,11 @@ const pickupSchema = {
     confirmingReceiver: String,
     confirmingCSR: String,
     createdOn: { type: Date, default: Date.now },
+    updatedOn: { type: Date, default: Date.now },
     puOn: Date,
-};
+});
+
+pickupSchema.plugin(autoIncrement.plugin, {model: 'pickup',field: 'pickupNumber'});
 
 const Pickup = mongoose.model("Pickups", pickupSchema);
 

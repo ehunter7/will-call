@@ -6,7 +6,7 @@ router.post("/newPickup", async (req, res) => {
   const { pro, carrier, puDate, puTime } = req.body;
   try {
     const newPU = new Pickup({
-    pickupNumber: 1,
+
         csr: "",
       pro,
       carrier,
@@ -20,7 +20,7 @@ router.post("/newPickup", async (req, res) => {
       confirmingCSR: "",
       puDate: null,
     });
-    console.log(pro);
+
     await newPU.save();
     res.json(newPU);
 
