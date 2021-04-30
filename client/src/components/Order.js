@@ -15,9 +15,6 @@ const Order = () => {
             <p>Loader</p>
             <p>CSR Confirmed</p>
             <p>Notes</p>
-
-
-
         </div>
     )
 }

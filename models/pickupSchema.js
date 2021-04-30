@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const pickupSchema = {
-    pickupNumber: Number,
+    pickupNumber: {type: Number, index: true},
     csr: String,
     pro: {type: Number, required: "Enter PRO number", trim: true},
     carrier: {type: String, required: "Enter Carrier name"},
@@ -17,6 +17,6 @@ const pickupSchema = {
     puOn: Date,
 };
 
-const pickups = mongoose.model("pickups", pickupSchema);
+const Pickup = mongoose.model("Pickups", pickupSchema);
 
-module.exports = pickups;
+module.exports = Pickup;
