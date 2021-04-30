@@ -1,12 +1,13 @@
 import React from 'react'
 import './style.css';
 
-const Order = () => {
+const Order = ({order}) => {
+
     return (
         <div className="orderCard">
-            <p>Pick-up #</p>
+            <p>Pick-up #: {order.pickupNumber}</p>
             <p>CSR</p>
-            <p>PRO</p>
+            <p>PRO: {order.pro}</p>
             <p>Carrier</p>
             <p>Receiver</p>
             <p>Scheduled Pick-up date</p>

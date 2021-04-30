@@ -29,4 +29,18 @@ router.post("/newPickup", async (req, res) => {
   }
 });
 
+router.get('/getPickups', async (req, res) => {
+  
+  try {
+
+    const allPickups = await Pickup.find({});
+
+    res.json(allPickups);
+
+  } catch (error) {
+
+    console.log('[WARNING] Error in getPickups route (pickupRoute.js / Line 38)');
+  };
+});
+
 module.exports = router;
