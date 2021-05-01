@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 
 const routes = require("./routes");
 
+require("dotenv").config();
+
 const PORT =  4000;
 
 app.use(express.urlencoded({ extended: true }));
@@ -26,7 +28,15 @@ app.use(express.json());
 app.use(routes);
 
 //connect to mongo DB
-mongoose.connect("mongodb+srv://ehunter:Nathanwilliam1@cluster0.d2o6s.mongodb.net/willcallDB")
+mongoose.connect(
+    process.env.MONGODB_URI || "mongodb://localhost/willcallDB",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    }
+  );
 
 
 mongoose.connection.on("connected", () => {

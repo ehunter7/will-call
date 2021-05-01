@@ -13,6 +13,7 @@ const NewPU = () => {
   const handleInput = (event) => {
     const { name, value } = event.target;
     setPickup({ ...pickup, [name]: value });
+    console.log(pickup.puDate);
   };
 
   const handleSubmit = (e) => {

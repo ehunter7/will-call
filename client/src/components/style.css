@@ -9,5 +9,6 @@
 }
 
 .orderCard {
-    background-color: blanchedalmond;
+    background-color: blueviolet;
+    display: flex;
 }
