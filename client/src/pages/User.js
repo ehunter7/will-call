@@ -30,31 +30,30 @@ const User = () => {
   const handleInput = (event) => {
     const { name, value } = event.target;
     setPickup({ ...pickup, [name]: value });
-    console.log(value);
+
   };
 
   //Handles new pickup submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    API.newPickup(pickup).then(() => {
+    API.newPickup(pickup).then((res) => {
       showNewPU(!newPU);
       //! Do something to update state
+      setpickups(pickups.concat(res.data));
     });
   };
 
-    //shows the pickups details
-    const openDetails = (id) => {
-      const updatepickups = pickups.map((order) =>{
-
-        if(order._id === id){
-
-          return {...pickups, showDetails: !order.showpicks};
-        };
-
-        return order;
-      })
-      setpickups(updatepickups);
-    }
+  //shows the pickups details
+  const openDetails = (id) => {
+    console.log();
+    const updatepickups = pickups.map((order) => {
+      if (order._id === id) {
+        return { ...order, showDetails: !order.showDetails };
+      }
+      return order;
+    });
+    setpickups(updatepickups);
+  };
 
   return (
     <div className="container">
