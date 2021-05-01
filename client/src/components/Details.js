@@ -1,18 +1,33 @@
-import React from 'react'
+import React from "react";
 
-const Details = ({handleInput}) => {
-    return (
-        <div>
-            <h1>Hello from the details component</h1>
+const Details = ({ order, handleInput }) => {
+  const created = new Date(order.createdOn);
+  return (
+    <div>
+      <div className="row">
+        <div className="col-md-9">
+          <div className="row orderNumbers">
+            <p className="col-md-4">
+              Created by: <b className="info">{order.csr}</b>
+            </p>
+            <p className="col-md-4">
+              Created on:{" "}
+              <b className="info">
+                {" "}
+                {`${created.getHours()}:${created.getMinutes()} on ${
+                  created.getMonth() + 1
+                }/${created.getDate()}`}
+              </b>
+            </p>
+            <p className="col-md-4">
+              Reciever:
+              <b className="info">{order.receiver}</b>
+            </p>
+          </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default Details
-
-      /* <p>Date Picked up</p>
-            <p>Loader</p>
-            <p>CSR Confirmed</p>
-            <p>Notes</p>
-            <p>CSR</p>
-            <p>Receiver</p> */
+export default Details;

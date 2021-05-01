@@ -19,7 +19,9 @@ router.post("/newPickup", async (req, res) => {
       comments: "",
       confirmingReceiver: "",
       confirmingCSR: "",
-      showDetails: false
+      showDetails: false,
+      showUpdates: false,
+      status: "pending"
     });
 
     await newPU.save();

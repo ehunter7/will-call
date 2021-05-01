@@ -21,7 +21,9 @@ const pickupSchema = new Schema({
     createdOn: { type: Date, default: Date.now },
     updatedOn: { type: Date, default: Date.now },
     puOn: Date,
-    showDetails: Boolean
+    showDetails: Boolean,
+    showUpdates: Boolean,
+    status: String
 });
 
 pickupSchema.plugin(autoIncrement.plugin, {model: 'pickup',field: 'pickupNumber'});

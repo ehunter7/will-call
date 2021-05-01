@@ -1,13 +1,12 @@
 import React from "react";
 import Details from "./Details";
+import Updates from "./Updates";
 import "./style.css";
 
-const Order = ({ order, handleInput, openDetails }) => {
+const Order = ({ order, handleInput, openDetails, openUpdates }) => {
   // Sets date to display
   const pickupDate = new Date(order.puDate);
   const updated = new Date(order.updatedOn);
-
-
 
   return (
     <div className="orderCard">
@@ -49,16 +48,18 @@ const Order = ({ order, handleInput, openDetails }) => {
         </div>
         <div className="col-md-3">
           <div className="orderButtons">
-            <button className="orderBtn">Update</button>
+            <button className="orderBtn"  onClick={(e) => openUpdates(order._id)}>Update</button>
           </div>
           <div className="orderButtons">
-            <button className="orderBtn" onClick={() => openDetails(order._id)}>Details</button>
+            <button className="orderBtn" onClick={(e) => openDetails(order._id)}>
+              Details
+            </button>
           </div>
         </div>
       </div>
 
-      {order.showDetails ? <Details handleInput={handleInput} /> : null}
-
+      {order.showDetails ? <Details handleInput={handleInput} order={order}/> : null}
+      {order.showUpdates ? <Updates handleInput={handleInput} order={order}/> : null}
     </div>
   );
 };

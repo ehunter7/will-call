@@ -44,3 +44,16 @@
 .info {
     font-size: 1.25em;
 }
+
+.updates {
+    display: flex;
+    justify-content: center;
+}
+
+.commentsArea{
+    width: 95%;
+}
+
+#comments {
+    width: 100%;
+}

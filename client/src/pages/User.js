@@ -54,7 +54,18 @@ const User = () => {
     });
     setpickups(updatepickups);
   };
-
+  
+  const openUpdates = (id) => {
+    console.log();
+    const updatepickups = pickups.map((order) => {
+      if (order._id === id) {
+        return { ...order, showUpdates: !order.showUpdates };
+      }
+      return order;
+    });
+    setpickups(updatepickups);
+  };
+  
   return (
     <div className="container">
       <Selection newPU={newPU} showNewPU={showNewPU} />
@@ -68,6 +79,7 @@ const User = () => {
             order={order}
             handleInput={handleInput}
             openDetails={openDetails}
+            openUpdates={openUpdates}
           />
         );
       })}
