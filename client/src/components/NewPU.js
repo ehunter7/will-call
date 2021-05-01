@@ -2,26 +2,8 @@
 import React, { useState } from "react";
 import API from "../utils/api";
 
-const NewPU = () => {
-  const [pickup, setPickup] = useState({
-    pro: Number,
-    carrier: "",
-    puDate: Date,
-    puTime: "0800 to 1300",
-  });
+const NewPU = ({handleInput, handleSubmit}) => {
 
-  const handleInput = (event) => {
-    const { name, value } = event.target;
-    setPickup({ ...pickup, [name]: value });
-    console.log(pickup.puDate);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    API.newPickup(pickup).then(() => {
-      //! Do something to update state
-    });
-  };
 
   return (
     <div>

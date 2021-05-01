@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from "react";
-import API from '../utils/api';
+import API from "../utils/api";
 import Selection from "../components/Selection";
 import Order from "../components/Order";
 import NewPU from "../components/NewPU";
 
 const User = () => {
+  // Used to show components
   const [newPU, showNewPU] = useState(false);
+
+  //Contains all the pickups in an array
   const [pickups, setpickups] = useState([]);
 
+  //Used for creating a new pickup
+  const [pickup, setPickup] = useState({
+    pro: Number,
+    carrier: "",
+    puDate: Date,
+    puTime: "0800 to 1300",
+  });
 
   //useEffect runs on mount and gets all pickups from DB
   useEffect(() => {
@@ -16,21 +26,52 @@ const User = () => {
     });
   }, []);
 
+  //Handles input from new pickup form
+  const handleInput = (event) => {
+    const { name, value } = event.target;
+    setPickup({ ...pickup, [name]: value });
+    console.log(value);
+  };
+
+  //Handles new pickup submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    API.newPickup(pickup).then(() => {
+      showNewPU(!newPU);
+      //! Do something to update state
+    });
+  };
+
+    //shows the pickups details
+    const openDetails = (id) => {
+      const updatepickups = pickups.map((order) =>{
+
+        if(order._id === id){
+
+          return {...pickups, showDetails: !order.showpicks};
+        };
+
+        return order;
+      })
+      setpickups(updatepickups);
+    }
+
   return (
     <div className="container">
-
-
       <Selection newPU={newPU} showNewPU={showNewPU} />
-      {!newPU ? null : <NewPU />}
-
+      {!newPU ? null : (
+        <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
+      )}
 
       {pickups.map((order) => {
-        return(<Order order={order} />)
-        
+        return (
+          <Order
+            order={order}
+            handleInput={handleInput}
+            openDetails={openDetails}
+          />
+        );
       })}
-
-
-
     </div>
   );
 };
