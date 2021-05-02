@@ -3,7 +3,7 @@ import Details from "./Details";
 import Updates from "./Updates";
 import "./style.css";
 
-const Order = ({ order, handleInput, openDetails, openUpdates }) => {
+const Order = ({ order, handleInput, openDetails, openUpdates, handleUpdate }) => {
   // Sets date to display
   const pickupDate = new Date(order.puDate);
   const updated = new Date(order.updatedOn);
@@ -48,20 +48,35 @@ const Order = ({ order, handleInput, openDetails, openUpdates }) => {
         </div>
         <div className="col-md-3">
           <div className="orderButtons">
-            <button className="orderBtn"  onClick={(e) => openUpdates(order._id)}>Update</button>
+            <button
+              className="orderBtn"
+              onClick={(e) => openUpdates(order._id)}
+            >
+              Update
+            </button>
           </div>
           <div className="orderButtons">
-            <button className="orderBtn" onClick={(e) => openDetails(order._id)}>
+            <button
+              className="orderBtn"
+              onClick={(e) => openDetails(order._id)}
+            >
               Details
             </button>
           </div>
         </div>
       </div>
 
-      {order.showDetails ? <Details handleInput={handleInput} order={order}/> : null}
-      {order.showUpdates ? <Updates handleInput={handleInput} order={order}/> : null}
+      <p className="note">Notes: {order.notes}</p>
+
+      {order.showDetails ? (
+        <Details handleInput={handleInput} order={order} />
+      ) : null}
+      {order.showUpdates ? (
+        <Updates handleInput={handleInput} order={order} handleUpdate={handleUpdate} />
+      ) : null}
     </div>
   );
+  
 };
 
 export default Order;

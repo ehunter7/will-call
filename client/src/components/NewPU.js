@@ -40,6 +40,9 @@ const NewPU = ({handleInput, handleSubmit}) => {
           defaultValue="0800 to 1300"
           onChange={(e) => handleInput(e)}
         ></input>
+        <label htmlFor="notes">Notes</label>
+          <textarea id="notes" name="notes" onChange={(e) => handleInput(e)}></textarea>
+        
         <button onClick={(e) => handleSubmit(e)}>submit</button>
       </form>
     </div>

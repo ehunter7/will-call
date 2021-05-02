@@ -17,6 +17,10 @@ const User = () => {
     carrier: "",
     puDate: Date,
     puTime: "0800 to 1300",
+    notes: "",
+    comments: "",
+    loader: "",
+    puOn: Date
   });
 
   //useEffect runs on mount and gets all pickups from DB
@@ -28,7 +32,9 @@ const User = () => {
 
   //Handles input from new pickup form
   const handleInput = (event) => {
+    
     const { name, value } = event.target;
+
     setPickup({ ...pickup, [name]: value });
 
   };
@@ -38,10 +44,23 @@ const User = () => {
     e.preventDefault();
     API.newPickup(pickup).then((res) => {
       showNewPU(!newPU);
-      //! Do something to update state
       setpickups(pickups.concat(res.data));
     });
   };
+
+  //Handles updates to a pickup
+  const handleUpdate = (e, id) => {
+    e.preventDefault();
+    API.updatePU(id, pickup).then((res) => {
+      const updatedPickups = pickups.map((order) => {
+        if(order._id === res.data._id){
+          return {...order, comments: res.data.comments, loader: res.data.loader, updatedOn: res.data.updatedOn};
+        };
+        return order;
+      });
+      setpickups(updatedPickups);
+    });
+  }
 
   //shows the pickups details
   const openDetails = (id) => {
@@ -80,6 +99,7 @@ const User = () => {
             handleInput={handleInput}
             openDetails={openDetails}
             openUpdates={openUpdates}
+            handleUpdate={handleUpdate}
           />
         );
       })}

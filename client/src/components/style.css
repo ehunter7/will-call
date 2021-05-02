@@ -41,19 +41,28 @@
     border:solid 1px black;
 }
 
+.puForm {
+    display: flex;
+}
+
 .info {
     font-size: 1.25em;
 }
 
 .updates {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .commentsArea{
-    width: 95%;
+    width: 50%;
 }
 
 #comments {
     width: 100%;
 }
+
+td {
+    width: 8em;
+}
+

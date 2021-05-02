@@ -6,5 +6,8 @@ export default {
     },
     getPickups: () => {
         return axios.get('/api/pu/getPickups');
+    },
+    updatePU: (id, data) => {
+        return axios.put('/api/pu/updatePU', {id, data});
     }
 };
