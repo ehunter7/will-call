@@ -10,6 +10,7 @@ const Order = ({
   openDetails,
   openUpdates,
   handleUpdate,
+  handlePickedUp
 }) => {
   //state that shows note editor
   const [editor, showEditor] = useState(false);
@@ -115,6 +116,7 @@ const Order = ({
           handleInput={handleInput}
           order={order}
           handleUpdate={handleUpdate}
+          handlePickedUp={handlePickedUp}
         />
       ) : null}
     </div>

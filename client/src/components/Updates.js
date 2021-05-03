@@ -1,5 +1,5 @@
 
-const Updates = ({ handleInput, order, handleUpdate }) => {
+const Updates = ({ handleInput, order, handleUpdate, handlePickedUp }) => {
 
   return (
     <div className="updates">
@@ -26,7 +26,7 @@ const Updates = ({ handleInput, order, handleUpdate }) => {
                   <label htmlFor="puDate">Date Picked up</label>
                 </td>
                 <td>
-                  <input type="date" id="puDate" name="puDate"  onChange={() => handleInput} required></input>
+                  <input type="date" id="puDate" name="puOn"  onChange={(e) => handleInput(e)} required></input>
                 </td>
               </div>
             </tr>
@@ -34,7 +34,7 @@ const Updates = ({ handleInput, order, handleUpdate }) => {
         </div>
 
         <div className="puSubmit">
-          <button>picked up</button>
+          <button onClick={(e) => handlePickedUp(e, order._id, order.pickupNumber)}>picked up</button>
         </div>
 
       </form>

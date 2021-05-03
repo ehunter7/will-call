@@ -67,7 +67,15 @@ const User = () => {
       });
       openUpdates(id);
       setpickups(updatedPickups);
-  
+
+    });
+  };
+
+  const handlePickedUp = (e, id, puNumber) => {
+    e.preventDefault();
+    API.pickedUp(id, pickup, puNumber).then((res) => {
+      const puRemoved = pickups.filter(order => order._id !== res.data._id);
+      setpickups(puRemoved);
     });
   };
 
@@ -110,6 +118,7 @@ const User = () => {
             openDetails={openDetails}
             openUpdates={openUpdates}
             handleUpdate={handleUpdate}
+            handlePickedUp={handlePickedUp}
           />
         );
       })}

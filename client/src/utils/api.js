@@ -9,5 +9,8 @@ export default {
     },
     updatePU: (id, data) => {
         return axios.put('/api/pu/updatePU', {id, data});
+    },
+    pickedUp: (id, data, puNumber) => {
+        return axios.post('/api/pu/pickedUp', {id, data, puNumber});
     }
 };
