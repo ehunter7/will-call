@@ -1,11 +1,6 @@
 
 const Updates = ({ handleInput, order, handleUpdate }) => {
-  const getToday = () => {
-    const todaysDate = new Date();
-    return `${
-      todaysDate.getMonth + 1
-    }/${todaysDate.getDate()}/${todaysDate.getFullYear()}`;
-  };
+
   return (
     <div className="updates">
       <div className="commentsArea">
@@ -31,7 +26,7 @@ const Updates = ({ handleInput, order, handleUpdate }) => {
                   <label htmlFor="puDate">Date Picked up</label>
                 </td>
                 <td>
-                  <input type="date" id="puDate" name="puDate" onChange={() => handleInput} required></input>
+                  <input type="date" id="puDate" name="puDate"  onChange={() => handleInput} required></input>
                 </td>
               </div>
             </tr>

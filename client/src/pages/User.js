@@ -26,13 +26,15 @@ const User = () => {
   //useEffect runs on mount and gets all pickups from DB
   useEffect(() => {
     API.getPickups().then((res) => {
-      setpickups(res.data);
+      const sortedByPuDate = res.data.sort(
+        (a, b) => new Date(a.puDate) - new Date(b.puDate)
+      );
+      setpickups(sortedByPuDate);
     });
   }, []);
 
   //Handles input from new pickup form
   const handleInput = (event) => {
-    
     const { name, value } = event.target;
 
     setPickup({ ...pickup, [name]: value });
@@ -63,7 +65,9 @@ const User = () => {
         }
         return order;
       });
+      openUpdates(id);
       setpickups(updatedPickups);
+  
     });
   };
 

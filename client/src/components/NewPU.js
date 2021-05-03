@@ -1,7 +1,4 @@
 
-import React, { useState } from "react";
-import API from "../utils/api";
-
 const NewPU = ({handleInput, handleSubmit}) => {
 
 
