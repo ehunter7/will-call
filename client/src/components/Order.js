@@ -1,12 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import Details from "./Details";
 import Updates from "./Updates";
+import { FaPencilAlt } from "react-icons/fa";
 import "./style.css";
 
-const Order = ({ order, handleInput, openDetails, openUpdates, handleUpdate }) => {
+const Order = ({
+  order,
+  handleInput,
+  openDetails,
+  openUpdates,
+  handleUpdate,
+}) => {
+  //state that shows note editor
+  const [editor, showEditor] = useState(false);
+
   // Sets date to display
   const pickupDate = new Date(order.puDate);
   const updated = new Date(order.updatedOn);
+
+  // function to either get notes or notees input field for updating.
+  const getNotes = () => {
+    return editor ? (
+      <>
+        <input
+        className="notesEditor"
+          type="text"
+          name="notes"
+          defaultValue={order.notes}
+          onChange={(e) => handleInput(e)}
+        ></input>
+        <button onClick={(e) => {handleUpdate(e, order._id); showEditor(!editor);}}>
+          Submit Notes
+        </button>
+      </>
+    ) : (
+      order.notes
+    );
+  };
 
   return (
     <div className="orderCard">
@@ -66,17 +96,29 @@ const Order = ({ order, handleInput, openDetails, openUpdates, handleUpdate }) =
         </div>
       </div>
 
-      <p className="note">Notes: {order.notes}</p>
+      <p className="note">
+        Notes: {getNotes()}
+        {editor ? (
+          <button onClick={() => showEditor(!editor)}>cancel</button>
+        ) : (
+          <sup className="notesEdit" onClick={() => showEditor(!editor)}>
+            <FaPencilAlt />
+          </sup>
+        )}
+      </p>
 
       {order.showDetails ? (
         <Details handleInput={handleInput} order={order} />
       ) : null}
       {order.showUpdates ? (
-        <Updates handleInput={handleInput} order={order} handleUpdate={handleUpdate} />
+        <Updates
+          handleInput={handleInput}
+          order={order}
+          handleUpdate={handleUpdate}
+        />
       ) : null}
     </div>
   );
-  
 };
 
 export default Order;

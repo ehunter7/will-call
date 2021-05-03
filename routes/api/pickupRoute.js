@@ -48,7 +48,7 @@ router.put("/updatePU", async (req, res) => {
   try {
     const updatePU = await Pickup.findByIdAndUpdate(
       { _id: id },
-      { comments: data.comments, loader: data.loader, updatedOn: Date.now(), showUpdates: false },
+      { comments: data.comments, loader: data.loader, updatedOn: Date.now(), showUpdates: false, notes: data.notes },
       { new: true }
     );
     return res.json(updatePU);

@@ -20,7 +20,7 @@ const User = () => {
     notes: "",
     comments: "",
     loader: "",
-    puOn: Date
+    puOn: Date,
   });
 
   //useEffect runs on mount and gets all pickups from DB
@@ -36,7 +36,6 @@ const User = () => {
     const { name, value } = event.target;
 
     setPickup({ ...pickup, [name]: value });
-
   };
 
   //Handles new pickup submit
@@ -53,14 +52,20 @@ const User = () => {
     e.preventDefault();
     API.updatePU(id, pickup).then((res) => {
       const updatedPickups = pickups.map((order) => {
-        if(order._id === res.data._id){
-          return {...order, comments: res.data.comments, loader: res.data.loader, updatedOn: res.data.updatedOn};
-        };
+        if (order._id === res.data._id) {
+          return {
+            ...order,
+            comments: res.data.comments,
+            loader: res.data.loader,
+            updatedOn: res.data.updatedOn,
+            notes: res.data.notes,
+          };
+        }
         return order;
       });
       setpickups(updatedPickups);
     });
-  }
+  };
 
   //shows the pickups details
   const openDetails = (id) => {
@@ -73,7 +78,8 @@ const User = () => {
     });
     setpickups(updatepickups);
   };
-  
+
+  //Opens update form below order
   const openUpdates = (id) => {
     console.log();
     const updatepickups = pickups.map((order) => {
@@ -84,7 +90,7 @@ const User = () => {
     });
     setpickups(updatepickups);
   };
-  
+
   return (
     <div className="container">
       <Selection newPU={newPU} showNewPU={showNewPU} />

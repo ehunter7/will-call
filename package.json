@@ -39,6 +39,7 @@
     "mongoose-auto-increment": "^5.0.1",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
-    "react-bootstrap": "^1.5.2"
+    "react-bootstrap": "^1.5.2",
+    "react-icons": "^4.2.0"
   }
 }

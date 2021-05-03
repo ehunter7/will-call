@@ -66,3 +66,14 @@ td {
     width: 8em;
 }
 
+.notesEdit {
+    margin-left: 1em;
+}
+
+.notesEdit:hover{
+    cursor: pointer;
+}
+
+.notesEditor{
+    width: 50em;
+}
