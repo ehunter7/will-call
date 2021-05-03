@@ -12,5 +12,9 @@ export default {
     },
     pickedUp: (id, data, puNumber) => {
         return axios.post('/api/pu/pickedUp', {id, data, puNumber});
+    },
+    getCompleted: () => {
+        return axios.get('/api/pu/getCompleted');
     }
+
 };

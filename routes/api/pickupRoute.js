@@ -41,8 +41,21 @@ router.get("/getPickups", async (req, res) => {
     console.log(
       "[WARNING] Error in getPickups route (pickupRoute.js / Line 38)"
     );
+    console.log(error);
   }
 });
+
+router.get('/getCompleted', async (req, res) => {
+  try {
+    const completed = await Complete.find({});
+
+    res.json(completed);
+
+  } catch (error) {
+
+    console.log(error);
+  };
+})
 
 router.put("/updatePU", async (req, res) => {
   const { id, data } = req.body;

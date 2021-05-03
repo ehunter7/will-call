@@ -71,6 +71,7 @@ const User = () => {
     });
   };
 
+  // Handles pickup once picked up. 
   const handlePickedUp = (e, id, puNumber) => {
     e.preventDefault();
     API.pickedUp(id, pickup, puNumber).then((res) => {
