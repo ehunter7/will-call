@@ -96,7 +96,7 @@ router.post('/pickedUp', async (req, res) => {
       confirmingCSR: "",
       showDetails: false,
       showUpdates: false,
-      status: "pending",
+      status: "completed",
       puOn: completedPickup.puOn,
       pickedupNumber: puNumber,
     });

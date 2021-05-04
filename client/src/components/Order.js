@@ -14,12 +14,17 @@ const Order = ({
 }) => {
   //state that shows note editor
   const [editor, showEditor] = useState(false);
-
+console.log(order);
   // Sets date to display
   const pickupDate = new Date(order.puDate);
-  const updated = new Date(order.updatedOn);
+  let updated = null;
+  if(order.status !== 'completed'){
+   updated = new Date(order.updatedOn);
+  } else {
+    updated = new Date(order.puDate);
+  }
 
-  // function to either get notes or notees input field for updating.
+  // function to either get notes or notes input field for updating.
   const getNotes = () => {
     return editor ? (
       <>
@@ -39,29 +44,34 @@ const Order = ({
     );
   };
 
+  //function to not show buttons if pickup is completed
+
+
   return (
     <div className="orderCard">
       <div className="row">
         <div className="col-md-9">
           <div className="row orderNumbers">
             <p className="col-md-4">
-              Pick-up #: <b className="info">{order.pickupNumber}</b>
+              Pick-up #: <b className="info">{order.status !== "completed" ? order.pickupNumber : order.pickedupNumber}</b>
             </p>
             <p className="col-md-4">
               PRO: <b className="info">{order.pro}</b>
             </p>
             <p className="col-md-4">
-              Last Updated:
+              {order.status !== 'completed' ? 'Last Updated:': 'Picked Up On:'}
               <b className="info">
                 {" "}
-                {`${updated.getHours()}:${updated.getMinutes()} on ${
+                {order.status !== "completed" ? <>{updated.getHours()}:{updated.getMinutes()} on {
                   updated.getMonth() + 1
-                }/${updated.getDate()}`}
+                }/{updated.getDate()}</> : <>{
+                  updated.getMonth() + 1
+                }/{updated.getDate()}</>}
               </b>
             </p>
           </div>
 
-          <div className="row quickDetails">
+    {order.status !== "completed" ? <div className="row quickDetails">
             <p className="col-md-4">
               Carrier: <b className="info">{order.carrier}</b>
             </p>
@@ -75,16 +85,16 @@ const Order = ({
             <p className="col-md-4">
               PU Time: <b className="info">{order.puTime}</b>
             </p>
-          </div>
+          </div> : null}
         </div>
         <div className="col-md-3">
           <div className="orderButtons">
-            <button
+            {order.status !== "completed" ? <button
               className="orderBtn"
               onClick={(e) => openUpdates(order._id)}
             >
               Update
-            </button>
+            </button> : null}
           </div>
           <div className="orderButtons">
             <button
@@ -97,7 +107,7 @@ const Order = ({
         </div>
       </div>
 
-      <p className="note">
+{order.status !== "completed" ? <p className="note">
         Notes: {getNotes()}
         {editor ? (
           <button onClick={() => showEditor(!editor)}>cancel</button>
@@ -106,7 +116,7 @@ const Order = ({
             <FaPencilAlt />
           </sup>
         )}
-      </p>
+      </p> : null}
 
       {order.showDetails ? (
         <Details handleInput={handleInput} order={order} />
