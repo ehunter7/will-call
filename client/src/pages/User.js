@@ -46,6 +46,14 @@ const User = () => {
     API.newPickup(pickup).then((res) => {
       showNewPU(!newPU);
       setpickups(pickups.concat(res.data));
+      setPickup({    pro: Number,
+        carrier: "",
+        puDate: Date,
+        puTime: "0800 to 1300",
+        notes: "",
+        comments: "",
+        loader: "",
+        puOn: Date,});
     });
   };
 

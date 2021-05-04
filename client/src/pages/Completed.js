@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Order from '../components/Order';
+import API from '../utils/api';
 
 const Completed = () => {
 
     // used to hold completed pickup list. 
-    const [completed, setcompleted] = useState([]);
+    const [completed, setCompleted] = useState([]);
 
     useEffect(() => {
         

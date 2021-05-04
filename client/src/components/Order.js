@@ -70,7 +70,7 @@ const Order = ({
               Scheduled Pick-up date:{"  "}
               <b className="info">{`${
                 pickupDate.getMonth() + 1
-              }/${pickupDate.getDate()}`}</b>
+              }/${pickupDate.getDate() + 1}`}</b>
             </p>
             <p className="col-md-4">
               PU Time: <b className="info">{order.puTime}</b>
