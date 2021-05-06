@@ -23,27 +23,20 @@ const Completed = () => {
     const handleFilterInput = (e) => {
 
         const { name, value } = e.target;
-        console.log(name);
+   
         const filteredList = completed.filter(order => {
-            switch (name) {
-                case "pickedupNumber":
-                    console.log(order);
-                    if (order.pickedupNumber == value) {
-                        return order;
-                    };
-                    break;
-                case "pro":
-                    if (order.pro == value) {
-                        return order;
-                    };
-                    break;
-                case "puDate":
-                    if (order.puDate == value) {
-                        return order;
-                    };
-                    break;
-                default:
-                    break;
+            if(name === "pickedupNumber"){
+                return ((order.pickedupNumber + '').indexOf(value) > -1);
+            } else if(name === "pro"){
+                return ((order.pro + '').indexOf(value) > -1);
+            } else if(name === "puDate") {
+                const pu = new Date(order.puOn);
+                const day = pu.getDate();
+                const month = pu.getMonth() +1;
+                const year = pu.getFullYear();
+                const dateString = `${month}/${day}/${year}`;
+console.log(month);
+                return dateString.includes(value);
             };
         });
         setFiltered(filteredList);

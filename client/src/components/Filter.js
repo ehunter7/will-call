@@ -13,7 +13,7 @@ const Filter = ({handleFilterInput}) => {
             </div>
             <div className="col-md-4">
                 <label htmlFor="date" >Date</label>
-                <input id="date" type="date"name="puDate" onChange={(e) => handleFilterInput(e)}></input>
+                <input id="date" type="text"name="puDate" onChange={(e) => handleFilterInput(e)}></input>
             </div>
         </div>
     )
