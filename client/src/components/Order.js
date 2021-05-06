@@ -14,7 +14,7 @@ const Order = ({
 }) => {
   //state that shows note editor
   const [editor, showEditor] = useState(false);
-console.log(order);
+
   // Sets date to display
   const pickupDate = new Date(order.puDate);
   let updated = null;
