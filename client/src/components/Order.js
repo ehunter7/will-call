@@ -47,7 +47,7 @@ const Order = ({
   //function to not show buttons if pickup is completed
 
 
-  return (
+  return (  
     <div className="orderCard">
       <div className="row">
         <div className="col-md-9">
@@ -71,7 +71,7 @@ const Order = ({
             </p>
           </div>
 
-    {order.status !== "completed" ? <div className="row quickDetails">
+       {order.status !== "completed" ? <div className="row quickDetails">
             <p className="col-md-4">
               Carrier: <b className="info">{order.carrier}</b>
             </p>
@@ -107,7 +107,7 @@ const Order = ({
         </div>
       </div>
 
-{order.status !== "completed" ? <p className="note">
+      {order.status !== "completed" ? <p className="note">
         Notes: {getNotes()}
         {editor ? (
           <button onClick={() => showEditor(!editor)}>cancel</button>

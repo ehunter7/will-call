@@ -16,9 +16,9 @@ const handleClick = () => {
   return (
     <div className="selectionGroup">
 <div className="selectionButtons">
-        <button onClick={() => showNewPU(!newPU)}>Create New Pick-up</button>
+        <button className="selcBTN" onClick={() => showNewPU(!newPU)}>Create New Pick-up</button>
 
-        <button className="completedButton" onClick={() => handleClick()}>Completed</button>
+        <button className="completedButton selcBTN" onClick={() => handleClick()}>Completed</button>
         </div>
     </div>
   );

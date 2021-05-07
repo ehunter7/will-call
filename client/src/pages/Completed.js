@@ -43,7 +43,7 @@ console.log(month);
     }
 
     return (
-        <div className="container">
+        <div className="container mainContent">
 
             <Filter handleFilterInput={handleFilterInput} />
             {filtered.map(order => {

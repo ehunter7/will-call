@@ -46,14 +46,16 @@ const User = () => {
     API.newPickup(pickup).then((res) => {
       showNewPU(!newPU);
       setpickups(pickups.concat(res.data));
-      setPickup({    pro: Number,
+      setPickup({
+        pro: Number,
         carrier: "",
         puDate: Date,
         puTime: "0800 to 1300",
         notes: "",
         comments: "",
         loader: "",
-        puOn: Date,});
+        puOn: Date,
+      });
     });
   };
 
@@ -113,24 +115,27 @@ const User = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container mainContent">
       <Selection newPU={newPU} showNewPU={showNewPU} />
       {!newPU ? null : (
         <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
       )}
+      <div className="orderDiv">
+        {pickups.map((order) => {
+          return (
+            <Order
+              order={order}
+              handleInput={handleInput}
+              openDetails={openDetails}
+              openUpdates={openUpdates}
+              handleUpdate={handleUpdate}
+              handlePickedUp={handlePickedUp}
+            />
+          );
+        })}
 
-      {pickups.map((order) => {
-        return (
-          <Order
-            order={order}
-            handleInput={handleInput}
-            openDetails={openDetails}
-            openUpdates={openUpdates}
-            handleUpdate={handleUpdate}
-            handlePickedUp={handlePickedUp}
-          />
-        );
-      })}
+      </div>
+
     </div>
   );
 };

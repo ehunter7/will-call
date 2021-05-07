@@ -1,21 +1,62 @@
+.main {
+    background-color: #222831;
+    color: white;
+}
+
+
 .selectionGroup {
     display: flex;
     justify-content: center;
-    background-color: blanchedalmond;
+    background-color: #222831;
+
+}
+
+.selectionButtons{
+    margin-top: 2em;
+
+}
+
+
+.mainContent{
+
+    border-right: solid 2px #ececec;
+    border-left: solid 2px #ececec;
+    height: 100vh;
 }
 
 .completedButton {
     margin-left: 4em;
 }
 
+.selcBTN {
+    /* width: 6em; */
+    border-style: none;
+    border-radius: 2px;
+    background-color: transparent;
+    border:solid 1px #f2a365;
+    color: #f2a365;
+}
+
 .orderCard {
-    background-color: blueviolet;
-   
+    border-bottom: solid .10px #30475e;
+    padding-left: 4em;
+}
+
+.orderCard:hover {
+    transition: background-color 0.5s ease;
+    background-color: #393e46;
+
+}
+
+.orderDiv {
+    margin-top: 4em;
 }
 
 .quickDetails {
     display: flex;
 }
+
+
 
 .orderNumbers {
     display: flex;
@@ -38,7 +79,8 @@
     border-style: none;
     border-radius: 2px;
     background-color: transparent;
-    border:solid 1px black;
+    border:solid 1px #f2a365;
+    color: #f2a365;
 }
 
 .puForm {
