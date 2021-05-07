@@ -11,7 +11,7 @@ export default {
         return axios.put('/api/pu/updatePU', {id, data});
     },
     pickedUp: (id, data, puNumber) => {
-        return axios.post('/api/pu/pickedUp', {id, data, puNumber});
+        return axios.put('/api/pu/pickedUp', {id, data, puNumber});
     },
     getCompleted: () => {
         return axios.get('/api/pu/getCompleted');

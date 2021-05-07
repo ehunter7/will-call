@@ -72,39 +72,39 @@ router.put("/updatePU", async (req, res) => {
   }
 });
 
-router.post('/pickedUp', async (req, res) => {
+router.put('/pickedUp', async (req, res) => {
   const { id, data, puNumber } = req.body;
 
   try {
     const completedPickup = await Pickup.findByIdAndUpdate(id,
-      { comments: data.comments, loader: data.loader, updatedOn: Date.now(), showUpdates: false, puOn: data.puOn },
+      { comments: data.comments, loader: data.loader, updatedOn: Date.now(), showUpdates: false, puOn: data.puOn, status: "completed" },
       { new: true }
     );
 
-    const completed = new Complete({
-      _id: completedPickup._id,
-      csr: completedPickup.csr,
-      pro: completedPickup.pro,
-      carrier: completedPickup.carrier,
-      receiver: "",
-      puDate: completedPickup.puDate,
-      puTime: completedPickup.puTime,
-      loader: completedPickup.loader,
-      notes: completedPickup.notes,
-      comments: completedPickup.comments,
-      confirmingReceiver: "",
-      confirmingCSR: "",
-      showDetails: false,
-      showUpdates: false,
-      status: "completed",
-      puOn: completedPickup.puOn,
-      pickedupNumber: puNumber,
-    });
+    // const completed = new Complete({
+    //   _id: completedPickup._id,
+    //   csr: completedPickup.csr,
+    //   pro: completedPickup.pro,
+    //   carrier: completedPickup.carrier,
+    //   receiver: "",
+    //   puDate: completedPickup.puDate,
+    //   puTime: completedPickup.puTime,
+    //   loader: completedPickup.loader,
+    //   notes: completedPickup.notes,
+    //   comments: completedPickup.comments,
+    //   confirmingReceiver: "",
+    //   confirmingCSR: "",
+    //   showDetails: false,
+    //   showUpdates: false,
+    //   status: "completed",
+    //   puOn: completedPickup.puOn,
+    //   pickedupNumber: puNumber,
+    // });
 
-    await completed.save();
-    res.json(completed);
+    // await completed.save();
+    res.json(completedPickup);
 
-    const removePU = await Pickup.findByIdAndRemove(id);
+    // const removePU = await Pickup.findByIdAndRemove(id);
 
 
   } catch (error) {

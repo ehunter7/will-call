@@ -4,12 +4,11 @@ import Selection from "../components/Selection";
 import Order from "../components/Order";
 import NewPU from "../components/NewPU";
 
-const User = () => {
+const User = ({pickups, setpickups, openDetails}) => {
   // Used to show components
   const [newPU, showNewPU] = useState(false);
 
-  //Contains all the pickups in an array
-  const [pickups, setpickups] = useState([]);
+
 
   //Used for creating a new pickup
   const [pickup, setPickup] = useState({
@@ -22,16 +21,6 @@ const User = () => {
     loader: "",
     puOn: Date,
   });
-
-  //useEffect runs on mount and gets all pickups from DB
-  useEffect(() => {
-    API.getPickups().then((res) => {
-      const sortedByPuDate = res.data.sort(
-        (a, b) => new Date(a.puDate) - new Date(b.puDate)
-      );
-      setpickups(sortedByPuDate);
-    });
-  }, []);
 
   //Handles input from new pickup form
   const handleInput = (event) => {
@@ -90,17 +79,7 @@ const User = () => {
     });
   };
 
-  //shows the pickups details
-  const openDetails = (id) => {
-    console.log();
-    const updatepickups = pickups.map((order) => {
-      if (order._id === id) {
-        return { ...order, showDetails: !order.showDetails };
-      }
-      return order;
-    });
-    setpickups(updatepickups);
-  };
+
 
   //Opens update form below order
   const openUpdates = (id) => {
@@ -122,6 +101,7 @@ const User = () => {
       )}
       <div className="orderDiv">
         {pickups.map((order) => {
+          if(order.status === "pending"){
           return (
             <Order
               order={order}
@@ -131,7 +111,7 @@ const User = () => {
               handleUpdate={handleUpdate}
               handlePickedUp={handlePickedUp}
             />
-          );
+          );}
         })}
 
       </div>

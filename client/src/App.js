@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   BrowserRouter as Router,
 
@@ -8,18 +8,44 @@ import {
 import './App.css';
 import User from "./pages/User";
 import Completed from "./pages/Completed";
+import API from "./utils/api"
 
 function App() {
+
+    //Contains all the pickups in an array
+    const [pickups, setpickups] = useState([]);
+
+    //useEffect runs on mount and gets all pickups from DB
+    useEffect(() => {
+      API.getPickups().then((res) => {
+        const sortedByPuDate = res.data.sort(
+          (a, b) => new Date(a.puDate) - new Date(b.puDate)
+        );
+        setpickups(sortedByPuDate);
+      });
+    }, []);
+
+      //shows the pickups details
+  const openDetails = (id) => {
+    console.log();
+    const updatepickups = pickups.map((order) => {
+      if (order._id === id) {
+        return { ...order, showDetails: !order.showDetails };
+      }
+      return order;
+    });
+    setpickups(updatepickups);
+  };
 
   return (
     <div >
       <Router>
 
         <Route exact path={"/"}>
-          <User />
+          <User pickups={pickups} setpickups={setpickups} openDetails={openDetails}/>
         </Route>
         <Route exact path={'/completed'}>
-          <Completed />
+          <Completed pickups={pickups} openDetails={openDetails}/>
         </Route>
 
       </Router>

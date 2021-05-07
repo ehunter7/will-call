@@ -53,7 +53,7 @@ const Order = ({
         <div className="col-md-9">
           <div className="row orderNumbers">
             <p className="col-md-4">
-              Pick-up #: <b className="info">{order.status !== "completed" ? order.pickupNumber : order.pickedupNumber}</b>
+              Pick-up #: <b className="info">{order.pickupNumber}</b>
             </p>
             <p className="col-md-4">
               PRO: <b className="info">{order.pro}</b>

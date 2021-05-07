@@ -56,11 +56,13 @@
     display: flex;
 }
 
+.filter {
+    margin-left: 1em;
+}
 
-
-.orderNumbers {
+.inputFields {
     display: flex;
-    
+    margin-top: 1em;
 }
 
 .orderButtons{
