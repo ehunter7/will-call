@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Order from '../components/Order';
 import API from '../utils/api';
 import Filter from '../components/Filter';
+import Selection from '../components/Selection';
 
-const Completed = ({ pickups, openDetails }) => {
+const Completed = ({ pickups, openDetails, newPU, showNewPU, completedPage, setCompletedPage }) => {
 
     // used to hold completed pickup list. 
     const [completed, setCompleted] = useState([]);
@@ -44,6 +45,8 @@ const Completed = ({ pickups, openDetails }) => {
 
     return (
         <div className="container mainContent">
+            <Selection newPU={newPU} showNewPU={showNewPU} completedPage={completedPage}
+            setCompletedPage={setCompletedPage}/>
 
             <Filter handleFilterInput={handleFilterInput} />
             <div className="orderDiv">

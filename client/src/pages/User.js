@@ -4,10 +4,7 @@ import Selection from "../components/Selection";
 import Order from "../components/Order";
 import NewPU from "../components/NewPU";
 
-const User = ({pickups, setpickups, openDetails}) => {
-  // Used to show components
-  const [newPU, showNewPU] = useState(false);
-
+const User = ({pickups, setpickups, openDetails, newPU, showNewPU, setCompletedPage}) => {
 
 
   //Used for creating a new pickup
@@ -95,7 +92,7 @@ const User = ({pickups, setpickups, openDetails}) => {
 
   return (
     <div className="container mainContent">
-      <Selection newPU={newPU} showNewPU={showNewPU} />
+      <Selection newPU={newPU} showNewPU={showNewPU} setCompletedPage={setCompletedPage}/>
       {!newPU ? null : (
         <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
       )}

@@ -29,7 +29,8 @@ const Details = ({ order, handleInput }) => {
           </div>
         </div>
       </div>
-      <div className="row">
+
+     {order.status !== "pending" ? <><div className="row">
         <div className="col-md-12">
           <div className="row">
             <p className="col-md-4">
@@ -60,7 +61,7 @@ const Details = ({ order, handleInput }) => {
         <div className="col-md-12">
           <p className="note">Comments: {" "}{order.comments}</p>
         </div>
-      </div>
+      </div> </>: null}
 
     </div>
   );
