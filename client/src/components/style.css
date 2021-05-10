@@ -13,9 +13,37 @@
 
 .selectionButtons{
     margin-top: 2em;
+    margin-bottom: 2em;
 
 }
 
+.newPUForm{
+    display: flex;
+}
+
+.newPUInput{
+    width: 100%;
+    
+}
+
+.puButton{
+    display: flex;
+    justify-content: center;
+    margin:40px 0;   
+}
+
+.notesTextArea{
+    width: 100%;
+}
+
+.newPUButton{
+    width: 6em;
+    border-style: none;
+    border-radius: 2px;
+    background-color: transparent;
+    border:solid 1px #f2a365;
+    color: #f2a365;
+}
 
 .mainContent{
 
