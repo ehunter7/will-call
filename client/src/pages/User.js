@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import API from "../utils/api";
 import Selection from "../components/Selection";
 import Order from "../components/Order";
@@ -109,6 +109,7 @@ const User = ({pickups, setpickups, openDetails, newPU, showNewPU, setCompletedP
               handlePickedUp={handlePickedUp}
             />
           );}
+          return null;
         })}
 
       </div>

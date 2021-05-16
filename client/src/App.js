@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
+// import {Container} from 'react-bootstrap'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import User from "./pages/User";
 import Completed from "./pages/Completed";
+import Signup from "./pages/Signup";
 import API from "./utils/api";
+import AuthProvider from './contexts/AuthContext'
+import Login from './pages/Login'
+import PrivateRoute from './components/PrivateRoute'
 
 function App() {
   //Contains all the pickups in an array
@@ -21,8 +26,9 @@ function App() {
       );
       setpickups(sortedByPuDate);
     });
-  }, []);
 
+  }, []);
+  
   //shows the pickups details
   const openDetails = (id) => {
     console.log();
@@ -37,28 +43,30 @@ function App() {
 
   return (
     <div>
+      
+      <AuthProvider>
       <Router>
-        <Route exact path={["/", "/pending"]}>
-          <User
-            pickups={pickups}
+        <Route exact path={"/signup"} component={Signup}/>
+        <Route exact path={"/login"} component={Login}/>
+        <Route exact path={["/", '/pending']} component={() => <User pickups={pickups}
             setpickups={setpickups}
             openDetails={openDetails}
             newPU={newPU}
             showNewPU={showNewPU}
-            setCompletedPage={setCompletedPage}
-          />
-        </Route>
-        <Route exact path={"/completed"}>
-          <Completed
+            setCompletedPage={setCompletedPage}/>}/>
+
+     
+
+        <Route exact path={"/completed"} component={() =>    <Completed
             pickups={pickups}
             openDetails={openDetails}
             newPU={newPU}
             showNewPU={showNewPU}
             completedPage={completedPage}
             setCompletedPage={setCompletedPage}
-          />
-        </Route>
+          />}/>
       </Router>
+      </AuthProvider>
     </div>
   );
 }

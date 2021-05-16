@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Order from '../components/Order';
-import API from '../utils/api';
+// import API from '../utils/api';
 import Filter from '../components/Filter';
 import Selection from '../components/Selection';
 
@@ -39,6 +39,8 @@ const Completed = ({ pickups, openDetails, newPU, showNewPU, completedPage, setC
                 console.log(month);
                 return dateString.includes(value);
             };
+            return null;
+     
         });
         setFiltered(filteredList);
     }
