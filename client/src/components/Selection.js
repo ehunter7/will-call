@@ -8,7 +8,9 @@ const Selection = () => {
   const { logout } = useAuth();
   let history = useHistory();
   const [newPU, showNewPU] = useState(false);
-  const [completedPage, setCompletedPage] = useState();
+  const [completedPage, setCompletedPage] = useState(true);
+
+  
   const handleClick = (e) => {
     setCompletedPage(!completedPage);
 
@@ -18,7 +20,8 @@ const Selection = () => {
       history.push("/pending");
     }
   };
-
+  
+// handles log out 
   const handleLogout = async () => {
     try {
       await logout();
@@ -36,7 +39,16 @@ const Selection = () => {
         </Button>
       </div>
       <div className="selectionButtons">
-        {!completedPage ? (
+        {completedPage ? (
+                    <button
+                    className="completedButton selcBTN"
+                    name="pending"
+                    onClick={(e) => handleClick(e)}
+                  >
+                    Pending
+                  </button>
+
+        ) : (
           <>
             <button className="selcBTN" onClick={() => showNewPU(!newPU)}>
               Create New Pick-up
@@ -49,14 +61,6 @@ const Selection = () => {
               Completed
             </button>{" "}
           </>
-        ) : (
-          <button
-            className="completedButton selcBTN"
-            name="pending"
-            onClick={(e) => handleClick(e)}
-          >
-            Pending
-          </button>
         )}
       </div>
     </div>

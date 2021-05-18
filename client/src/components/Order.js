@@ -17,7 +17,8 @@ const Order = ({
   const [editor, showEditor] = useState(false);
 
   //global state
-  const [state, dispatch] = useStateContext;
+  //! this does not work. Need for displaying details on both the pending and completed page. 
+  // const [state, dispatch] = useStateContext;
 
   // Sets date to display
   const pickupDate = new Date(order.puDate);
@@ -54,10 +55,11 @@ const Order = ({
   };
 
   const handleDetails = () => {
-    dispatch({ type: "open-details", id: order._id });
+    console.log(order._id);
+      //! this does not work. Need for displaying details on both the pending and completed page. 
+    // dispatch({ type: "open-details", id: order._id });
   };
 
-  //function to not show buttons if pickup is completed
 
   return (
     <div className="orderCard">
@@ -118,7 +120,7 @@ const Order = ({
             ) : null}
           </div>
           <div className="orderButtons">
-            <button className="orderBtn" onClick={() => handleDetails}>
+            <button className="orderBtn" onClick={() => handleDetails()}>
               Details
             </button>
           </div>
