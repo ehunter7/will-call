@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import API from "../utils/api";
 import Selection from "../components/Selection";
 import Order from "../components/Order";
 import NewPU from "../components/NewPU";
+import { useStateContext } from "../utils/GlobalState";
 
-const User = ({pickups, setpickups, openDetails, newPU, showNewPU, setCompletedPage}) => {
-
+const User = ({ setCompletedPage }) => {
+  const [state, dispatch] = useStateContext();
+  const [newPU, showNewPU] = useState();
+  useEffect(() => {
+    API.getPickups().then((res) => {
+      const sortedByPuDate = res.data.sort(
+        (a, b) => new Date(a.puDate) - new Date(b.puDate)
+      );
+      //sets global state pickups
+      dispatch({ type: "set-pickups", payload: sortedByPuDate });
+    });
+  }, []);
 
   //Used for creating a new pickup
   const [pickup, setPickup] = useState({
@@ -31,7 +42,8 @@ const User = ({pickups, setpickups, openDetails, newPU, showNewPU, setCompletedP
     e.preventDefault();
     API.newPickup(pickup).then((res) => {
       showNewPU(!newPU);
-      setpickups(pickups.concat(res.data));
+      // setpickups(pickups.concat(res.data));
+      dispatch({ type: "new-pickup", payload: res.data });
       setPickup({
         pro: Number,
         carrier: "",
@@ -49,7 +61,7 @@ const User = ({pickups, setpickups, openDetails, newPU, showNewPU, setCompletedP
   const handleUpdate = (e, id) => {
     e.preventDefault();
     API.updatePU(id, pickup).then((res) => {
-      const updatedPickups = pickups.map((order) => {
+      const updatedPickups = state.pickups.map((order) => {
         if (order._id === res.data._id) {
           return {
             ...order,
@@ -62,58 +74,59 @@ const User = ({pickups, setpickups, openDetails, newPU, showNewPU, setCompletedP
         return order;
       });
       openUpdates(id);
-      setpickups(updatedPickups);
-
+      // setpickups(updatedPickups);
+      dispatch({ type: "set-pickups", payload: updatedPickups });
     });
   };
 
-  // Handles pickup once picked up. 
+  // Handles pickup once picked up.
   const handlePickedUp = (e, id, puNumber) => {
     e.preventDefault();
     API.pickedUp(id, pickup, puNumber).then((res) => {
-      const puRemoved = pickups.filter(order => order._id !== res.data._id);
-      setpickups(puRemoved);
+      const puRemoved = state.pickups.filter(
+        (order) => order._id !== res.data._id
+      );
+      // setpickups(puRemoved);
+      dispatch({ type: "set-pickups", payload: puRemoved });
     });
   };
-
-
 
   //Opens update form below order
   const openUpdates = (id) => {
     console.log();
-    const updatepickups = pickups.map((order) => {
+    const updatepickups = state.pickups.map((order) => {
       if (order._id === id) {
         return { ...order, showUpdates: !order.showUpdates };
       }
       return order;
     });
-    setpickups(updatepickups);
+    // setpickups(updatepickups);
+    dispatch({ type: "set-pickups", payload: updatepickups });
   };
 
   return (
     <div className="container mainContent">
-      <Selection newPU={newPU} showNewPU={showNewPU} setCompletedPage={setCompletedPage}/>
+      <Selection setCompletedPage={setCompletedPage} />
       {!newPU ? null : (
         <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
       )}
       <div className="orderDiv">
-        {pickups.map((order) => {
-          if(order.status === "pending"){
-          return (
-            <Order
-              order={order}
-              handleInput={handleInput}
-              openDetails={openDetails}
-              openUpdates={openUpdates}
-              handleUpdate={handleUpdate}
-              handlePickedUp={handlePickedUp}
-            />
-          );}
+        {state.pickups.map((order) => {
+          if (order.status === "pending") {
+            return (
+              <Order
+                order={order}
+                handleInput={handleInput}
+                // openDetails={openDetails}
+                openUpdates={openUpdates}
+                handleUpdate={handleUpdate}
+                handlePickedUp={handlePickedUp}
+              />
+            );
+          }
           return null;
         })}
-
       </div>
-
     </div>
   );
 };

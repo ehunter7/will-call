@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import {Button} from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
+import { Button } from "react-bootstrap";
+import { useAuth } from "../contexts/AuthContext";
 import "./style.css";
 
-const Selection = ({ newPU, showNewPU, setCompletedPage, completedPage }) => {
-  const { logout } = useAuth()
+const Selection = () => {
+  const { logout } = useAuth();
   let history = useHistory();
-
+  const [newPU, showNewPU] = useState(false);
+  const [completedPage, setCompletedPage] = useState();
   const handleClick = (e) => {
     setCompletedPage(!completedPage);
 
@@ -18,19 +19,21 @@ const Selection = ({ newPU, showNewPU, setCompletedPage, completedPage }) => {
     }
   };
 
-  const handleLogout = async ()  => {
-try{
-  await logout()
-  history.push('/login')
-} catch {
-  console.log("Error loggin out");
-}
-  }
+  const handleLogout = async () => {
+    try {
+      await logout();
+      history.push("/login");
+    } catch {
+      console.log("Error loggin out");
+    }
+  };
 
   return (
     <div className="selectionGroup">
       <div>
-        <Button variant='link' onClick={handleLogout}>Log Out</Button>
+        <Button variant="link" onClick={handleLogout}>
+          Log Out
+        </Button>
       </div>
       <div className="selectionButtons">
         {!completedPage ? (

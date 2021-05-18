@@ -1,66 +1,60 @@
-import React, { useEffect, useState } from 'react'
-import Order from '../components/Order';
+import React, { useEffect, useState } from "react";
+import Order from "../components/Order";
 // import API from '../utils/api';
-import Filter from '../components/Filter';
-import Selection from '../components/Selection';
+import Filter from "../components/Filter";
+import Selection from "../components/Selection";
+import { useStateContext } from "../utils/GlobalState";
 
-const Completed = ({ pickups, openDetails, newPU, showNewPU, completedPage, setCompletedPage }) => {
+const Completed = ({ completedPage, setCompletedPage }) => {
+  const [state, dispatch] = useStateContext();
 
-    // used to hold completed pickup list. 
-    const [completed, setCompleted] = useState([]);
-    const [filtered, setFiltered] = useState([]);
+  // used to hold completed pickup list.
+  const [completed, setCompleted] = useState([]);
+  const [filtered, setFiltered] = useState([]);
 
+  useEffect(() => {
+    const getCompleted = state.pickups.filter(
+      (order) => order.status === "completed"
+    );
+    setCompleted(getCompleted);
+    setFiltered(getCompleted);
+  }, []);
 
-    useEffect(() => {
+  // handle input from filter component
+  const handleFilterInput = (e) => {
+    const { name, value } = e.target;
 
-        const getCompleted = pickups.filter(order => order.status === "completed");
-        setCompleted(getCompleted);
-        setFiltered(getCompleted);
+    const filteredList = completed.filter((order) => {
+      if (name === "pickedupNumber") {
+        return (order.pickedupNumber + "").indexOf(value) > -1;
+      } else if (name === "pro") {
+        return (order.pro + "").indexOf(value) > -1;
+      } else if (name === "puDate") {
+        const pu = new Date(order.puOn);
+        const day = pu.getDate();
+        const month = pu.getMonth() + 1;
+        const year = pu.getFullYear();
+        const dateString = `${month}/${day}/${year}`;
+        console.log(month);
+        return dateString.includes(value);
+      }
+      return null;
+    });
+    setFiltered(filteredList);
+  };
 
+  return (
+    <div className="container mainContent">
+      <Selection />
 
-    }, [pickups]);
+      <Filter handleFilterInput={handleFilterInput} />
+      <div className="orderDiv">
+        {filtered.map((order) => {
+          return <Order order={order} />;
+        })}
+      </div>
+    </div>
+  );
+};
 
-    // handle input from filter component
-    const handleFilterInput = (e) => {
-
-        const { name, value } = e.target;
-
-        const filteredList = completed.filter(order => {
-            if (name === "pickedupNumber") {
-                return ((order.pickedupNumber + '').indexOf(value) > -1);
-            } else if (name === "pro") {
-                return ((order.pro + '').indexOf(value) > -1);
-            } else if (name === "puDate") {
-                const pu = new Date(order.puOn);
-                const day = pu.getDate();
-                const month = pu.getMonth() + 1;
-                const year = pu.getFullYear();
-                const dateString = `${month}/${day}/${year}`;
-                console.log(month);
-                return dateString.includes(value);
-            };
-            return null;
-     
-        });
-        setFiltered(filteredList);
-    }
-
-    return (
-        <div className="container mainContent">
-            <Selection newPU={newPU} showNewPU={showNewPU} completedPage={completedPage}
-            setCompletedPage={setCompletedPage}/>
-
-            <Filter handleFilterInput={handleFilterInput} />
-            <div className="orderDiv">
-                {filtered.map(order => {
-
-                    return (<Order order={order} openDetails={openDetails} />)
-                })}
-
-            </div>
-
-        </div>
-    )
-}
-
-export default Completed
+export default Completed;

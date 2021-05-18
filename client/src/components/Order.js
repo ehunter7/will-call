@@ -3,23 +3,27 @@ import Details from "./Details";
 import Updates from "./Updates";
 import { FaPencilAlt } from "react-icons/fa";
 import "./style.css";
+import { useStateContext } from "../utils/GlobalState";
 
 const Order = ({
   order,
   handleInput,
-  openDetails,
+
   openUpdates,
   handleUpdate,
-  handlePickedUp
+  handlePickedUp,
 }) => {
   //state that shows note editor
   const [editor, showEditor] = useState(false);
 
+  //global state
+  const [state, dispatch] = useStateContext;
+
   // Sets date to display
   const pickupDate = new Date(order.puDate);
   let updated = null;
-  if(order.status !== 'completed'){
-   updated = new Date(order.updatedOn);
+  if (order.status !== "completed") {
+    updated = new Date(order.updatedOn);
   } else {
     updated = new Date(order.puDate);
   }
@@ -29,13 +33,18 @@ const Order = ({
     return editor ? (
       <>
         <input
-        className="notesEditor"
+          className="notesEditor"
           type="text"
           name="notes"
           defaultValue={order.notes}
           onChange={(e) => handleInput(e)}
         ></input>
-        <button onClick={(e) => {handleUpdate(e, order._id); showEditor(!editor);}}>
+        <button
+          onClick={(e) => {
+            handleUpdate(e, order._id);
+            showEditor(!editor);
+          }}
+        >
           Submit Notes
         </button>
       </>
@@ -44,10 +53,13 @@ const Order = ({
     );
   };
 
+  const handleDetails = () => {
+    dispatch({ type: "open-details", id: order._id });
+  };
+
   //function to not show buttons if pickup is completed
 
-
-  return (  
+  return (
     <div className="orderCard">
       <div className="row">
         <div className="col-md-9">
@@ -59,64 +71,72 @@ const Order = ({
               PRO: <b className="info">{order.pro}</b>
             </p>
             <p className="col-md-4">
-              {order.status !== 'completed' ? 'Last Updated:': 'Picked Up On:'}
+              {order.status !== "completed" ? "Last Updated:" : "Picked Up On:"}
               <b className="info">
                 {" "}
-                {order.status !== "completed" ? <>{updated.getHours()}:{updated.getMinutes()} on {
-                  updated.getMonth() + 1
-                }/{updated.getDate()}</> : <>{
-                  updated.getMonth() + 1
-                }/{updated.getDate()}</>}
+                {order.status !== "completed" ? (
+                  <>
+                    {updated.getHours()}:{updated.getMinutes()} on{" "}
+                    {updated.getMonth() + 1}/{updated.getDate()}
+                  </>
+                ) : (
+                  <>
+                    {updated.getMonth() + 1}/{updated.getDate()}
+                  </>
+                )}
               </b>
             </p>
           </div>
 
-       {order.status !== "completed" ? <div className="row quickDetails">
-            <p className="col-md-4">
-              Carrier: <b className="info">{order.carrier}</b>
-            </p>
+          {order.status !== "completed" ? (
+            <div className="row quickDetails">
+              <p className="col-md-4">
+                Carrier: <b className="info">{order.carrier}</b>
+              </p>
 
-            <p className="col-md-4">
-              Scheduled Pick-up date:{"  "}
-              <b className="info">{`${
-                pickupDate.getMonth() + 1
-              }/${pickupDate.getDate() + 1}`}</b>
-            </p>
-            <p className="col-md-4">
-              PU Time: <b className="info">{order.puTime}</b>
-            </p>
-          </div> : null}
+              <p className="col-md-4">
+                Scheduled Pick-up date:{"  "}
+                <b className="info">{`${pickupDate.getMonth() + 1}/${
+                  pickupDate.getDate() + 1
+                }`}</b>
+              </p>
+              <p className="col-md-4">
+                PU Time: <b className="info">{order.puTime}</b>
+              </p>
+            </div>
+          ) : null}
         </div>
         <div className="col-md-3">
           <div className="orderButtons">
-            {order.status !== "completed" ? <button
-              className="orderBtn"
-              onClick={(e) => openUpdates(order._id)}
-            >
-              Update
-            </button> : null}
+            {order.status !== "completed" ? (
+              <button
+                className="orderBtn"
+                onClick={(e) => openUpdates(order._id)}
+              >
+                Update
+              </button>
+            ) : null}
           </div>
           <div className="orderButtons">
-            <button
-              className="orderBtn"
-              onClick={(e) => openDetails(order._id)}
-            >
+            <button className="orderBtn" onClick={() => handleDetails}>
               Details
             </button>
           </div>
         </div>
       </div>
 
-      {order.status !== "completed" ? <p className="note">
-        Notes: {getNotes()}
-        {editor ? (
-          <button onClick={() => showEditor(!editor)}>cancel</button>
-        ) : (
-          <sup className="notesEdit" onClick={() => showEditor(!editor)}>
-            <FaPencilAlt />
-          </sup>
-        )}
-      </p> : null}
+      {order.status !== "completed" ? (
+        <p className="note">
+          Notes: {getNotes()}
+          {editor ? (
+            <button onClick={() => showEditor(!editor)}>cancel</button>
+          ) : (
+            <sup className="notesEdit" onClick={() => showEditor(!editor)}>
+              <FaPencilAlt />
+            </sup>
+          )}
+        </p>
+      ) : null}
 
       {order.showDetails ? (
         <Details handleInput={handleInput} order={order} />
