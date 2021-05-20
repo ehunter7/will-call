@@ -20,6 +20,9 @@ const reducer = (state, action) => {
       });
       return { ...state, pickups: updatepickups };
 
+      case "set-completed":
+        return {...state, completedPage: !state.completedPage};
+
     default:
       break;
   }
@@ -29,6 +32,7 @@ const StateProvider = ({ value = false, ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     //state goes here
     pickups: [],
+    completedPage: false,
   });
   return <Provider value={[state, dispatch]} {...props} />;
 };

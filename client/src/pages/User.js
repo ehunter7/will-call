@@ -8,6 +8,7 @@ import { useStateContext } from "../utils/GlobalState";
 const User = ({ setCompletedPage }) => {
   const [state, dispatch] = useStateContext();
   const [newPU, showNewPU] = useState();
+  
   useEffect(() => {
     API.getPickups().then((res) => {
       const sortedByPuDate = res.data.sort(

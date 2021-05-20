@@ -18,7 +18,7 @@ const Completed = ({ completedPage, setCompletedPage }) => {
     );
     setCompleted(getCompleted);
     setFiltered(getCompleted);
-  }, []);
+  }, [state]);
 
   // handle input from filter component
   const handleFilterInput = (e) => {

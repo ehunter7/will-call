@@ -18,7 +18,7 @@ const Order = ({
 
   //global state
   //! this does not work. Need for displaying details on both the pending and completed page. 
-  // const [state, dispatch] = useStateContext;
+  const [state, dispatch] = useStateContext();
 
   // Sets date to display
   const pickupDate = new Date(order.puDate);
@@ -55,9 +55,9 @@ const Order = ({
   };
 
   const handleDetails = () => {
-    console.log(order._id);
+    console.log(order.showDetails);
       //! this does not work. Need for displaying details on both the pending and completed page. 
-    // dispatch({ type: "open-details", id: order._id });
+    dispatch({ type: "open-details", id: order._id });
   };
 
 

@@ -3,20 +3,25 @@ import { useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import "./style.css";
+import { useStateContext } from "../utils/GlobalState";
 
 const Selection = () => {
   const { logout } = useAuth();
   let history = useHistory();
   const [newPU, showNewPU] = useState(false);
-  const [completedPage, setCompletedPage] = useState(true);
+  const [state, dispatch] = useStateContext();
+
 
   
   const handleClick = (e) => {
-    setCompletedPage(!completedPage);
+ 
+    dispatch({type: "set-completed"})
 
     if (e.target.name === "completed") {
+
       history.push("/completed");
     } else {
+
       history.push("/pending");
     }
   };
@@ -39,7 +44,7 @@ const Selection = () => {
         </Button>
       </div>
       <div className="selectionButtons">
-        {completedPage ? (
+        {state.completedPage ? (
                     <button
                     className="completedButton selcBTN"
                     name="pending"

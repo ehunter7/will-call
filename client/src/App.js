@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import {Container} from 'react-bootstrap'
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import User from "./pages/User";
 import Completed from "./pages/Completed";
@@ -17,11 +17,12 @@ function App() {
       <StateProvider>
         <AuthProvider>
           <Router>
-            <Route exact path={"/signup"} component={Signup} />
-            <Route exact path={"/login"} component={Login} />
-            <Route exact path={["/", "/pending"]} component={User} />
-
-            <Route exact path={"/completed"} component={Completed} />
+            <Switch>
+              <Route exact path={"/signup"} component={Signup} />
+              <Route exact path={"/login"} component={Login} />
+              <PrivateRoute component={User} exact path={["/", "/pending"]} />
+              <Route exact path={"/completed"} component={Completed} />
+            </Switch>
           </Router>
         </AuthProvider>
       </StateProvider>
