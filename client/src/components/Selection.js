@@ -37,12 +37,14 @@ const Selection = () => {
   };
 
   return (
+    <>
+    <div className="logout">
+    <Button variant="link" onClick={handleLogout}>
+      Log Out
+    </Button>
+  </div>
     <div className="selectionGroup">
-      <div>
-        <Button variant="link" onClick={handleLogout}>
-          Log Out
-        </Button>
-      </div>
+
       <div className="selectionButtons">
         {state.completedPage ? (
                     <button
@@ -69,6 +71,7 @@ const Selection = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

@@ -21,7 +21,7 @@ function App() {
               <Route exact path={"/signup"} component={Signup} />
               <Route exact path={"/login"} component={Login} />
               <PrivateRoute component={User} exact path={["/", "/pending"]} />
-              <Route exact path={"/completed"} component={Completed} />
+              <PrivateRoute exact path={"/completed"} component={Completed} />
             </Switch>
           </Router>
         </AuthProvider>

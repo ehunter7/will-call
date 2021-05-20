@@ -20,6 +20,14 @@ const Completed = ({ completedPage, setCompletedPage }) => {
     setFiltered(getCompleted);
   }, [state]);
 
+  useEffect(() => {
+    const getCompleted = state.pickups.filter(
+      (order) => order.status === "completed"
+    );
+    setCompleted(getCompleted);
+    setFiltered(getCompleted);
+  }, []);
+
   // handle input from filter component
   const handleFilterInput = (e) => {
     const { name, value } = e.target;

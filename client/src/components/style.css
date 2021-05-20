@@ -49,11 +49,16 @@
 
     border-right: solid 2px #ececec;
     border-left: solid 2px #ececec;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .completedButton {
     margin-left: 4em;
+}
+
+.logout {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .selcBTN {
