@@ -1,12 +1,14 @@
 import React, { useRef, useState } from "react";
 import { Form, Card, Button, Alert, Container } from "react-bootstrap";
-import { useAuth } from "../contexts/AuthContext";
+// import { useAuth } from "../contexts/AuthContext";
+// import { setAuth } from "../utils/GlobalState";
 import { Link, useHistory } from "react-router-dom";
 
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  // used for firebase
+  // const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -14,15 +16,8 @@ const Login = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    try {
-      setError("");
-      setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
-    } catch (error) {
-      setError("Failed to log in");
-      console.log(error);
-    }
+    //! need to write login logic
+
     setLoading(false);
   }
 

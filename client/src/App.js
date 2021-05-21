@@ -10,6 +10,7 @@ import AuthProvider from "./contexts/AuthContext";
 import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import { StateProvider } from "./utils/GlobalState";
+import NewUser from "./components/NewUser";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Switch>
               <Route exact path={"/signup"} component={Signup} />
               <Route exact path={"/login"} component={Login} />
+              <Route exact path={"/newuser"} component={NewUser} />
               <PrivateRoute component={User} exact path={["/", "/pending"]} />
               <PrivateRoute exact path={"/completed"} component={Completed} />
             </Switch>

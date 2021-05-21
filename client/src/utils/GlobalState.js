@@ -20,8 +20,8 @@ const reducer = (state, action) => {
       });
       return { ...state, pickups: updatepickups };
 
-      case "set-completed":
-        return {...state, completedPage: !state.completedPage};
+    case "set-completed":
+      return { ...state, completedPage: !state.completedPage };
 
     default:
       break;
@@ -41,4 +41,13 @@ const useStateContext = () => {
   return useContext(stateContext);
 };
 
-export { StateProvider, useStateContext };
+const authContext = React.createContext({
+  authData: {
+    isAuthenticated: null,
+    loading: true,
+    user: null,
+  },
+  setAuth: () => {},
+});
+
+export { StateProvider, useStateContext, authContext };
