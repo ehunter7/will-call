@@ -16,8 +16,6 @@ const NewUser = () => {
   const { username, fullname, password, role } = newUser;
 
   const handleChange = (e) => {
-    console.log("[INFO] e.etarget.name: " + e.target.name);
-    console.log("[INFO] e.etarget.value: " + e.target.value);
     return setNewUser({ ...newUser, [e.target.name]: e.target.value });
   };
 
@@ -40,7 +38,6 @@ const NewUser = () => {
     try {
       API.newuser(newUser).then((res) => {
         history.push("/");
-        console.log("[SUCCESS] New User saved");
       });
     } catch (error) {
       setError("Failed to log in");

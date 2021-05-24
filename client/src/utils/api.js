@@ -20,6 +20,6 @@ export default {
   },
   //user routes
   newuser: (data) => {
-    return axios.post("/api/user/newuser", data);
+    return axios.post("/api/users/newuser", data);
   },
 };
