@@ -22,4 +22,7 @@ export default {
   newuser: (data) => {
     return axios.post("/api/users/newuser", data);
   },
+  login: (data) => {
+    return axios.post("/api/users/login", data);
+  },
 };

@@ -18,11 +18,11 @@ app.use(express.json());
 //   app.use(express.static("client/build"));
 // }
 
-// app.use(
-//   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
-// );
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(
+  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 //add routes for api calls
 app.use(routes);

@@ -3,6 +3,7 @@ import { Form, Card, Button, Alert, Container } from "react-bootstrap";
 // import { useAuth } from "../contexts/AuthContext";
 // import { setAuth } from "../utils/GlobalState";
 import { Link, useHistory } from "react-router-dom";
+import API from '../utils/api';
 
 const Login = () => {
   const emailRef = useRef();
@@ -11,12 +12,23 @@ const Login = () => {
   // const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [userInput, setUserInput] = useState({
+    username: "",
+    password: "",
+  })
   const history = useHistory();
+
+  const handleChange = (e) => {
+    setUserInput({...userInput, [e.target.name]: e.target.value})
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     //! need to write login logic
+    API.login(userInput).then(res => {
+      console.log("res.data loged in" + res.data);
+    });
 
     setLoading(false);
   }
@@ -34,12 +46,12 @@ const Login = () => {
               {error && <Alert variant="danger">{error}</Alert>}
               <Form onSubmit={(e) => handleSubmit(e)}>
                 <Form.Group id="email">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" ref={emailRef} required />
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control type="text" ref={emailRef} required onChange={(e) => handleChange(e)} />
                 </Form.Group>
                 <Form.Group id="password">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" ref={passwordRef} required />
+                  <Form.Control type="password" ref={passwordRef} required onChange={(e) => handleChange(e)}/>
                 </Form.Group>
 
                 <Button disabled={loading} className="w-100" type="submit">
