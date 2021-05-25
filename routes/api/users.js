@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const bcrypt = require("bcrypt.js");
-
+// const bcrypt = require("bcrypt.js");
+const bcrypt = require('bcrypt');
 const User = require("../../models/user");
 
 router.post("/newuser", async (req, res) => {
@@ -29,17 +29,21 @@ router.post("/newuser", async (req, res) => {
 
 router.post('/login', async (req, res) => {
   const {username, password} = req.body;
+  console.log('[INFO]' + username);
+  console.log('[INFO] ' + password);
+  console.log(req.body);
   try{
     const user = await User.findOne({username});
-
+    console.log('[INFO] you made this far');
     if(!user){
-
+      console.log('[WARNING] INVALID USER');
       return res.status(400).json({errors: [{ msg: "Invalid Credentials"}]});
     };
 
     const isMatch = await bcrypt.compare(password, user.password);
 
     if(!isMatch){
+      console.log('[WARNING] INVALID password');
 
       return res.status(400).json({errors: [{ msg: "Invalid Credentials"}]});
     };

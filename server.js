@@ -3,7 +3,7 @@ const app = express();
 
 const mongoose = require("mongoose");
 
-// const passport = require("./config/passport");
+const passport = require("./config/passport");
 
 const routes = require("./routes");
 

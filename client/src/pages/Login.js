@@ -19,12 +19,13 @@ const Login = () => {
   const history = useHistory();
 
   const handleChange = (e) => {
+    console.log(e.target.value);
     setUserInput({...userInput, [e.target.name]: e.target.value})
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+    console.log(userInput);
     //! need to write login logic
     API.login(userInput).then(res => {
       console.log("res.data loged in" + res.data);
@@ -47,11 +48,11 @@ const Login = () => {
               <Form onSubmit={(e) => handleSubmit(e)}>
                 <Form.Group id="email">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control type="text" ref={emailRef} required onChange={(e) => handleChange(e)} />
+                  <Form.Control name='username' type="text" ref={emailRef} required onChange={(e) => handleChange(e)} />
                 </Form.Group>
                 <Form.Group id="password">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" ref={passwordRef} required onChange={(e) => handleChange(e)}/>
+                  <Form.Control name='password' type="password" ref={passwordRef} required onChange={(e) => handleChange(e)}/>
                 </Form.Group>
 
                 <Button disabled={loading} className="w-100" type="submit">
