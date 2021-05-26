@@ -44,6 +44,7 @@ const NewUser = () => {
       console.log(error);
     }
   };
+
   return (
     <>
       <Container

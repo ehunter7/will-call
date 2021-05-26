@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import API from "../utils/api";
 import Selection from "../components/Selection";
 import Order from "../components/Order";
 import NewPU from "../components/NewPU";
-import { useStateContext } from "../utils/GlobalState";
+import { useStateContext, authContext } from "../utils/GlobalState";
 
 const User = ({ setCompletedPage }) => {
   const [state, dispatch] = useStateContext();
   const [newPU, showNewPU] = useState();
-  
+  const { authData, setAuthor } = useContext(authContext);
+  console.log(authData);
+  console.log("User page");
   useEffect(() => {
     API.getPickups().then((res) => {
       const sortedByPuDate = res.data.sort(

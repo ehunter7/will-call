@@ -41,7 +41,7 @@ const useStateContext = () => {
   return useContext(stateContext);
 };
 
-const authContext = React.createContext({
+const authContext = createContext({
   authData: {
     isAuthenticated: null,
     loading: true,

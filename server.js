@@ -7,9 +7,11 @@ const passport = require("./config/passport");
 
 const routes = require("./routes");
 
+const session = require("express-session");
+
 require("dotenv").config();
 
-const PORT =  4000;
+const PORT = 4000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -28,21 +30,17 @@ app.use(passport.session());
 app.use(routes);
 
 //connect to mongo DB
-mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/willcallDB",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    }
-  );
-
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/willcallDB", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 
 mongoose.connection.on("connected", () => {
-    console.log("connected to mongoose");
-  });
-  
+  console.log("connected to mongoose");
+});
+
 app.listen(PORT, () => {
   console.log(`API Server Listening on port ${PORT}`);
 });

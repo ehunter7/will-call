@@ -9,14 +9,22 @@ import API from "./utils/api";
 import AuthProvider from "./contexts/AuthContext";
 import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
-import { StateProvider } from "./utils/GlobalState";
+import { authContext, StateProvider } from "./utils/GlobalState";
 import NewUser from "./components/NewUser";
 
 function App() {
+  const [authState, setAuthState] = useState({
+    isAuthenticated: null,
+    loading: true,
+    user: null,
+  });
+
   return (
     <>
       <StateProvider>
-        <AuthProvider>
+        <authContext.Provider
+          value={{ authData: authState, setAuth: setAuthState }}
+        >
           <Router>
             <Switch>
               <Route exact path={"/signup"} component={Signup} />
@@ -26,7 +34,7 @@ function App() {
               <PrivateRoute exact path={"/completed"} component={Completed} />
             </Switch>
           </Router>
-        </AuthProvider>
+        </authContext.Provider>
       </StateProvider>
     </>
   );
