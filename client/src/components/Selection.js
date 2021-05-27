@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 // import { useAuth } from "../contexts/AuthContext";
 import "./style.css";
 import { useStateContext } from "../utils/GlobalState";
+import API from "../utils/api";
 
 const Selection = () => {
   // const { logout } = useAuth();
@@ -25,6 +26,7 @@ const Selection = () => {
   const handleLogout = async () => {
     try {
       // await logout();
+      API.logout();
       history.push("/login");
     } catch {
       console.log("Error loggin out");
