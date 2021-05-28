@@ -29,14 +29,13 @@ router.post("/newuser", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  console.log("[INFO]" + username);
-  console.log("[INFO] " + password);
-  console.log(req.body);
+
   try {
     const user = await User.findOne({ username });
-    console.log("[INFO] you made this far");
+
     if (!user) {
       console.log("[WARNING] INVALID USER");
+      res.send("499");
       return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
     }
 
@@ -44,6 +43,7 @@ router.post("/login", async (req, res) => {
 
     if (!isMatch) {
       console.log("[WARNING] INVALID password");
+      res.send("498");
 
       return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
     }

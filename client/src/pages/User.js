@@ -9,8 +9,7 @@ const User = ({ setCompletedPage }) => {
   const [state, dispatch] = useStateContext();
   const [newPU, showNewPU] = useState();
   const { authData, setAuthor } = useContext(authContext);
-  console.log(authData);
-  console.log("User page");
+
   useEffect(() => {
     API.getPickups().then((res) => {
       const sortedByPuDate = res.data.sort(

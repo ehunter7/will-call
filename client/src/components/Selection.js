@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, NavDropdown } from "react-bootstrap";
 // import { useAuth } from "../contexts/AuthContext";
 import "./style.css";
-import { useStateContext } from "../utils/GlobalState";
+import { useStateContext, authContext } from "../utils/GlobalState";
 import API from "../utils/api";
 
 const Selection = () => {
@@ -11,6 +11,7 @@ const Selection = () => {
   let history = useHistory();
   const [newPU, showNewPU] = useState(false);
   const [state, dispatch] = useStateContext();
+  const { authData } = useContext(authContext);
 
   const handleClick = (e) => {
     dispatch({ type: "set-completed" });
@@ -36,9 +37,13 @@ const Selection = () => {
   return (
     <>
       <div className="logout">
-        <Button variant="link" onClick={handleLogout}>
-          Log Out
-        </Button>
+        <NavDropdown className="link-light" title={authData.user.username} id="nav-dropdown">
+          <NavDropdown.Item eventKey="4.1">Action</NavDropdown.Item>
+          <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
+          <NavDropdown.Item eventKey="4.3">Something else here</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item eventKey="4.4" onClick={handleLogout}>Logout</NavDropdown.Item>
+        </NavDropdown>
       </div>
       <div className="selectionGroup">
         <div className="selectionButtons">

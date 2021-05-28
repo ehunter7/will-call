@@ -27,36 +27,32 @@ const Login = () => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
 
-  async function handleSubmit(e) {
+   const handleSubmit = async (e)  => {
     e.preventDefault();
     try {
-      API.login(userInput).then((res) => {
-        console.log(res.data);
+      API.login(userInput).then(( res) => {
+        if(res.data === 499){
+          return setError("Invalid Username");
+        } else if(res.data === 498){
+          return setError("Invalid Password");
+        } else {
+          setError("");
+        }
         setAuth({
           ...authData,
           isAuthenticated: true,
           loading: false,
           user: res.data,
         });
-        console.log(authData);
         setLoading(false);
         history.push("/");
       });
-    } catch (error) {
+    } catch (errors) {
       console.log("[ERROR] error on login page");
-      console.log(error);
+      console.log(errors.response.data.message);
     }
   }
 
-  // if (authData.isAuthenticated) {
-  //   // If user is an admin, redirects to admin page
-  //   console.log("redirect!");
-  //   return <Redirect to="/pending" />;
-  // }
-  // else if (authData.isAuthenticated && !authData.user.admin) {
-  //   // If user is not an admin, redirects to standard user page
-  //   return <Redirect to="/user" />;
-  // }
 
   return (
     <>
