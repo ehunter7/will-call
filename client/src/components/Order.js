@@ -63,7 +63,7 @@ const Order = ({
   return (
     <div className="orderCard" onClick={() => handleDetails()}>
       <div className="row">
-        <div className="col-md-9">
+        <div className="col-md-12">
           <div className="row orderNumbers">
             <p className="col-md-4">
               Pick-up #: <b className="info">{order.pickupNumber}</b>
