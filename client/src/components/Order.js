@@ -17,7 +17,7 @@ const Order = ({
   const [editor, showEditor] = useState(false);
 
   //global state
-  //! this does not work. Need for displaying details on both the pending and completed page. 
+  //! this does not work. Need for displaying details on both the pending and completed page.
   const [state, dispatch] = useStateContext();
 
   // Sets date to display
@@ -56,13 +56,12 @@ const Order = ({
 
   const handleDetails = () => {
     console.log(order.showDetails);
-      //! this does not work. Need for displaying details on both the pending and completed page. 
+    //! this does not work. Need for displaying details on both the pending and completed page.
     dispatch({ type: "open-details", id: order._id });
   };
 
-
   return (
-    <div className="orderCard">
+    <div className="orderCard" onClick={() => handleDetails()}>
       <div className="row">
         <div className="col-md-9">
           <div className="row orderNumbers">
@@ -110,19 +109,19 @@ const Order = ({
         </div>
         <div className="col-md-3">
           <div className="orderButtons">
-            {order.status !== "completed" ? (
+            {/* {order.status !== "completed" ? (
               <button
                 className="orderBtn"
                 onClick={(e) => openUpdates(order._id)}
               >
                 Update
               </button>
-            ) : null}
+            ) : null} */}
           </div>
           <div className="orderButtons">
-            <button className="orderBtn" onClick={() => handleDetails()}>
+            {/* <button className="orderBtn" onClick={() => handleDetails()}>
               Details
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -143,7 +142,7 @@ const Order = ({
       {order.showDetails ? (
         <Details handleInput={handleInput} order={order} />
       ) : null}
-      {order.showUpdates ? (
+      {order.showDetails ? (
         <Updates
           handleInput={handleInput}
           order={order}
