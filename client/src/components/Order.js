@@ -61,8 +61,9 @@ const Order = ({
   };
 
   return (
-    <div className="orderCard" onClick={() => handleDetails()}>
-      <div className="row">
+    <div className="orderCard" onClick={() => order.status === "completed" ? handleDetails() : null}>
+      <div onClick={() => order.status === "pending" ? (editor ? null: handleDetails()) : null}>
+      <div className="row" >
         <div className="col-md-12">
           <div className="row orderNumbers">
             <p className="col-md-4">
@@ -132,17 +133,19 @@ const Order = ({
           {editor ? (
             <button onClick={() => showEditor(!editor)}>cancel</button>
           ) : (
-            <sup className="notesEdit" onClick={() => showEditor(!editor)}>
+            <sup className="notesEdit" onClick={() => 
+              {handleDetails();
+              showEditor(!editor);}}>
               <FaPencilAlt />
             </sup>
           )}
         </p>
       ) : null}
-
+</div>
       {order.showDetails ? (
         <Details handleInput={handleInput} order={order} />
       ) : null}
-      {order.showDetails ? (
+      {order.showDetails && order.status === "pending" ? (
         <Updates
           handleInput={handleInput}
           order={order}
