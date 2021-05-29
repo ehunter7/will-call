@@ -1,157 +1,160 @@
 .main {
-    background-color: #222831;
-    color: white;
+  background-color: #222831;
+  color: white;
 }
-
 
 .selectionGroup {
-    display: flex;
-    justify-content: center;
-    background-color: #222831;
-
+  display: flex;
+  justify-content: center;
+  background-color: #222831;
 }
 
-.selectionButtons{
-    margin-top: 2em;
-    margin-bottom: 2em;
-
+.selectionButtons {
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 
-.newPUForm{
-    display: flex;
+.newPUForm {
+  display: flex;
 }
 
-.newPUInput{
-    width: 100%;
-    
+.newPUInput {
+  width: 100%;
 }
 
-.puButton{
-    display: flex;
-    justify-content: center;
-    margin:40px 0;   
+.puButton {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
 }
 
-.notesTextArea{
-    width: 100%;
+.puInput {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.newPUButton{
-    width: 6em;
-    border-style: none;
-    border-radius: 2px;
-    background-color: transparent;
-    border:solid 1px #f2a365;
-    color: #f2a365;
+.notesTextArea {
+  width: 100%;
 }
 
-.mainContent{
+.newPUButton {
+  width: 6em;
+  border-style: none;
+  border-radius: 2px;
+  background-color: transparent;
+  border: solid 1px #f2a365;
+  color: #f2a365;
+}
 
-    border-right: solid 2px #ececec;
-    border-left: solid 2px #ececec;
-    /* height: 100vh; */
+.mainContent {
+  border-right: solid 2px #ececec;
+  border-left: solid 2px #ececec;
+  /* height: 100vh; */
 }
 
 .completedButton {
-    margin-left: 4em;
+  margin-left: 4em;
 }
 
 .logout {
-    display: flex;
-    justify-content: flex-end;
-    color: white;
+  display: flex;
+  justify-content: flex-end;
+  color: white;
 }
 
 .selcBTN {
-    /* width: 6em; */
-    border-style: none;
-    border-radius: 2px;
-    background-color: transparent;
-    border:solid 1px #f2a365;
-    color: #f2a365;
+  /* width: 6em; */
+  border-style: none;
+  border-radius: 2px;
+  background-color: transparent;
+  border: solid 1px #f2a365;
+  color: #f2a365;
 }
 
 .orderCard {
-    border-bottom: solid .10px #30475e;
-    padding-left: 4em;
+  border-bottom: solid 0.1px #30475e;
+  padding-left: 4em;
 }
 
 .orderCard:hover {
-    transition: background-color 0.5s ease;
-    background-color: #393e46;
-
+  transition: background-color 0.5s ease;
+  background-color: #393e46;
 }
 
 .orderDiv {
-    margin-top: 4em;
+  margin-top: 4em;
 }
 
 .quickDetails {
-    display: flex;
+  display: flex;
 }
 
 .filter {
-    margin-left: 1em;
+  margin-left: 1em;
 }
 
 .inputFields {
-    display: flex;
-    margin-top: 1em;
+  display: flex;
+  margin-top: 1em;
 }
 
-.orderButtons{
-    /* display: flex; */
-    /* justify-content: center; */
-    width: 8em;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: .75em;
-    margin-top: .75em;
-
+.orderButtons {
+  /* display: flex; */
+  /* justify-content: center; */
+  width: 8em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.75em;
+  margin-top: 0.75em;
 }
 
 .orderBtn {
-    width: 6em;
-    border-style: none;
-    border-radius: 2px;
-    background-color: transparent;
-    border:solid 1px #f2a365;
-    color: #f2a365;
+  width: 6em;
+  border-style: none;
+  border-radius: 2px;
+  background-color: transparent;
+  border: solid 1px #f2a365;
+  color: #f2a365;
 }
 
 .puForm {
-    display: flex;
+  display: flex;
 }
 
 .info {
-    font-size: 1.25em;
+  font-size: 1.25em;
 }
 
 .updates {
-    display: flex;
-    /* justify-content: center; */
+  /* display: flex; */
+  /* justify-content: center; */
 }
 
-.commentsArea{
-    width: 50%;
+.commentsArea {
+  width: 80%;
 }
 
 #comments {
-    width: 100%;
+  width: 100%;
 }
 
 td {
-    width: 8em;
+  width: 8em;
 }
 
 .notesEdit {
-    margin-left: 1em;
+  margin-left: 1em;
 }
 
-.notesEdit:hover{
-    cursor: pointer;
+.notesEdit:hover {
+  cursor: pointer;
 }
 
-.notesEditor{
-    width: 50em;
+.notesEditor {
+  width: 50em;
+}
+
+.puSubmit {
+  display: flex;
+  justify-content: space-evenly;
 }
