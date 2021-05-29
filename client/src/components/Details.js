@@ -11,7 +11,7 @@ const Details = ({ order, handleInput }) => {
       <div className="">
         <div className=" orderNumbers">
           <p className="">
-            Created by: <b className="info">{order.csr}</b>
+            Created by: <b className="info">{order.createdBy}</b>
           </p>
         </div>
         <div>

@@ -30,6 +30,7 @@ const User = ({ setCompletedPage }) => {
     comments: "",
     loader: "",
     puOn: Date,
+    user: authData.user.username,
   });
 
   //Handles input from new pickup form
@@ -108,7 +109,11 @@ const User = ({ setCompletedPage }) => {
 
   return (
     <div className="container mainContent">
-      <Selection setCompletedPage={setCompletedPage} />
+      <Selection
+        setCompletedPage={setCompletedPage}
+        showNewPU={showNewPU}
+        newPU={newPU}
+      />
       {!newPU ? null : (
         <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
       )}

@@ -6,10 +6,10 @@ import "./style.css";
 import { useStateContext, authContext } from "../utils/GlobalState";
 import API from "../utils/api";
 
-const Selection = () => {
+const Selection = ({ showNewPU, newPU }) => {
   // const { logout } = useAuth();
   let history = useHistory();
-  const [newPU, showNewPU] = useState(false);
+
   const [state, dispatch] = useStateContext();
   const { authData } = useContext(authContext);
 
@@ -37,12 +37,20 @@ const Selection = () => {
   return (
     <>
       <div className="logout">
-        <NavDropdown className="link-light" title={authData.user.username} id="nav-dropdown">
+        <NavDropdown
+          className="link-light"
+          title={authData.user.username}
+          id="nav-dropdown"
+        >
           <NavDropdown.Item eventKey="4.1">Action</NavDropdown.Item>
           <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
-          <NavDropdown.Item eventKey="4.3">Something else here</NavDropdown.Item>
+          <NavDropdown.Item eventKey="4.3">
+            Something else here
+          </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item eventKey="4.4" onClick={handleLogout}>Logout</NavDropdown.Item>
+          <NavDropdown.Item eventKey="4.4" onClick={handleLogout}>
+            Logout
+          </NavDropdown.Item>
         </NavDropdown>
       </div>
       <div className="selectionGroup">

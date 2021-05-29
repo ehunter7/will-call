@@ -5,7 +5,7 @@ const Complete = require("../../models/completedSchema");
 const { json } = require("express");
 
 router.post("/newPickup", async (req, res) => {
-  const { pro, carrier, puDate, puTime, notes } = req.body;
+  const { pro, carrier, puDate, puTime, notes, user } = req.body;
 
   try {
     const newPU = new Pickup({
@@ -23,6 +23,7 @@ router.post("/newPickup", async (req, res) => {
       showDetails: false,
       showUpdates: false,
       status: "pending",
+      createdBy: user,
     });
 
     await newPU.save();
@@ -45,17 +46,15 @@ router.get("/getPickups", async (req, res) => {
   }
 });
 
-router.get('/getCompleted', async (req, res) => {
+router.get("/getCompleted", async (req, res) => {
   try {
     const completed = await Complete.find({});
 
     res.json(completed);
-
   } catch (error) {
-
     console.log(error);
-  };
-})
+  }
+});
 
 router.put("/updatePU", async (req, res) => {
   const { id, data } = req.body;
@@ -63,7 +62,13 @@ router.put("/updatePU", async (req, res) => {
   try {
     const updatePU = await Pickup.findByIdAndUpdate(
       { _id: id },
-      { comments: data.comments, loader: data.loader, updatedOn: Date.now(), showUpdates: false, notes: data.notes },
+      {
+        comments: data.comments,
+        loader: data.loader,
+        updatedOn: Date.now(),
+        showUpdates: false,
+        notes: data.notes,
+      },
       { new: true }
     );
     return res.json(updatePU);
@@ -72,12 +77,20 @@ router.put("/updatePU", async (req, res) => {
   }
 });
 
-router.put('/pickedUp', async (req, res) => {
+router.put("/pickedUp", async (req, res) => {
   const { id, data, puNumber } = req.body;
 
   try {
-    const completedPickup = await Pickup.findByIdAndUpdate(id,
-      { comments: data.comments, loader: data.loader, updatedOn: Date.now(), showUpdates: false, puOn: data.puOn, status: "completed" },
+    const completedPickup = await Pickup.findByIdAndUpdate(
+      id,
+      {
+        comments: data.comments,
+        loader: data.loader,
+        updatedOn: Date.now(),
+        showUpdates: false,
+        puOn: data.puOn,
+        status: "completed",
+      },
       { new: true }
     );
 
@@ -105,11 +118,9 @@ router.put('/pickedUp', async (req, res) => {
     res.json(completedPickup);
 
     // const removePU = await Pickup.findByIdAndRemove(id);
-
-
   } catch (error) {
     console.log(error);
-  };
+  }
 });
 
 module.exports = router;
