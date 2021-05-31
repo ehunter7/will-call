@@ -16,7 +16,7 @@ const reducer = (state, action) => {
         if (order._id === action.id) {
           return { ...order, showDetails: !order.showDetails };
         }
-        return order;
+        return { ...order, showDetails: false };
       });
       return { ...state, pickups: updatepickups };
 

@@ -7,6 +7,7 @@ import { useStateContext, authContext } from "../utils/GlobalState";
 
 const User = ({ setCompletedPage }) => {
   const [state, dispatch] = useStateContext();
+  const [puList, setPuList] = useState([]);
   const [newPU, showNewPU] = useState();
   const { authData, setAuthor } = useContext(authContext);
 
@@ -17,8 +18,12 @@ const User = ({ setCompletedPage }) => {
       );
       //sets global state pickups
       dispatch({ type: "set-pickups", payload: sortedByPuDate });
+      setPuList(sortedByPuDate);
     });
   }, []);
+  useEffect(() => {
+    setPuList(state.pickups);
+  }, [state]);
 
   //Used for creating a new pickup
   const [pickup, setPickup] = useState({
@@ -47,6 +52,7 @@ const User = ({ setCompletedPage }) => {
       showNewPU(!newPU);
       // setpickups(pickups.concat(res.data));
       dispatch({ type: "new-pickup", payload: res.data });
+      setPuList(state.pickups);
       setPickup({
         pro: Number,
         carrier: "",
@@ -71,6 +77,7 @@ const User = ({ setCompletedPage }) => {
             ...order,
             comments: res.data.comments,
             loader: res.data.loader,
+            puDate: res.data.puDate,
             updatedOn: res.data.updatedOn,
             notes: res.data.notes,
             lastUpdatedBy: res.data.lastUpdatedBy,
@@ -88,11 +95,19 @@ const User = ({ setCompletedPage }) => {
   const handlePickedUp = (e, id, puNumber) => {
     e.preventDefault();
     API.pickedUp(id, pickup, puNumber).then((res) => {
-      const puRemoved = state.pickups.filter(
-        (order) => order._id !== res.data._id
-      );
-      // setpickups(puRemoved);
-      dispatch({ type: "set-pickups", payload: puRemoved });
+      // const puRemoved = state.pickups.filter(
+      //   (order) => order._id !== res.data._id
+      // );
+      // dispatch({ type: "set-pickups", payload: puRemoved });
+
+      const puUpdated = state.pickups.filter((order) => {
+        if (order._id !== res.data._id) {
+          return { ...order, status: "completed" };
+        }
+        return order;
+      });
+      dispatch({ type: "set-pickups", payload: puUpdated });
+      setPuList(puUpdated);
     });
   };
 
@@ -120,13 +135,13 @@ const User = ({ setCompletedPage }) => {
         <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
       )}
       <div className="orderDiv">
-        {state.pickups.map((order) => {
+        {puList.map((order) => {
           if (order.status === "pending") {
             return (
               <Order
                 order={order}
                 handleInput={handleInput}
-                // openDetails={openDetails}
+                setPuList={setPuList}
                 openUpdates={openUpdates}
                 handleUpdate={handleUpdate}
                 handlePickedUp={handlePickedUp}

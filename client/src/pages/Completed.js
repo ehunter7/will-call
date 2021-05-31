@@ -20,7 +20,6 @@ const Completed = ({ completedPage, setCompletedPage }) => {
     setFiltered(getCompleted);
   }, [state]);
 
-
   // handle input from filter component
   const handleFilterInput = (e) => {
     const { name, value } = e.target;

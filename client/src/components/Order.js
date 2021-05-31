@@ -8,8 +8,8 @@ import { useStateContext } from "../utils/GlobalState";
 const Order = ({
   order,
   handleInput,
+  setPuList,
 
-  openUpdates,
   handleUpdate,
   handlePickedUp,
 }) => {
@@ -55,9 +55,10 @@ const Order = ({
   };
 
   const handleDetails = () => {
-    console.log(order.showDetails);
+    console.log(order.pickupNumber);
     //! this does not work. Need for displaying details on both the pending and completed page.
     dispatch({ type: "open-details", id: order._id });
+    // setPuList(state.pickups);
   };
 
   return (
