@@ -25,6 +25,7 @@ const pickupSchema = new Schema({
   showUpdates: Boolean,
   status: String,
   createdBy: String,
+  lastUpdatedBy: String,
 });
 
 pickupSchema.plugin(autoIncrement.plugin, {

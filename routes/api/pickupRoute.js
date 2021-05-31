@@ -24,6 +24,7 @@ router.post("/newPickup", async (req, res) => {
       showUpdates: false,
       status: "pending",
       createdBy: user,
+      lastUpdatedBy: user,
     });
 
     await newPU.save();
@@ -68,6 +69,7 @@ router.put("/updatePU", async (req, res) => {
         updatedOn: Date.now(),
         showUpdates: false,
         notes: data.notes,
+        lastUpdatedBy: data.user,
       },
       { new: true }
     );

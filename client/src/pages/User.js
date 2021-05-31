@@ -63,6 +63,7 @@ const User = ({ setCompletedPage }) => {
   //Handles updates to a pickup
   const handleUpdate = (e, id) => {
     e.preventDefault();
+
     API.updatePU(id, pickup).then((res) => {
       const updatedPickups = state.pickups.map((order) => {
         if (order._id === res.data._id) {
@@ -72,6 +73,7 @@ const User = ({ setCompletedPage }) => {
             loader: res.data.loader,
             updatedOn: res.data.updatedOn,
             notes: res.data.notes,
+            lastUpdatedBy: res.data.lastUpdatedBy,
           };
         }
         return order;

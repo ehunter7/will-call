@@ -31,6 +31,12 @@ const Details = ({ order, handleInput }) => {
             <b className="info">{order.receiver}</b>
           </p>
         </div>
+        <div>
+          <p className="">
+            Last Updated By:
+            <b className="info">{order.lastUpdatedBy}</b>
+          </p>
+        </div>
       </div>
       <div>
         {order.status !== "pending" ? (
