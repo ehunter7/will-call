@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Details from "./Details";
 import Updates from "./Updates";
 import { FaPencilAlt } from "react-icons/fa";
@@ -23,11 +23,16 @@ const Order = ({
   // Sets date to display
   const pickupDate = new Date(order.puDate);
   let updated = null;
+
   if (order.status !== "completed") {
-    updated = new Date(order.updatedOn);
-  } else {
     updated = new Date(order.puDate);
+  } else {
+
+    updated = new Date(order.updatedOn);
+
   }
+
+
 
   // function to either get notes or notes input field for updating.
   const getNotes = () => {
@@ -55,10 +60,9 @@ const Order = ({
   };
 
   const handleDetails = () => {
-    console.log(order.pickupNumber);
-    //! this does not work. Need for displaying details on both the pending and completed page.
+
     dispatch({ type: "open-details", id: order._id });
-    // setPuList(state.pickups);
+
   };
 
   return (
@@ -108,9 +112,8 @@ const Order = ({
 
                 <p className="col-md-4">
                   Scheduled Pick-up date:{"  "}
-                  <b className="info">{`${pickupDate.getMonth() + 1}/${
-                    pickupDate.getDate() + 1
-                  }`}</b>
+                  <b className="info">{`${pickupDate.getMonth() + 1}/${pickupDate.getDate() + 1
+                    }`}</b>
                 </p>
                 <p className="col-md-4">
                   PU Time: <b className="info">{order.puTime}</b>
