@@ -25,10 +25,10 @@ const Order = ({
   let updated = null;
 
   if (order.status !== "completed") {
-    updated = new Date(order.puDate);
+    updated = new Date(order.updatedOn);
   } else {
 
-    updated = new Date(order.updatedOn);
+    updated = new Date(order.puOn);
 
   }
 
