@@ -39,16 +39,16 @@ const Selection = ({ showNewPU, newPU }) => {
       <div className="logout">
         <NavDropdown
           className="link-light"
-          title={authData.user.username}
+          title={authData.user.fullname}
           id="nav-dropdown"
         >
-          <NavDropdown.Item eventKey="4.1">Action</NavDropdown.Item>
-          <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
+          { authData.user.role === "Admin" ? <NavDropdown.Item eventKey="4.1" onClick={() => history.push("/newuser")}>Create New User</NavDropdown.Item> : null}
+          {/* <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
           <NavDropdown.Item eventKey="4.3">
             Something else here
-          </NavDropdown.Item>
+          </NavDropdown.Item> */}
           <NavDropdown.Divider />
-          <NavDropdown.Item eventKey="4.4" onClick={handleLogout}>
+          <NavDropdown.Item eventKey="4.2" onClick={handleLogout}>
             Logout
           </NavDropdown.Item>
         </NavDropdown>

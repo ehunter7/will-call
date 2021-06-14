@@ -71,6 +71,12 @@
   color: #f2a365;
 }
 
+.comment-area{
+  border-radius: 5px;
+}
+
+
+
 .orderCard {
   border-bottom: solid 0.1px #30475e;
   padding-left: 4em;

@@ -8,6 +8,7 @@ import { useStateContext, authContext } from "../utils/GlobalState";
 const User = ({ setCompletedPage }) => {
   const [state, dispatch] = useStateContext();
   const [puList, setPuList] = useState([]);
+  const [pickedup, setPickedup] = useState(false);
   const [newPU, showNewPU] = useState();
   const { authData, setAuthor } = useContext(authContext);
 
@@ -20,7 +21,7 @@ const User = ({ setCompletedPage }) => {
       dispatch({ type: "set-pickups", payload: sortedByPuDate });
       setPuList(sortedByPuDate);
     });
-  }, []);
+  }, [pickedup]);
   useEffect(() => {
     setPuList(state.pickups);
   }, [state]);
@@ -108,6 +109,8 @@ const User = ({ setCompletedPage }) => {
       });
       dispatch({ type: "set-pickups", payload: puUpdated });
       setPuList(puUpdated);
+      //line is used to refresh the page once a pickup is made.
+      setPickedup(!pickedup);
     });
   };
 

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Details from "./Details";
 import Updates from "./Updates";
 import { FaPencilAlt } from "react-icons/fa";
 import "./style.css";
-import { useStateContext } from "../utils/GlobalState";
+import { useStateContext, authContext } from "../utils/GlobalState";
 
 const Order = ({
   order,
@@ -13,11 +13,14 @@ const Order = ({
   handleUpdate,
   handlePickedUp,
 }) => {
+
+  //get user info
+  const { authData } = useContext(authContext);
+
   //state that shows note editor
   const [editor, showEditor] = useState(false);
 
   //global state
-  //! this does not work. Need for displaying details on both the pending and completed page.
   const [state, dispatch] = useStateContext();
 
   // Sets date to display
@@ -65,6 +68,20 @@ const Order = ({
 
   };
 
+  const isEditor = () => {
+    if(authData.user.role !== "Receiver"){
+      return (<sup
+      className="notesEdit"
+      onClick={() => {
+        handleDetails();
+        showEditor(!editor);
+      }}
+    >
+      <FaPencilAlt />
+    </sup>)
+    }
+  }
+
   return (
     <div
       className="orderCard"
@@ -97,7 +114,7 @@ const Order = ({
                     </>
                   ) : (
                     <>
-                      {updated.getMonth() + 1}/{updated.getDate()}
+                      {updated.getMonth() + 1}/{updated.getDate() + 1}
                     </>
                   )}
                 </b>
@@ -145,17 +162,7 @@ const Order = ({
             Notes: {getNotes()}
             {editor ? (
               <button onClick={() => showEditor(!editor)}>cancel</button>
-            ) : (
-              <sup
-                className="notesEdit"
-                onClick={() => {
-                  handleDetails();
-                  showEditor(!editor);
-                }}
-              >
-                <FaPencilAlt />
-              </sup>
-            )}
+            ) : isEditor()}
           </p>
         ) : null}
       </div>
