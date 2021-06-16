@@ -113,7 +113,6 @@ const User = ({ setCompletedPage }) => {
 
   //Opens update form below order
   const openUpdates = (id) => {
-    console.log();
     const updatepickups = state.pickups.map((order) => {
       if (order._id === id) {
         return { ...order, showUpdates: !order.showUpdates };
