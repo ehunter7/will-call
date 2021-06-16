@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Details from "./Details";
 import Updates from "./Updates";
 import { FaPencilAlt } from "react-icons/fa";
 import "./style.css";
-import { useStateContext } from "../utils/GlobalState";
+import { useStateContext, authContext } from "../utils/GlobalState";
 
 const Order = ({
   order,
@@ -13,21 +13,29 @@ const Order = ({
   handleUpdate,
   handlePickedUp,
 }) => {
+
+  //get user info
+  const { authData } = useContext(authContext);
+
   //state that shows note editor
   const [editor, showEditor] = useState(false);
 
   //global state
-  //! this does not work. Need for displaying details on both the pending and completed page.
   const [state, dispatch] = useStateContext();
 
   // Sets date to display
   const pickupDate = new Date(order.puDate);
   let updated = null;
+
   if (order.status !== "completed") {
     updated = new Date(order.updatedOn);
   } else {
-    updated = new Date(order.puDate);
+
+    updated = new Date(order.puOn);
+
   }
+
+
 
   // function to either get notes or notes input field for updating.
   const getNotes = () => {
@@ -55,11 +63,24 @@ const Order = ({
   };
 
   const handleDetails = () => {
-    console.log(order.pickupNumber);
-    //! this does not work. Need for displaying details on both the pending and completed page.
+
     dispatch({ type: "open-details", id: order._id });
-    // setPuList(state.pickups);
+
   };
+
+  const isEditor = () => {
+    if(authData.user.role !== "Receiver"){
+      return (<sup
+      className="notesEdit"
+      onClick={() => {
+        handleDetails();
+        showEditor(!editor);
+      }}
+    >
+      <FaPencilAlt />
+    </sup>)
+    }
+  }
 
   return (
     <div
@@ -93,7 +114,7 @@ const Order = ({
                     </>
                   ) : (
                     <>
-                      {updated.getMonth() + 1}/{updated.getDate()}
+                      {updated.getMonth() + 1}/{updated.getDate() + 1}
                     </>
                   )}
                 </b>
@@ -108,9 +129,8 @@ const Order = ({
 
                 <p className="col-md-4">
                   Scheduled Pick-up date:{"  "}
-                  <b className="info">{`${pickupDate.getMonth() + 1}/${
-                    pickupDate.getDate() + 1
-                  }`}</b>
+                  <b className="info">{`${pickupDate.getMonth() + 1}/${pickupDate.getDate() + 1
+                    }`}</b>
                 </p>
                 <p className="col-md-4">
                   PU Time: <b className="info">{order.puTime}</b>
@@ -142,17 +162,7 @@ const Order = ({
             Notes: {getNotes()}
             {editor ? (
               <button onClick={() => showEditor(!editor)}>cancel</button>
-            ) : (
-              <sup
-                className="notesEdit"
-                onClick={() => {
-                  handleDetails();
-                  showEditor(!editor);
-                }}
-              >
-                <FaPencilAlt />
-              </sup>
-            )}
+            ) : isEditor()}
           </p>
         ) : null}
       </div>
