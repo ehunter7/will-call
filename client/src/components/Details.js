@@ -11,7 +11,7 @@ const Details = ({ order, handleInput }) => {
       <div className="">
         <div className=" orderNumbers">
           <p className="">
-            Created by: <b className="info">{order.createdBy}</b>
+            Created by: <b className="info"> {order.createdBy}</b>
           </p>
         </div>
         <div>
@@ -19,9 +19,9 @@ const Details = ({ order, handleInput }) => {
             Created on:{" "}
             <b className="info">
               {" "}
-              {`${created.getHours()}:${created.getMinutes()} on ${
+              {` ${
                 created.getMonth() + 1
-              }/${created.getDate()}`}
+              }/${created.getDate()} at ${created.getHours()}:${created.getMinutes()}`}
             </b>
           </p>
         </div>
@@ -34,7 +34,7 @@ const Details = ({ order, handleInput }) => {
         <div>
           <p className="">
             Last Updated By:
-            <b className="info">{order.lastUpdatedBy}</b>
+            <b className="info"> {order.lastUpdatedBy}</b>
           </p>
         </div>
       </div>

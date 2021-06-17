@@ -28,4 +28,7 @@ export default {
   logout: () => {
     return axios.post("/api/users/logout");
   },
+  getUsers: () => {
+    return axios.get("/api/users/getusers");
+  },
 };

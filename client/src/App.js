@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import { authContext, StateProvider } from "./utils/GlobalState";
 import NewUser from "./components/NewUser";
+import ManageUsers from "./pages/ManageUsers";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -29,9 +30,10 @@ function App() {
             <Switch>
               <Route exact path={"/signup"} component={Signup} />
               <Route exact path={"/login"} component={Login} />
-              <Route exact path={"/newuser"} component={NewUser} />
+              <PrivateRoute exact path={"/newuser"} component={NewUser} />
               <PrivateRoute component={User} exact path={["/", "/pending"]} />
               <PrivateRoute exact path={"/completed"} component={Completed} />
+              <PrivateRoute exact path={"/userslist"} component={ManageUsers} />
             </Switch>
           </Router>
         </authContext.Provider>
