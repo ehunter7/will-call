@@ -141,6 +141,7 @@ const User = ({ setCompletedPage }) => {
           if (order.status === "pending") {
             return (
               <Order
+                key={order._id}
                 order={order}
                 handleInput={handleInput}
                 setPuList={setPuList}

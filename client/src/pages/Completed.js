@@ -20,8 +20,6 @@ const Completed = ({ completedPage, setCompletedPage }) => {
     setFiltered(getCompleted);
   }, [state.pickups]);
 
-
-
   // handle input from filter component
   const handleFilterInput = (e) => {
     const { name, value } = e.target;
@@ -52,9 +50,7 @@ const Completed = ({ completedPage, setCompletedPage }) => {
       <Filter handleFilterInput={handleFilterInput} />
       <div className="orderDiv">
         {filtered.map((order) => {
-
-          return <Order order={order} />;
-
+          return <Order key={order._id} order={order} />;
         })}
       </div>
     </div>
