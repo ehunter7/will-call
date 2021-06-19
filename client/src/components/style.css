@@ -33,6 +33,28 @@
   justify-content: space-evenly;
 }
 
+.user-card {
+  display: flex;
+  border: 3px solid red;
+  border-radius: 20px;
+  margin-top: 2em;
+
+  width: 100%;
+}
+
+.user-key {
+  height: 300px;
+  width: 500px;
+  border: 2px solid white;
+  border-radius: 10px;
+  margin-left: 2em;
+  margin-top: 2em;
+}
+
+.icon {
+  font-size: 2em;
+}
+
 .notesTextArea {
   width: 100%;
 }
@@ -71,11 +93,9 @@
   color: #f2a365;
 }
 
-.comment-area{
+.comment-area {
   border-radius: 5px;
 }
-
-
 
 .orderCard {
   border-bottom: solid 0.1px #30475e;

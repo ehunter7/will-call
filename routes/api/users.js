@@ -81,7 +81,7 @@ router.get("/getusers", async (req, res) => {
     const users = await User.find({});
     res.json(users);
   } catch (error) {
-    console.log("[WARNING]  Erro getting all users!");
+    console.log("[WARNING]  Error getting all users!");
     console.log(error);
   }
 });
