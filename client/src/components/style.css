@@ -5,13 +5,13 @@
 
 .selectionGroup {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   background-color: #222831;
 }
 
 .selectionButtons {
   margin-top: 2em;
-  margin-bottom: 2em;
+  margin-bottom: -0.9px;
 }
 
 .newPUForm {
@@ -55,6 +55,12 @@
   font-size: 2em;
 }
 
+/**
+Need to have the hover effect display in text what the icon does
+*/
+.edit-icon:hover {
+}
+
 .notesTextArea {
   width: 100%;
 }
@@ -78,9 +84,22 @@
   margin-left: 4em;
 }
 
+.page-title {
+  margin-left: 4rem;
+  margin-top: 1rem;
+  letter-spacing: 2px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+/**
+Handles the logout dropdown
+Need to figure out why i cant change the color
+*/
 .logout {
-  display: flex;
-  justify-content: flex-end;
+  /* display: flex;
+  justify-content: flex-end; */
+  margin-left: auto;
   color: white;
 }
 
@@ -90,6 +109,7 @@
   border-radius: 2px;
   background-color: transparent;
   border: solid 1px #f2a365;
+  border-bottom: none;
   color: #f2a365;
 }
 
@@ -102,13 +122,23 @@
   padding-left: 4em;
 }
 
+/**
+Spaces out thetop of each order
+*/
+.orderNumbers {
+  margin-top: 1em;
+}
+
 .orderCard:hover {
   transition: background-color 0.5s ease;
   background-color: #393e46;
 }
 
+/**
+This seperates the content from the header
+*/
 .orderDiv {
-  margin-top: 4em;
+  /* margin-top: 4em; */
 }
 
 .quickDetails {

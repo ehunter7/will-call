@@ -5,6 +5,7 @@ import Order from "../components/Order";
 import NewPU from "../components/NewPU";
 import { useStateContext, authContext } from "../utils/GlobalState";
 
+import "./style.css";
 const User = ({ setCompletedPage }) => {
   const [state, dispatch] = useStateContext();
   const [puList, setPuList] = useState([]);
@@ -127,34 +128,39 @@ const User = ({ setCompletedPage }) => {
   };
 
   return (
-    <div className="container mainContent">
-      <Selection
-        setCompletedPage={setCompletedPage}
-        showNewPU={showNewPU}
-        newPU={newPU}
-      />
-      {!newPU ? null : (
-        <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
-      )}
-      <div className="orderDiv">
-        {puList.map((order) => {
-          if (order.status === "pending") {
-            return (
-              <Order
-                key={order._id}
-                order={order}
-                handleInput={handleInput}
-                setPuList={setPuList}
-                openUpdates={openUpdates}
-                handleUpdate={handleUpdate}
-                handlePickedUp={handlePickedUp}
-              />
-            );
-          }
-          return null;
-        })}
+    <>
+      <div className="header">
+        <Selection
+          pageTitle="Pending Pick-ups"
+          setCompletedPage={setCompletedPage}
+          showNewPU={showNewPU}
+          newPU={newPU}
+        />
       </div>
-    </div>
+      <div className="container mainContent">
+        {!newPU ? null : (
+          <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
+        )}
+        <div className="orderDiv">
+          {puList.map((order) => {
+            if (order.status === "pending") {
+              return (
+                <Order
+                  key={order._id}
+                  order={order}
+                  handleInput={handleInput}
+                  setPuList={setPuList}
+                  openUpdates={openUpdates}
+                  handleUpdate={handleUpdate}
+                  handlePickedUp={handlePickedUp}
+                />
+              );
+            }
+            return null;
+          })}
+        </div>
+      </div>
+    </>
   );
 };
 

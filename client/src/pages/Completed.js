@@ -44,16 +44,19 @@ const Completed = ({ completedPage, setCompletedPage }) => {
   };
 
   return (
-    <div className="container mainContent">
-      <Selection />
-
-      <Filter handleFilterInput={handleFilterInput} />
-      <div className="orderDiv">
-        {filtered.map((order) => {
-          return <Order key={order._id} order={order} />;
-        })}
+    <>
+      <div className="header">
+        <Selection pageTitle="Completed Pick-ups" />
       </div>
-    </div>
+      <div className="container mainContent">
+        <Filter handleFilterInput={handleFilterInput} />
+        <div className="orderDiv">
+          {filtered.map((order) => {
+            return <Order key={order._id} order={order} />;
+          })}
+        </div>
+      </div>
+    </>
   );
 };
 
