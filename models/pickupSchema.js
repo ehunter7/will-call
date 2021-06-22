@@ -26,12 +26,15 @@ const pickupSchema = new Schema({
   status: String,
   createdBy: String,
   lastUpdatedBy: String,
+  pickupNumber: Number
 });
 
-pickupSchema.plugin(autoIncrement.plugin, {
-  model: "pickup",
-  field: "pickupNumber",
-});
+// pickupSchema.plugin(autoIncrement.plugin, {
+//   model: "pickup",
+//   field: "pickupNumber",
+//   startAt: 1000,
+
+// });
 
 const Pickup = mongoose.model("Pickups", pickupSchema);
 

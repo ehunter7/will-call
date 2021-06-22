@@ -31,10 +31,13 @@ app.use(routes);
 
 //connect to mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/willcallDB", {
+
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 1000,
   useCreateIndex: true,
   useFindAndModify: false,
+
 });
 
 mongoose.connection.on("connected", () => {

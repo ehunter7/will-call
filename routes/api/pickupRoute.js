@@ -7,7 +7,15 @@ const { json } = require("express");
 router.post("/newPickup", async (req, res) => {
   const { pro, carrier, puDate, puTime, notes, user } = req.body;
 
+  let pickupNum;
+
   try {
+
+    await Pickup.findOne({}, {}, { sort: { 'createdOn' : -1 } }, function(err, post) {
+      console.log( post.pickupNumber );
+      pickupNum = post.pickupNumber + 1;
+    });
+
     const newPU = new Pickup({
       csr: "",
       pro,
@@ -25,6 +33,7 @@ router.post("/newPickup", async (req, res) => {
       status: "pending",
       createdBy: user,
       lastUpdatedBy: user,
+      pickupNumber: pickupNum
     });
 
     await newPU.save();
