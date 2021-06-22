@@ -1,8 +1,7 @@
 import React, { useRef, useState, useContext } from "react";
-import { Redirect } from "react-router-dom";
 
 import { Form, Card, Button, Alert, Container } from "react-bootstrap";
-// import { useAuth } from "../contexts/AuthContext";
+
 import { authContext, useStateContext } from "../utils/GlobalState";
 import { Link, useHistory } from "react-router-dom";
 import API from "../utils/api";
@@ -27,13 +26,13 @@ const Login = () => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
 
-   const handleSubmit = async (e)  => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      API.login(userInput).then(( res) => {
-        if(res.data === 499){
+      API.login(userInput).then((res) => {
+        if (res.data === 499) {
           return setError("Invalid Username");
-        } else if(res.data === 498){
+        } else if (res.data === 498) {
           return setError("Invalid Password");
         } else {
           setError("");
@@ -51,8 +50,7 @@ const Login = () => {
       console.log("[ERROR] error on login page");
       console.log(errors.response.data.message);
     }
-  }
-
+  };
 
   return (
     <>

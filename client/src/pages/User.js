@@ -4,6 +4,7 @@ import Selection from "../components/Selection";
 import Order from "../components/Order";
 import NewPU from "../components/NewPU";
 import { useStateContext, authContext } from "../utils/GlobalState";
+import Filter from "../components/Filter";
 
 import "./style.css";
 const User = ({ setCompletedPage }) => {
@@ -11,7 +12,8 @@ const User = ({ setCompletedPage }) => {
   const [puList, setPuList] = useState([]);
   const [pickedup, setPickedup] = useState(false);
   const [newPU, showNewPU] = useState();
-  const { authData, setAuthor } = useContext(authContext);
+  const { authData } = useContext(authContext);
+  const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
     API.getPickups().then((res) => {
@@ -23,8 +25,10 @@ const User = ({ setCompletedPage }) => {
       setPuList(sortedByPuDate);
     });
   }, [pickedup]);
+
   useEffect(() => {
     setPuList(state.pickups);
+    setFiltered(state.pickups);
   }, [state]);
 
   //Used for creating a new pickup
@@ -127,6 +131,29 @@ const User = ({ setCompletedPage }) => {
     dispatch({ type: "set-pickups", payload: updatepickups });
   };
 
+  // handle input from filter component
+  const handlePendingFilter = (e) => {
+    const { name, value } = e.target;
+
+    const filteredList = puList.filter((order) => {
+      if (name === "pickedupNumber") {
+        return (order.pickedupNumber + "").indexOf(value) > -1;
+      } else if (name === "pro") {
+        return (order.pro + "").indexOf(value) > -1;
+      } else if (name === "puDate") {
+        const pu = new Date(order.puOn);
+        const day = pu.getDate();
+        const month = pu.getMonth() + 1;
+        const year = pu.getFullYear();
+        const dateString = `${month}/${day}/${year}`;
+        console.log(month);
+        return dateString.includes(value);
+      }
+      return null;
+    });
+    setFiltered(filteredList);
+  };
+
   return (
     <>
       <div className="header">
@@ -137,27 +164,32 @@ const User = ({ setCompletedPage }) => {
           newPU={newPU}
         />
       </div>
-      <div className="container mainContent">
-        {!newPU ? null : (
-          <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
-        )}
-        <div className="orderDiv">
-          {puList.map((order) => {
-            if (order.status === "pending") {
-              return (
-                <Order
-                  key={order._id}
-                  order={order}
-                  handleInput={handleInput}
-                  setPuList={setPuList}
-                  openUpdates={openUpdates}
-                  handleUpdate={handleUpdate}
-                  handlePickedUp={handlePickedUp}
-                />
-              );
-            }
-            return null;
-          })}
+      <div className="row">
+        <div className="col-md-2">
+          <Filter handleFilterInput={handlePendingFilter} />
+        </div>
+        <div className=" mainContent col-md-8">
+          {!newPU ? null : (
+            <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
+          )}
+          <div className="orderDiv">
+            {filtered.map((order) => {
+              if (order.status === "pending") {
+                return (
+                  <Order
+                    key={order._id}
+                    order={order}
+                    handleInput={handleInput}
+                    setPuList={setPuList}
+                    openUpdates={openUpdates}
+                    handleUpdate={handleUpdate}
+                    handlePickedUp={handlePickedUp}
+                  />
+                );
+              }
+              return null;
+            })}
+          </div>
         </div>
       </div>
     </>

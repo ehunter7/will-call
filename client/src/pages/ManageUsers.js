@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 
+import Selection from "../components/Selection";
 import API from "../utils/api";
 import UserCard from "../components/UserCard";
 
 const ManageUsers = () => {
   //contains all users
   const [users, setUsers] = useState([]);
-  console.log("made it");
+
   //gets all users
   useEffect(() => {
     API.getUsers().then((res) => {
@@ -17,7 +18,9 @@ const ManageUsers = () => {
 
   return (
     <div>
-      <h1>User Management</h1>
+      <div className="header">
+        <Selection pageTitle="User Managment" />
+      </div>
       {users.map((user) => {
         return <UserCard user={user} />;
       })}

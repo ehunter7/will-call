@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Order from "../components/Order";
 // import API from '../utils/api';
-import Filter from "../components/Filter";
 import Selection from "../components/Selection";
 import { useStateContext } from "../utils/GlobalState";
+import Filter from "../components/Filter";
 
-const Completed = ({ completedPage, setCompletedPage }) => {
+const Completed = () => {
   const [state, dispatch] = useStateContext();
 
   // used to hold completed pickup list.
@@ -48,12 +48,16 @@ const Completed = ({ completedPage, setCompletedPage }) => {
       <div className="header">
         <Selection pageTitle="Completed Pick-ups" />
       </div>
-      <div className="container mainContent">
-        <Filter handleFilterInput={handleFilterInput} />
-        <div className="orderDiv">
-          {filtered.map((order) => {
-            return <Order key={order._id} order={order} />;
-          })}
+      <div className="row">
+        <div className="col-md-2">
+          <Filter handleFilterInput={handleFilterInput} />
+        </div>
+        <div className=" mainContent col-md-8">
+          <div className="orderDiv">
+            {filtered.map((order) => {
+              return <Order key={order._id} order={order} />;
+            })}
+          </div>
         </div>
       </div>
     </>

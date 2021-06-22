@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, NavDropdown } from "react-bootstrap";
 // import { useAuth } from "../contexts/AuthContext";
@@ -7,11 +7,11 @@ import { useStateContext, authContext } from "../utils/GlobalState";
 import API from "../utils/api";
 
 const Selection = ({ showNewPU, newPU, pageTitle }) => {
-  // const { logout } = useAuth();
-  let history = useHistory();
-
   const [state, dispatch] = useStateContext();
   const { authData } = useContext(authContext);
+
+  // const { logout } = useAuth();
+  let history = useHistory();
 
   const handleClick = (e) => {
     dispatch({ type: "set-completed" });
