@@ -116,7 +116,7 @@ const Order = ({
               </p>
             </div>
 
-            {order.status !== "completed" ? (
+            {/* {order.status !== "completed" ? (
               <div className="row quickDetails">
                 <p className="col-md-4">
                   Carrier: <b className="info">{order.carrier}</b>
@@ -132,25 +132,9 @@ const Order = ({
                   PU Time: <b className="info">{order.puTime}</b>
                 </p>
               </div>
-            ) : null}
-          </div>
-          <div className="col-md-3">
-            <div className="orderButtons">
-              {/* {order.status !== "completed" ? (
-              <button
-                className="orderBtn"
-                onClick={(e) => openUpdates(order._id)}
-              >
-                Update
-              </button>
             ) : null} */}
-            </div>
-            <div className="orderButtons">
-              {/* <button className="orderBtn" onClick={() => handleDetails()}>
-              Details
-            </button> */}
-            </div>
           </div>
+
         </div>
 
         {order.status !== "completed" ? (

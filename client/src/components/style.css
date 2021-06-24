@@ -3,15 +3,17 @@
   color: white;
 }
 
+/**selection.js*/
 .selectionGroup {
-  display: flex;
+  /* display: flex; */
   /* justify-content: center; */
   background-color: #222831;
 }
 
+/**selection.js*/
 .selectionButtons {
-  margin-top: 2em;
-  margin-bottom: -0.9px;
+  /* margin-top: 2em; */
+  /* margin-bottom: -0.9px; */
 }
 
 .newPUForm {
@@ -74,13 +76,18 @@ Need to have the hover effect display in text what the icon does
   color: #f2a365;
 }
 
+.page-header{
+  height: 9em;
+}
+
 .mainContent {
-  border-right: solid 2px #ececec;
+  /* border-right: solid 2px #ececec; */
   border-left: solid 2px #ececec;
-  margin-right: 1em;
+  /* margin-right: 1em; */
   /* height: 100vh; */
 }
 
+/**selection.js*/
 .completedButton {
   margin-left: 4em;
 }
@@ -97,6 +104,7 @@ Need to have the hover effect display in text what the icon does
 Handles the logout dropdown
 Need to figure out why i cant change the color
 */
+/**selection.js*/
 .logout {
   /* display: flex;
   justify-content: flex-end; */
@@ -104,6 +112,7 @@ Need to figure out why i cant change the color
   color: white;
 }
 
+/**selection.js*/
 .selcBTN {
   /* width: 6em; */
   border-style: none;
@@ -185,6 +194,7 @@ This seperates the content from the header
 
 .info {
   font-size: 1.25em;
+
 }
 
 .updates {
