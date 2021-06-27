@@ -7,6 +7,7 @@ import { useStateContext, authContext } from "../utils/GlobalState";
 import Filter from "../components/Filter";
 
 import "./style.css";
+import Header from "../components/Header";
 const User = ({ setCompletedPage }) => {
   const [state, dispatch] = useStateContext();
   const [puList, setPuList] = useState([]);
@@ -156,19 +157,31 @@ const User = ({ setCompletedPage }) => {
 
   return (
     <>
-      <div className="header">
+
+      <div className="row">
+        <div className="col-md-2">
         <Selection
-          pageTitle="Pending Pick-ups"
+          
           setCompletedPage={setCompletedPage}
           showNewPU={showNewPU}
           newPU={newPU}
         />
+<<<<<<< HEAD
       </div>
       <div className="row">
         <div className="col-md-2 aside">
+=======
+>>>>>>> 69adb9f7feedfaac20cd6d189ceef8450861735e
           <Filter handleFilterInput={handlePendingFilter} />
         </div>
-        <div className=" mainContent col-md-8">
+        <div className="  mainContent col-md-10">
+          <div className="row">
+            <div className="col-sm-12">
+            <div className="header">
+<Header pageTitle="Pending Pickups"/>
+</div>
+            </div>
+          </div>
           {!newPU ? null : (
             <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
           )}

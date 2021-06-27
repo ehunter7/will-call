@@ -36,8 +36,8 @@ const Selection = ({ showNewPU, newPU, pageTitle }) => {
 
   return (
     <>
-      <div className="d-flex ">
-        <h1 className="page-title">{pageTitle}</h1>
+      <div className=" ">
+     
         <div className="logout">
           <NavDropdown
             className="link-light"
