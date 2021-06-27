@@ -148,6 +148,10 @@ This seperates the content from the header
   display: flex;
 }
 
+.aside {
+  /* background-color: #393e46; */
+}
+
 .filter {
   margin-left: 1em;
 }

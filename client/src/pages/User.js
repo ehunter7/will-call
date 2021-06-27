@@ -165,7 +165,7 @@ const User = ({ setCompletedPage }) => {
         />
       </div>
       <div className="row">
-        <div className="col-md-2">
+        <div className="col-md-2 aside">
           <Filter handleFilterInput={handlePendingFilter} />
         </div>
         <div className=" mainContent col-md-8">
