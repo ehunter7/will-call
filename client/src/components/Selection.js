@@ -37,7 +37,6 @@ const Selection = ({ showNewPU, newPU, pageTitle }) => {
   return (
     <>
       <div className=" ">
-     
         <div className="logout">
           <NavDropdown
             className="link-light"
@@ -71,31 +70,24 @@ const Selection = ({ showNewPU, newPU, pageTitle }) => {
           </NavDropdown>
         </div>
       </div>
-      <div className="selectionGroup container">
-        <div className="selectionButtons">
-          {state.completedPage ? (
-            <button
-              className="completedButton selcBTN"
-              name="pending"
-              onClick={(e) => handleClick(e)}
-            >
-              View Pending
-            </button>
-          ) : (
-            <>
-              <button className="selcBTN" onClick={() => showNewPU(!newPU)}>
-                Create New Pick-up
-              </button>
-              <button
-                className="completedButton selcBTN"
-                name="completed"
-                onClick={(e) => handleClick(e)}
-              >
-                View Completed
-              </button>{" "}
-            </>
-          )}
-        </div>
+      <div className="selectionGroup ">
+        <button className=" selcBTN" onClick={() => showNewPU(!newPU)}>
+          New Pick-up
+        </button>
+        <button
+          className=" selcBTN"
+          name="pending"
+          onClick={(e) => handleClick(e)}
+        >
+          View Pending
+        </button>
+        <button
+          className=" selcBTN"
+          name="completed"
+          onClick={(e) => handleClick(e)}
+        >
+          View Completed
+        </button>{" "}
       </div>
     </>
   );

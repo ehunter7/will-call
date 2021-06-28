@@ -3,19 +3,6 @@
   color: white;
 }
 
-/**selection.js*/
-.selectionGroup {
-  /* display: flex; */
-  /* justify-content: center; */
-  background-color: #222831;
-}
-
-/**selection.js*/
-.selectionButtons {
-  /* margin-top: 2em; */
-  /* margin-bottom: -0.9px; */
-}
-
 .newPUForm {
   display: flex;
 }
@@ -76,7 +63,7 @@ Need to have the hover effect display in text what the icon does
   color: #f2a365;
 }
 
-.page-header{
+.page-header {
   height: 9em;
 }
 
@@ -88,8 +75,36 @@ Need to have the hover effect display in text what the icon does
 }
 
 /**selection.js*/
-.completedButton {
-  margin-left: 4em;
+
+/**
+Handles the logout dropdown
+Need to figure out why i cant change the color
+*/
+
+.logout {
+  /* display: flex;
+  justify-content: flex-end; */
+  margin-left: auto;
+  color: white;
+}
+
+.selectionGroup {
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  background-color: #222831;
+  padding-left: 15px;
+}
+
+.selcBTN {
+  /* width: 6em; */
+  border-style: none;
+  border-radius: 2px;
+  background-color: transparent;
+  border: solid 1px #f2a365;
+  color: #f2a365;
+  padding: 5px;
+  margin-bottom: 15px;
 }
 
 .page-title {
@@ -98,29 +113,6 @@ Need to have the hover effect display in text what the icon does
   letter-spacing: 2px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-}
-
-/**
-Handles the logout dropdown
-Need to figure out why i cant change the color
-*/
-/**selection.js*/
-.logout {
-  /* display: flex;
-  justify-content: flex-end; */
-  margin-left: auto;
-  color: white;
-}
-
-/**selection.js*/
-.selcBTN {
-  /* width: 6em; */
-  border-style: none;
-  border-radius: 2px;
-  background-color: transparent;
-  border: solid 1px #f2a365;
-  border-bottom: none;
-  color: #f2a365;
 }
 
 .comment-area {
@@ -132,6 +124,8 @@ Need to figure out why i cant change the color
   padding-left: 4em;
 }
 
+/** Filter.js*/
+
 /**
 Spaces out thetop of each order
 */
@@ -139,6 +133,7 @@ Spaces out thetop of each order
   margin-top: 1em;
   display: flex;
   justify-content: center;
+  padding-left: 15px;
 }
 
 .orderCard:hover {
@@ -198,7 +193,6 @@ This seperates the content from the header
 
 .info {
   font-size: 1.25em;
-
 }
 
 .updates {

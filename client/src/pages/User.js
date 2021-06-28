@@ -157,29 +157,21 @@ const User = ({ setCompletedPage }) => {
 
   return (
     <>
-
       <div className="row">
-        <div className="col-md-2">
-        <Selection
-          
-          setCompletedPage={setCompletedPage}
-          showNewPU={showNewPU}
-          newPU={newPU}
-        />
-<<<<<<< HEAD
-      </div>
-      <div className="row">
-        <div className="col-md-2 aside">
-=======
->>>>>>> 69adb9f7feedfaac20cd6d189ceef8450861735e
+        <div className="col-sm-2">
+          <Selection
+            setCompletedPage={setCompletedPage}
+            showNewPU={showNewPU}
+            newPU={newPU}
+          />
           <Filter handleFilterInput={handlePendingFilter} />
         </div>
         <div className="  mainContent col-md-10">
           <div className="row">
             <div className="col-sm-12">
-            <div className="header">
-<Header pageTitle="Pending Pickups"/>
-</div>
+              <div className="header">
+                <Header pageTitle="Pending Pickups" />
+              </div>
             </div>
           </div>
           {!newPU ? null : (
