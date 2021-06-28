@@ -1,3 +1,13 @@
 .header {
   border-bottom: 3px solid white;
 }
+
+.Order-header {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.header-title {
+  width: 100%;
+  text-align: center;
+}

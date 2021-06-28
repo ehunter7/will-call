@@ -177,7 +177,25 @@ const User = ({ setCompletedPage }) => {
           {!newPU ? null : (
             <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
           )}
+          <div className="Order-header">
+
+          <div className="header-title">
+            <p>Pick-up number</p>
+          </div>
+          <div className="header-title">
+            <p>PRO number</p>
+          </div>
+          <div className="header-title">
+            <p>Carrier</p>
+          </div>
+          <div className="header-title">
+            <p>Last Updated</p>
+          </div>
+          </div >
           <div className="orderDiv">
+
+
+
             {filtered.map((order) => {
               if (order.status === "pending") {
                 return (
