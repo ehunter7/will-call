@@ -160,8 +160,11 @@ const User = ({ setCompletedPage }) => {
 
   return (
     <>
-      <div className="row">
-        <div className="col-sm-2">
+      {!newPU ? null : (
+        <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
+      )}
+      <div className="">
+        <div className="">
           <Selection
             setCompletedPage={setCompletedPage}
             showNewPU={showNewPU}
@@ -169,17 +172,15 @@ const User = ({ setCompletedPage }) => {
           />
           <Filter handleFilterInput={handlePendingFilter} />
         </div>
-        <div className="  mainContent col-md-10">
-          <div className="row">
-            <div className="col-sm-12">
+        <div className="  mainContent">
+          <div className="">
+            <div className="">
               <div className="header">
                 <Header pageTitle="Pending Pickups" />
               </div>
             </div>
           </div>
-          {!newPU ? null : (
-            <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
-          )}
+
           <div className="Order-header">
             <div className="header-title">
               <p>Pick-up number</p>

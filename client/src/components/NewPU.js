@@ -2,8 +2,8 @@ const NewPU = ({ handleInput, handleSubmit }) => {
   return (
     <div className="newPUForm">
       <form>
-        <div className="row">
-          <div className="col-md-3">
+        <div className="pickup-info">
+          <div>
             <label htmlFor="pro">PRO</label>
             <input
               className="newPUInput"
@@ -15,7 +15,7 @@ const NewPU = ({ handleInput, handleSubmit }) => {
             ></input>
           </div>
 
-          <div className="col-md-3">
+          <div className="">
             <label htmlFor="carrier">Carrier</label>
             <input
               className="newPUInput"
@@ -26,8 +26,9 @@ const NewPU = ({ handleInput, handleSubmit }) => {
               onChange={(e) => handleInput(e)}
             ></input>
           </div>
-
-          <div className="col-md-3">
+        </div>
+        <div className="pickup-info">
+          <div className="">
             <label htmlFor="puDate">pickup Date</label>
             <input
               className="newPUInput"
@@ -39,7 +40,7 @@ const NewPU = ({ handleInput, handleSubmit }) => {
             ></input>
           </div>
 
-          <div className="col-md-3">
+          <div className="">
             <label htmlFor="puTime">pickup Time</label>
             <input
               className="newPUInput"
@@ -53,7 +54,7 @@ const NewPU = ({ handleInput, handleSubmit }) => {
         </div>
 
         <div className="row">
-          <div className="col-md-10">
+          <div className="">
             <label htmlFor="notes">Notes</label>
             <textarea
               id="notes"
@@ -62,7 +63,7 @@ const NewPU = ({ handleInput, handleSubmit }) => {
               onChange={(e) => handleInput(e)}
             ></textarea>
           </div>
-          <div className="col-md-2 puButton">
+          <div className="puButton">
             <button className="newPUButton " onClick={(e) => handleSubmit(e)}>
               Submit
             </button>

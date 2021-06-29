@@ -4,9 +4,19 @@
 }
 
 .newPUForm {
-  display: flex;
+  /* display: flex; */
+  background-color: coral;
+  /* margin: auto; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+/** controls the fields within the new pickup form*/
+.pickup-info {
+  display: flex;
+}
 .newPUInput {
   width: 100%;
 }
@@ -17,10 +27,14 @@
   margin: 40px 0;
 }
 
-.puInput {
+.notesTextArea {
+  width: 100%;
+}
+
+/* .puInput {
   display: flex;
   justify-content: space-evenly;
-}
+} */
 
 .user-card {
   display: flex;
@@ -48,10 +62,6 @@
 Need to have the hover effect display in text what the icon does
 */
 .edit-icon:hover {
-}
-
-.notesTextArea {
-  width: 100%;
 }
 
 .newPUButton {
@@ -189,9 +199,9 @@ This seperates the content from the header
   color: #f2a365;
 }
 
-.puForm {
+/* .puForm {
   display: flex;
-}
+} */
 
 .info {
   font-size: 1.25em;
