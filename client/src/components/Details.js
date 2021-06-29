@@ -1,5 +1,6 @@
 import React from "react";
 
+import "./style.css";
 const Details = ({ order, handleInput }) => {
   const created = new Date(order.createdOn);
 
@@ -7,9 +8,9 @@ const Details = ({ order, handleInput }) => {
   const pickupDate = new Date(order.puDate);
 
   return (
-    <>
+    <div className="detail-container">
       <div className="">
-        <div className=" orderNumbers">
+        <div className="">
           <p className="">
             Created by: <b className="info"> {order.createdBy}</b>
           </p>
@@ -25,55 +26,57 @@ const Details = ({ order, handleInput }) => {
             </b>
           </p>
         </div>
-        <div>
-          <p className="">
-            Reciever:
-            <b className="info">{order.receiver}</b>
-          </p>
-        </div>
+
         <div>
           <p className="">
             Last Updated By:
             <b className="info"> {order.lastUpdatedBy}</b>
           </p>
         </div>
+        <div>
+          <p className="">
+            Last Updated at:{" "}
+            <b className="info">
+              {`${pickupDate.getHours()}:${pickupDate.getMinutes()} on
+              ${pickupDate.getMonth() + 1}/${pickupDate.getDate()}`}
+            </b>
+          </p>
+        </div>
+        <div>
+          <p className="">
+            Receiver:
+            <b className="info">{order.receiver}</b>
+          </p>
+        </div>
       </div>
       <div>
         {order.status !== "pending" ? (
           <>
-            <div className="row">
-              <div className="col-md-12">
-                <div className="row">
-                  <p className="col-md-4">
-                    Loader: <b className="info"> {order.loader}</b>
-                  </p>
-                  <p className="col-md-4">
-                    Carrier: <b className="info"> {order.carrier}</b>
-                  </p>
-                  <p className="col-md-4">
-                    Scheduled Pickup Date:
-                    {"  "}
-                    <b className="info">{`${pickupDate.getMonth() + 1}/${
-                      pickupDate.getDate() + 1
-                    }`}</b>
-                  </p>
-                </div>
-              </div>
+            <div className="">
+              <p className="">
+                Loader: <b className="info"> {order.loader}</b>
+              </p>
+              <p className="">
+                Carrier: <b className="info"> {order.carrier}</b>
+              </p>
+              <p className="">
+                Scheduled Pickup Date:
+                {"  "}
+                <b className="info">{`${pickupDate.getMonth() + 1}/${
+                  pickupDate.getDate() + 1
+                }`}</b>
+              </p>
             </div>
-            <div className="row">
-              <div className="col-md-12">
-                <p className="note">Notes: {order.notes}</p>
-              </div>
+            <div className="">
+              <p className="note">Notes: {order.notes}</p>
             </div>
-            <div className="row">
-              <div className="col-md-12">
-                <p className="note">Comments: {order.comments}</p>
-              </div>
+            <div className="">
+              <p className="note">Comments: {order.comments}</p>
             </div>{" "}
           </>
         ) : null}
       </div>
-    </>
+    </div>
   );
 };
 

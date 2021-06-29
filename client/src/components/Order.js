@@ -9,7 +9,7 @@ const Order = ({
   order,
   handleInput,
   setPuList,
-
+  color,
   handleUpdate,
   handlePickedUp,
 }) => {
@@ -79,6 +79,7 @@ const Order = ({
 
   return (
     <div
+      style={{ backgroundColor: color }}
       className="orderCard"
       onClick={() => (order.status === "completed" ? handleDetails() : null)}
     >
@@ -87,54 +88,35 @@ const Order = ({
           order.status === "pending" ? (editor ? null : handleDetails()) : null
         }
       >
-        <div className="row">
-          <div className="col-md-12">
-            <div className="row orderNumbers">
-              <p className="col-md-4">
-                Pick-up #: <b className="info">{order.pickupNumber}</b>
-              </p>
-              <p className="col-md-4">
-                PRO: <b className="info">{order.pro}</b>
-              </p>
-              <p className="col-md-4">
-                {order.status !== "completed"
-                  ? "Last Updated:"
-                  : "Picked Up On:"}
-                <b className="info">
-                  {" "}
-                  {order.status !== "completed" ? (
-                    <>
-                      {updated.getHours()}:{updated.getMinutes()} on{" "}
-                      {updated.getMonth() + 1}/{updated.getDate()}
-                    </>
-                  ) : (
-                    <>
-                      {updated.getMonth() + 1}/{updated.getDate() + 1}
-                    </>
-                  )}
-                </b>
-              </p>
-            </div>
-
-            {/* {order.status !== "completed" ? (
-              <div className="row quickDetails">
-                <p className="col-md-4">
-                  Carrier: <b className="info">{order.carrier}</b>
-                </p>
-
-                <p className="col-md-4">
-                  Scheduled Pick-up date:{"  "}
-                  <b className="info">{`${pickupDate.getMonth() + 1}/${
-                    pickupDate.getDate() + 1
-                  }`}</b>
-                </p>
-                <p className="col-md-4">
-                  PU Time: <b className="info">{order.puTime}</b>
-                </p>
-              </div>
-            ) : null} */}
+        <div className="orderNumbers">
+          <div className="order-info">
+            {" "}
+            <p>
+              <b className="info">{order.pickupNumber}</b>
+            </p>
           </div>
 
+          <div className="order-info">
+            {" "}
+            <p>
+              <b className="info">{order.pro}</b>
+            </p>
+          </div>
+
+          <div className="order-info">
+            <p>
+              <b className="info">{order.carrier}</b>
+            </p>
+          </div>
+
+          <div className="order-info">
+            {" "}
+            <p>
+              <b className="info">
+                {`${pickupDate.getMonth() + 1}/${pickupDate.getDate() + 1}`}
+              </b>
+            </p>
+          </div>
         </div>
 
         {order.status !== "completed" ? (
@@ -148,22 +130,30 @@ const Order = ({
           </p>
         ) : null}
       </div>
-      <div className="row">
-        {order.showDetails ? (
-          <div className="col-md-3">
-            <Details handleInput={handleInput} order={order} />
-          </div>
-        ) : null}
-        {order.showDetails && order.status === "pending" ? (
-          <div className="col-md-9">
-            <Updates
-              handleInput={handleInput}
-              order={order}
-              handleUpdate={handleUpdate}
-              handlePickedUp={handlePickedUp}
-            />
-          </div>
-        ) : null}
+      <div className="detail-container">
+        <div className="d-flex">
+          {order.showDetails ? (
+            <div className="detail-info">
+              <Details
+                handleInput={handleInput}
+                order={order}
+                updated={updated}
+              />
+            </div>
+          ) : null}
+        </div>
+        <div className="Update-fields">
+          {order.showDetails && order.status === "pending" ? (
+            <div>
+              <Updates
+                handleInput={handleInput}
+                order={order}
+                handleUpdate={handleUpdate}
+                handlePickedUp={handlePickedUp}
+              />
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   );

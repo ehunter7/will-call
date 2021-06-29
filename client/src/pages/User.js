@@ -32,6 +32,9 @@ const User = ({ setCompletedPage }) => {
     setFiltered(state.pickups);
   }, [state]);
 
+  const alternatingColor = ["#222831", "#273240"];
+  let index = 0;
+
   //Used for creating a new pickup
   const [pickup, setPickup] = useState({
     pro: Number,
@@ -178,29 +181,27 @@ const User = ({ setCompletedPage }) => {
             <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
           )}
           <div className="Order-header">
-
-          <div className="header-title">
-            <p>Pick-up number</p>
+            <div className="header-title">
+              <p>Pick-up number</p>
+            </div>
+            <div className="header-title">
+              <p>PRO number</p>
+            </div>
+            <div className="header-title">
+              <p>Carrier</p>
+            </div>
+            <div className="header-title">
+              <p>Last Updated</p>
+            </div>
           </div>
-          <div className="header-title">
-            <p>PRO number</p>
-          </div>
-          <div className="header-title">
-            <p>Carrier</p>
-          </div>
-          <div className="header-title">
-            <p>Last Updated</p>
-          </div>
-          </div >
           <div className="orderDiv">
-
-
-
             {filtered.map((order) => {
               if (order.status === "pending") {
+                index++;
                 return (
                   <Order
                     key={order._id}
+                    color={alternatingColor[index % alternatingColor.length]}
                     order={order}
                     handleInput={handleInput}
                     setPuList={setPuList}
@@ -210,6 +211,7 @@ const User = ({ setCompletedPage }) => {
                   />
                 );
               }
+
               return null;
             })}
           </div>

@@ -119,26 +119,28 @@ Need to figure out why i cant change the color
   border-radius: 5px;
 }
 
-.orderCard {
-  border-bottom: solid 0.1px #30475e;
-  padding-left: 4em;
-}
-
 /** Filter.js*/
 
 /**
 Spaces out thetop of each order
 */
 .orderNumbers {
-  margin-top: 1em;
   display: flex;
-  justify-content: center;
-  padding-left: 15px;
+  justify-content: space-evenly;
+}
+
+.orderCard {
+  border-bottom: solid 0.1px #30475e;
 }
 
 .orderCard:hover {
-  transition: background-color 0.5s ease;
-  background-color: #393e46;
+  transition: background-color 0.5s ease !important;
+  background-color: #393e46 !important;
+}
+
+.order-info {
+  width: 100%;
+  text-align: center;
 }
 
 /**
@@ -195,9 +197,17 @@ This seperates the content from the header
   font-size: 1.25em;
 }
 
-.updates {
-  /* display: flex; */
-  /* justify-content: center; */
+.detail-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.detail-info {
+  margin-top: 2em;
+}
+
+.Update-fields {
+  width: 70%;
 }
 
 .commentsArea {
