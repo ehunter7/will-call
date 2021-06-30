@@ -11,6 +11,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 /** controls the fields within the new pickup form*/
@@ -77,12 +78,7 @@ Need to have the hover effect display in text what the icon does
   height: 9em;
 }
 
-.mainContent {
-  /* border-right: solid 2px #ececec; */
-  border-left: solid 2px #ececec;
-  /* margin-right: 1em; */
-  /* height: 100vh; */
-}
+
 
 /**selection.js*/
 
@@ -91,6 +87,10 @@ Handles the logout dropdown
 Need to figure out why i cant change the color
 */
 
+#user-dropdown{
+  height: 100px;
+  text-decoration: none;
+}
 .logout {
   /* display: flex;
   justify-content: flex-end; */
@@ -100,10 +100,10 @@ Need to figure out why i cant change the color
 
 .selectionGroup {
   display: flex;
-  /* justify-content: center; */
   flex-direction: column;
   background-color: #222831;
-  padding-left: 15px;
+  padding: 1em;
+  margin-top: 3em;
 }
 
 .selcBTN {

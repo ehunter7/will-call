@@ -163,8 +163,8 @@ const User = ({ setCompletedPage }) => {
       {!newPU ? null : (
         <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
       )}
-      <div className="">
-        <div className="">
+
+        <div className="content-buttons">
           <Selection
             setCompletedPage={setCompletedPage}
             showNewPU={showNewPU}
@@ -217,7 +217,7 @@ const User = ({ setCompletedPage }) => {
             })}
           </div>
         </div>
-      </div>
+
     </>
   );
 };

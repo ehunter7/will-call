@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, NavDropdown } from "react-bootstrap";
+import { Button, DropdownButton, Dropdown } from "react-bootstrap";
 // import { useAuth } from "../contexts/AuthContext";
 import "./style.css";
 import { useStateContext, authContext } from "../utils/GlobalState";
@@ -38,36 +38,42 @@ const Selection = ({ showNewPU, newPU, pageTitle }) => {
     <>
       <div className=" ">
         <div className="logout">
-          <NavDropdown
-            className="link-light"
+          <DropdownButton
+            id="user-dropdown"
             title={authData.user.fullname}
-            id="nav-dropdown"
+            id="dropdown-basic-button"
+            style={{
+              borderStyle: "none",
+              borderRadius: "2px",
+              backgroundColor: "transparent",
+            }}
+      
           >
             {authData.user.role === "Admin" ? (
-              <NavDropdown.Item
+              <Dropdown.Item
                 eventKey="4.1"
                 onClick={() => history.push("/userslist")}
               >
                 Manage Users
-              </NavDropdown.Item>
+              </Dropdown.Item>
             ) : null}
             {authData.user.role === "Admin" ? (
-              <NavDropdown.Item
+              <Dropdown.Item
                 eventKey="4.2"
                 onClick={() => history.push("/newuser")}
               >
                 Create New User
-              </NavDropdown.Item>
+              </Dropdown.Item>
             ) : null}
             {/* <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
           <NavDropdown.Item eventKey="4.3">
             Something else here
           </NavDropdown.Item> */}
-            <NavDropdown.Divider />
-            <NavDropdown.Item eventKey="4.3" onClick={handleLogout}>
+            <Dropdown.Divider />
+            <Dropdown.Item eventKey="4.3" onClick={handleLogout}>
               Logout
-            </NavDropdown.Item>
-          </NavDropdown>
+            </Dropdown.Item>
+          </DropdownButton>
         </div>
       </div>
       <div className="selectionGroup ">
