@@ -53,7 +53,7 @@ const NewPU = ({ handleInput, handleSubmit }) => {
           </div>
         </div>
 
-        <div className="row">
+        <div className="">
           <div className="">
             <label htmlFor="notes">Notes</label>
             <textarea

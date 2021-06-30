@@ -4,9 +4,10 @@
 }
 
 .newPUForm {
-  /* display: flex; */
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 1rem;
   background-color: coral;
-  /* margin: auto; */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -17,6 +18,7 @@
 /** controls the fields within the new pickup form*/
 .pickup-info {
   display: flex;
+  justify-content: space-evenly;
 }
 .newPUInput {
   width: 100%;
@@ -78,8 +80,6 @@ Need to have the hover effect display in text what the icon does
   height: 9em;
 }
 
-
-
 /**selection.js*/
 
 /**
@@ -87,7 +87,7 @@ Handles the logout dropdown
 Need to figure out why i cant change the color
 */
 
-#user-dropdown{
+#user-dropdown {
   height: 100px;
   text-decoration: none;
 }
