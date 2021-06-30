@@ -1,9 +1,11 @@
 const NewPU = ({ handleInput, handleSubmit }) => {
   return (
     <div className="newPUForm">
-      <form>
-        <div className="pickup-info">
-          <div>
+      <h1 className="text-center">New Pick-up</h1>
+      <p className="close-newPickup">X</p>
+      <div className="pickup-info">
+        <div>
+          <div className="puInput">
             <label htmlFor="pro">PRO</label>
             <input
               className="newPUInput"
@@ -15,7 +17,7 @@ const NewPU = ({ handleInput, handleSubmit }) => {
             ></input>
           </div>
 
-          <div className="">
+          <div className="puInput">
             <label htmlFor="carrier">Carrier</label>
             <input
               className="newPUInput"
@@ -27,8 +29,8 @@ const NewPU = ({ handleInput, handleSubmit }) => {
             ></input>
           </div>
         </div>
-        <div className="pickup-info">
-          <div className="">
+        <div>
+          <div className="puInput">
             <label htmlFor="puDate">pickup Date</label>
             <input
               className="newPUInput"
@@ -40,7 +42,7 @@ const NewPU = ({ handleInput, handleSubmit }) => {
             ></input>
           </div>
 
-          <div className="">
+          <div className="puInput">
             <label htmlFor="puTime">pickup Time</label>
             <input
               className="newPUInput"
@@ -52,24 +54,24 @@ const NewPU = ({ handleInput, handleSubmit }) => {
             ></input>
           </div>
         </div>
+      </div>
 
+      <div className="puInput">
         <div className="">
-          <div className="">
-            <label htmlFor="notes">Notes</label>
-            <textarea
-              id="notes"
-              className="notesTextArea"
-              name="notes"
-              onChange={(e) => handleInput(e)}
-            ></textarea>
-          </div>
-          <div className="puButton">
-            <button className="newPUButton " onClick={(e) => handleSubmit(e)}>
-              Submit
-            </button>
-          </div>
+          <label htmlFor="notes">Notes</label>
+          <textarea
+            id="notes"
+            className="notesTextArea"
+            name="notes"
+            onChange={(e) => handleInput(e)}
+          ></textarea>
         </div>
-      </form>
+        <div className="puButton">
+          <button className="newPUButton " onClick={(e) => handleSubmit(e)}>
+            Submit
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

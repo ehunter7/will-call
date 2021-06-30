@@ -4,30 +4,57 @@
 }
 
 .newPUForm {
-  border: 2px solid white;
-  border-radius: 5px;
+  /* border: 2px solid white; */
+  border-radius: 2px;
   padding: 1rem;
-  background-color: coral;
+  background-color: #393e46;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  width: 25%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.close-newPickup {
+  position: absolute;
+  top: 5px;
+  left: 95%;
+}
+
+.close-newPickup:hover {
+  cursor: pointer;
+}
 /** controls the fields within the new pickup form*/
 .pickup-info {
+  /* width: 50%; */
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-between; */
 }
+
 .newPUInput {
   width: 100%;
+  padding: 5px;
+}
+
+.puInput {
+  margin: 10px;
 }
 
 .puButton {
   display: flex;
   justify-content: center;
-  margin: 40px 0;
+  margin-top: 5px;
+}
+
+.newPUButton {
+  width: 100%;
+  border-style: none;
+  border-radius: 2px;
+  background-color: transparent;
+  border: solid 1px #f2a365;
+  color: #f2a365;
 }
 
 .notesTextArea {
@@ -65,15 +92,6 @@
 Need to have the hover effect display in text what the icon does
 */
 .edit-icon:hover {
-}
-
-.newPUButton {
-  width: 6em;
-  border-style: none;
-  border-radius: 2px;
-  background-color: transparent;
-  border: solid 1px #f2a365;
-  color: #f2a365;
 }
 
 .page-header {
