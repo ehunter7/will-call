@@ -1,8 +1,8 @@
-const NewPU = ({ handleInput, handleSubmit }) => {
+const NewPU = ({ handleInput, handleSubmit,showNewPU }) => {
   return (
     <div className="newPUForm">
       <h1 className="text-center">New Pick-up</h1>
-      <p className="close-newPickup">X</p>
+      <p className="close-newPickup" onClick={() => showNewPU(false)}>X</p>
       <div className="pickup-info">
         <div>
           <div className="puInput">

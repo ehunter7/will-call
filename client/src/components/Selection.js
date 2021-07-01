@@ -1,14 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, DropdownButton, Dropdown } from "react-bootstrap";
 // import { useAuth } from "../contexts/AuthContext";
 import "./style.css";
 import { useStateContext, authContext } from "../utils/GlobalState";
 import API from "../utils/api";
+import ProfileChoices from "./profileChoices";
 
 const Selection = ({ showNewPU, newPU, pageTitle }) => {
   const [state, dispatch] = useStateContext();
   const { authData } = useContext(authContext);
+  const [profileChoices, openProfileChoices] = useState(false);
 
   // const { logout } = useAuth();
   let history = useHistory();
@@ -77,6 +79,10 @@ const Selection = ({ showNewPU, newPU, pageTitle }) => {
         </div>
       </div>
       <div className="selectionGroup ">
+      <button className=" selcBTN" onClick={() => openProfileChoices(!profileChoices)}>
+      Profile
+        </button>
+        {profileChoices ? <ProfileChoices/> : null}
         <button className=" selcBTN" onClick={() => showNewPU(!newPU)}>
           New Pick-up
         </button>

@@ -161,7 +161,7 @@ const User = ({ setCompletedPage }) => {
   return (
     <>
       {!newPU ? null : (
-        <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
+        <NewPU handleSubmit={handleSubmit} handleInput={handleInput} showNewPU={showNewPU} />
       )}
 
         <div className="content-buttons">
