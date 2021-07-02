@@ -1,3 +1,11 @@
+:root {
+  --main: #fffcf2;
+  --secondary: #222831;
+  --body: #ccc5b9;
+}
+
+
+
 .header {
   border-bottom: 3px solid white;
 }
@@ -20,11 +28,30 @@
   width: 100%;
 }
 
-div.content-buttons{
+.content{
 
-  width: 20%;
+
+ 
+}
+
+.content-buttons{
+position: absolute;
   position: -webkit-sticky;
-position: sticky; top: 0px;
+position: sticky;
+ top: 0;
+ right: 80%;
+ width: 20%;
+ background-color:var(--main);
+height: fit-content;
+}
+
+.mainContent {
+
+  position: absolute;
+left:21%;
+width: 79%;
+top: 0;
+  border-left: solid 2px #ececec;
 
 }
 
@@ -37,13 +64,5 @@ z-index: 1;
 
 }
 
-.mainContent {
 
-  position: absolute;
-left:20%;
-width: 80%;
-top: 0;
-  border-left: solid 2px #ececec;
-
-}
 

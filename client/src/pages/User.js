@@ -163,7 +163,7 @@ const User = ({ setCompletedPage }) => {
       {!newPU ? null : (
         <NewPU handleSubmit={handleSubmit} handleInput={handleInput} showNewPU={showNewPU} />
       )}
-
+      <div className="content">
         <div className="content-buttons">
           <Selection
             setCompletedPage={setCompletedPage}
@@ -172,6 +172,7 @@ const User = ({ setCompletedPage }) => {
           />
           <Filter handleFilterInput={handlePendingFilter} />
         </div>
+
         <div className="  mainContent">
           <div className="">
             <div className="">
@@ -217,7 +218,7 @@ const User = ({ setCompletedPage }) => {
             })}
           </div>
         </div>
-
+      </div>
     </>
   );
 };

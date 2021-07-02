@@ -1,5 +1,12 @@
+:root {
+  --main: #fffcf2;
+  --secondary: #222831;
+  --body: #ccc5b9;
+}
+
+
 .main {
-  background-color: #222831;
+  background-color: var(--body);
   color: white;
 }
 
