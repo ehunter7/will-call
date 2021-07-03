@@ -25,7 +25,6 @@
 
 .close-newPickup:hover {
   cursor: pointer;
- 
 }
 /** controls the fields within the new pickup form*/
 .pickup-info {
@@ -57,8 +56,6 @@
   border: solid 1px #f2a365;
   color: #f2a365;
 }
-
-
 
 .notesTextArea {
   width: 100%;
@@ -139,12 +136,12 @@ Need to figure out why i cant change the color
   transition: transform 500ms ease;
 }
 
-.selcBTN:hover{
+.selcBTN:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transform: scale(1.03) perspective(1px);
 }
 
-.selcBTN:active{
+.selcBTN:active {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transform: scale(1) perspective(1px);
 }
@@ -156,8 +153,6 @@ Need to figure out why i cant change the color
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
-
-
 
 .comment-area {
   border-radius: 5px;
@@ -285,9 +280,9 @@ td {
 
 /**profileChoices.js*/
 
-.profile-choices{
+.profile-choices {
   height: 500px;
   width: 100%;
   background-color: grey;
-  transform: translateY(100%)
+  transform: translateY(100%);
 }
