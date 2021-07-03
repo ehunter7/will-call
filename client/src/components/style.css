@@ -1,13 +1,22 @@
+:root {
+  --main: #fffcf2;
+  --secondary: #222831;
+  --body: #ccc5b9;
+  --accessorial: #393e46;
+}
+
+
 .main {
-  background-color: #222831;
-  color: white;
+  background-color: var(--body);
+  color: var(--secondary);
 }
 
 .newPUForm {
-  /* border: 2px solid white; */
+  color: var(--main)
+;  /* border: 2px solid white; */
   border-radius: 3px;
   padding: 1rem;
-  background-color: #393e46;
+  background-color: var(--accessorial);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -53,8 +62,8 @@
   border-style: none;
   border-radius: 2px;
   background-color: transparent;
-  border: solid 1px #f2a365;
-  color: #f2a365;
+  border: solid 1px var(--secondary);
+  color: var(--main);
 }
 
 .notesTextArea {
@@ -113,13 +122,13 @@ Need to figure out why i cant change the color
   /* display: flex;
   justify-content: flex-end; */
   margin-left: auto;
-  color: white;
+  color: var(--secondary);
 }
 
 .selectionGroup {
   display: flex;
   flex-direction: column;
-  background-color: #222831;
+  background-color: var(--main);
   padding: 1em;
   margin-top: 3em;
 }
@@ -128,9 +137,9 @@ Need to figure out why i cant change the color
   /* width: 6em; */
   border-style: none;
   border-radius: 2px;
-  background-color: #f2a365;
+  background-color: var(--accessorial);
   /* border: solid 1px #f2a365; */
-  color: #222831;
+  color: var(--main);
   padding: 5px;
   margin-bottom: 15px;
   transition: transform 500ms ease;
@@ -170,11 +179,13 @@ Spaces out thetop of each order
 
 .orderCard {
   border-bottom: solid 0.1px #30475e;
+  transition: background-color 0.9s ease !important;
 }
 
 .orderCard:hover {
-  transition: background-color 0.5s ease !important;
+
   background-color: #393e46 !important;
+  color: var(--main)
 }
 
 .order-info {
