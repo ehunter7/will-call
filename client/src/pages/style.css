@@ -8,6 +8,13 @@
 
 .header {
   border-bottom: 3px solid white;
+position: absolute;
+left: 21%;
+top: 0;
+width: 79%;
+height: 14%;
+border-left: 2px solid white;
+background-color: var(--main);
 }
 
 .Order-header {
@@ -28,11 +35,7 @@
   width: 100%;
 }
 
-.content{
 
-
- 
-}
 
 .content-buttons{
 position: absolute;
@@ -50,16 +53,16 @@ height: fit-content;
   position: absolute;
 left:21%;
 width: 79%;
-top: 0;
+top: 16.5%;
   border-left: solid 2px #ececec;
 
 }
 
 .Order-header{
-
+color: white;
   position: -webkit-sticky;
 position: sticky; top: 0px;
-background-color: black;
+background-color: var(--secondary);
 z-index: 1;
 
 }

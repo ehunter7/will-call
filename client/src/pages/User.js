@@ -32,7 +32,7 @@ const User = ({ setCompletedPage }) => {
     setFiltered(state.pickups);
   }, [state]);
 
-  const alternatingColor = ["#222831", "#273240"];
+  const alternatingColor = ["#fffcf2", "#fbfefb"];
   let index = 0;
 
   //Used for creating a new pickup
@@ -172,15 +172,11 @@ const User = ({ setCompletedPage }) => {
           />
           <Filter handleFilterInput={handlePendingFilter} />
         </div>
-
-        <div className="  mainContent">
-          <div className="">
-            <div className="">
-              <div className="header">
+        <div className="header">
                 <Header pageTitle="Pending Pickups" />
               </div>
-            </div>
-          </div>
+        <div className="  mainContent">
+
 
           <div className="Order-header">
             <div className="header-title">
