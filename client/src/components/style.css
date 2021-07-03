@@ -5,15 +5,13 @@
   --accessorial: #393e46;
 }
 
-
 .main {
   background-color: var(--body);
   color: var(--secondary);
 }
 
 .newPUForm {
-  color: var(--main)
-;  /* border: 2px solid white; */
+  color: var(--main); /* border: 2px solid white; */
   border-radius: 3px;
   padding: 1rem;
   background-color: var(--accessorial);
@@ -128,17 +126,18 @@ Need to figure out why i cant change the color
 .selectionGroup {
   display: flex;
   flex-direction: column;
+
   background-color: var(--main);
   padding: 1em;
   margin-top: 3em;
 }
 
 .selcBTN {
-  /* width: 6em; */
   border-style: none;
+  margin-left: 10%;
+  margin-right: 10%;
   border-radius: 2px;
   background-color: var(--accessorial);
-  /* border: solid 1px #f2a365; */
   color: var(--main);
   padding: 5px;
   margin-bottom: 15px;
@@ -183,9 +182,8 @@ Spaces out thetop of each order
 }
 
 .orderCard:hover {
-
   background-color: #393e46 !important;
-  color: var(--main)
+  color: var(--main);
 }
 
 .order-info {
@@ -214,10 +212,11 @@ This seperates the content from the header
 
 .inputFields {
   margin-top: 1em;
-  border: 2px solid white;
-  width: 90%;
+  border: 2px solid var(--accessorial);
+  width: 73%;
   height: max-content;
   padding: 1em;
+  text-align: center;
 }
 
 .orderButtons {
@@ -274,6 +273,10 @@ td {
 
 .notesEdit {
   margin-left: 1em;
+}
+
+.note {
+  margin-left: 8.75%;
 }
 
 .notesEdit:hover {

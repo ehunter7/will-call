@@ -5,14 +5,14 @@
 }
 
 .header {
-  border-bottom: 3px solid white;
   position: absolute;
   left: 21%;
   top: 0;
   width: 79%;
   height: 14%;
-  border-left: 2px solid white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: var(--main);
+  border-radius: 0 0 0 5px;
 }
 
 .Order-header {
@@ -42,6 +42,9 @@
   width: 20%;
   background-color: var(--main);
   height: fit-content;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 98.5vh;
+  border-radius: 0 0 5px 0;
 }
 
 .mainContent {
@@ -49,7 +52,10 @@
   left: 21%;
   width: 79%;
   top: 16.5%;
-  border-left: solid 2px #ececec;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px 0 0 5px;
+  overflow-y: auto;
+  max-height: 82vh;
 }
 
 .Order-header {
@@ -59,4 +65,5 @@
   top: 0px;
   background-color: var(--secondary);
   z-index: 1;
+  border-radius: 5px 0 0 0;
 }
