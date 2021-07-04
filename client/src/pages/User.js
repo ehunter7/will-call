@@ -32,7 +32,8 @@ const User = ({ setCompletedPage }) => {
     setFiltered(state.pickups);
   }, [state]);
 
-  const alternatingColor = ["#fffcf2", "#fbfefb"];
+  const alternatingColor = ["#c5c3c6", "#dcdcdd"];
+
   let index = 0;
 
   //Used for creating a new pickup
@@ -160,24 +161,18 @@ const User = ({ setCompletedPage }) => {
 
   return (
     <>
-      {!newPU ? null : (
-        <NewPU handleSubmit={handleSubmit} handleInput={handleInput} showNewPU={showNewPU} />
+      {!state.openNewPickup ? null : (
+        <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
       )}
       <div className="content">
         <div className="content-buttons">
-          <Selection
-            setCompletedPage={setCompletedPage}
-            showNewPU={showNewPU}
-            newPU={newPU}
-          />
+          <Selection setCompletedPage={setCompletedPage} />
           <Filter handleFilterInput={handlePendingFilter} />
         </div>
         <div className="header">
-                <Header pageTitle="Pending Pickups" />
-              </div>
+          <Header pageTitle="Pending Pickups" />
+        </div>
         <div className="  mainContent">
-
-
           <div className="Order-header">
             <div className="header-title">
               <p>Pick-up number</p>

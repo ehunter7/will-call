@@ -1,7 +1,14 @@
-:root {
+/* :root {
   --main: #fffcf2;
   --secondary: #222831;
   --body: #ccc5b9;
+} */
+:root {
+  --pop: #1985a1;
+  --main: #4c5c68;
+  --secondary: #c5c3c6;
+  --body: #edf6f9;
+  --accessorial: #dcdcdd;
 }
 
 .header {
@@ -13,11 +20,6 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: var(--main);
   border-radius: 0 0 0 5px;
-}
-
-.Order-header {
-  display: flex;
-  justify-content: space-evenly;
 }
 
 .header-title {
@@ -42,7 +44,8 @@
   width: 20%;
   background-color: var(--main);
   height: fit-content;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(134, 110, 110, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 98.5vh;
   border-radius: 0 0 5px 0;
 }
@@ -58,7 +61,13 @@
   max-height: 82vh;
 }
 
+.user-profiles {
+  max-height: 58.7vh;
+}
+
 .Order-header {
+  display: flex;
+  justify-content: space-evenly;
   color: white;
   position: -webkit-sticky;
   position: sticky;
@@ -66,4 +75,18 @@
   background-color: var(--secondary);
   z-index: 1;
   border-radius: 5px 0 0 0;
+}
+
+.user-key {
+  height: 200px;
+
+  background-color: var(--main);
+  color: white;
+  position: absolute;
+  left: 21%;
+  width: 79%;
+  top: 77.8%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px 0 0 5px;
+  overflow-y: auto;
 }

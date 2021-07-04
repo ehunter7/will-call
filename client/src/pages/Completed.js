@@ -1,16 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Order from "../components/Order";
 // import API from '../utils/api';
 import Selection from "../components/Selection";
-import { useStateContext } from "../utils/GlobalState";
+import { useStateContext, authContext } from "../utils/GlobalState";
+
 import Filter from "../components/Filter";
+import Header from "../components/Header";
+import API from "../utils/api";
+import NewPU from "../components/NewPU";
 
 const Completed = () => {
   const [state, dispatch] = useStateContext();
-
+  const [puList, setPuList] = useState([]);
+  const [pickedup, setPickedup] = useState(false);
+  const [newPU, showNewPU] = useState();
+  const { authData } = useContext(authContext);
+  const [filtered, setFiltered] = useState([]);
   // used to hold completed pickup list.
   const [completed, setCompleted] = useState([]);
-  const [filtered, setFiltered] = useState([]);
+
+  const alternatingColor = ["#c5c3c6", "#dcdcdd"];
+  let index = 0;
 
   useEffect(() => {
     const getCompleted = state.pickups.filter(
@@ -19,6 +29,19 @@ const Completed = () => {
     setCompleted(getCompleted);
     setFiltered(getCompleted);
   }, [state.pickups]);
+
+  //Used for creating a new pickup
+  const [pickup, setPickup] = useState({
+    pro: Number,
+    carrier: "",
+    puDate: Date,
+    puTime: "0800 to 1300",
+    notes: "",
+    comments: "",
+    loader: "",
+    puOn: Date,
+    user: authData.user.username,
+  });
 
   // handle input from filter component
   const handleFilterInput = (e) => {
@@ -43,19 +66,72 @@ const Completed = () => {
     setFiltered(filteredList);
   };
 
+  //Handles input from new pickup form
+  const handleInput = (event) => {
+    const { name, value } = event.target;
+
+    setPickup({ ...pickup, [name]: value });
+  };
+
+  //Handles new pickup submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    API.newPickup(pickup).then((res) => {
+      showNewPU(!newPU);
+      // setpickups(pickups.concat(res.data));
+      dispatch({ type: "new-pickup", payload: res.data });
+      setPuList(state.pickups);
+      setPickup({
+        pro: Number,
+        carrier: "",
+        puDate: Date,
+        puTime: "0800 to 1300",
+        notes: "",
+        comments: "",
+        loader: "",
+        puOn: Date,
+      });
+    });
+  };
+
   return (
     <>
-      <div className="header">
-        <Selection pageTitle="Completed Pick-ups" />
-      </div>
-      <div className="row">
-        <div className="col-md-2">
+      {!state.openNewPickup ? null : (
+        <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
+      )}
+      <div className="content">
+        <div className="content-buttons">
+          <Selection />
           <Filter handleFilterInput={handleFilterInput} />
         </div>
-        <div className=" mainContent col-md-8">
+        <div className="header">
+          <Header pageTitle="Completed Pickups" />
+        </div>
+        <div className=" mainContent">
+          <div className="Order-header">
+            <div className="header-title">
+              <p>Pick-up number</p>
+            </div>
+            <div className="header-title">
+              <p>PRO number</p>
+            </div>
+            <div className="header-title">
+              <p>Carrier</p>
+            </div>
+            <div className="header-title">
+              <p>Last Updated</p>
+            </div>
+          </div>
           <div className="orderDiv">
             {filtered.map((order) => {
-              return <Order key={order._id} order={order} />;
+              index++;
+              return (
+                <Order
+                  key={order._id}
+                  order={order}
+                  color={alternatingColor[index % alternatingColor.length]}
+                />
+              );
             })}
           </div>
         </div>

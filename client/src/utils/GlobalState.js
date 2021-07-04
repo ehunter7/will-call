@@ -23,6 +23,9 @@ const reducer = (state, action) => {
     case "set-completed":
       return { ...state, completedPage: !state.completedPage };
 
+    case "open-new-pickup":
+      return { ...state, openNewPickup: !state.openNewPickup };
+
     default:
       break;
   }
@@ -33,6 +36,7 @@ const StateProvider = ({ value = false, ...props }) => {
     //state goes here
     pickups: [],
     completedPage: false,
+    openNewPickup: false,
   });
   return <Provider value={[state, dispatch]} {...props} />;
 };

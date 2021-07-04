@@ -2,7 +2,7 @@ import React from "react";
 
 const Filter = ({ handleFilterInput }) => {
   return (
-    <div className=" orderNumbers ">
+    <div className=" orderNumbers filter-text">
       <div className="inputFields">
         <div className="">
           <label htmlFor="puNum">Pickup Number: </label>

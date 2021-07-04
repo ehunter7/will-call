@@ -1,8 +1,15 @@
-:root {
+/* :root {
   --main: #fffcf2;
   --secondary: #222831;
   --body: #ccc5b9;
   --accessorial: #393e46;
+} */
+:root {
+  --pop: #1985a1;
+  --main: #4c5c68;
+  --secondary: #c5c3c6;
+  --body: #edf6f9;
+  --accessorial: #dcdcdd;
 }
 
 .main {
@@ -11,10 +18,10 @@
 }
 
 .newPUForm {
-  color: var(--main); /* border: 2px solid white; */
+  color: var(--accessorial); /* border: 2px solid white; */
   border-radius: 3px;
   padding: 1rem;
-  background-color: var(--accessorial);
+  background-color: var(--main);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -60,8 +67,8 @@
   border-style: none;
   border-radius: 2px;
   background-color: transparent;
-  border: solid 1px var(--secondary);
-  color: var(--main);
+  border: solid 1px var(--accessorial);
+  color: var(--accessorial);
 }
 
 .notesTextArea {
@@ -75,24 +82,21 @@
 
 .user-card {
   display: flex;
-  border: 3px solid red;
+
   border-radius: 20px;
   margin-top: 2em;
 
   width: 100%;
 }
 
-.user-key {
-  height: 300px;
-  width: 500px;
-  border: 2px solid white;
-  border-radius: 10px;
-  margin-left: 2em;
-  margin-top: 2em;
+.filter-text {
+  color: white;
 }
 
 .icon {
   font-size: 2em;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /**
@@ -134,14 +138,17 @@ Need to figure out why i cant change the color
 
 .selcBTN {
   border-style: none;
+  height: 2.5em;
   margin-left: 10%;
   margin-right: 10%;
-  border-radius: 2px;
-  background-color: var(--accessorial);
-  color: var(--main);
+  border-radius: 3px;
+  background-color: var(--pop);
+  color: white;
   padding: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 1.5em;
   transition: transform 500ms ease;
+  letter-spacing: 2px;
+  font-weight: 600;
 }
 
 .selcBTN:hover {
@@ -160,6 +167,7 @@ Need to figure out why i cant change the color
   letter-spacing: 2px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+  color: white;
 }
 
 .comment-area {
@@ -177,12 +185,16 @@ Spaces out thetop of each order
 }
 
 .orderCard {
-  border-bottom: solid 0.1px #30475e;
+  /* border-bottom: solid 0.1px #30475e; */
+  border-bottom: solid 0.1px var(--main);
+
   transition: background-color 0.9s ease !important;
 }
 
 .orderCard:hover {
-  background-color: #393e46 !important;
+  /* background-color: #393e46 !important; */
+  background-color: white !important;
+
   color: var(--main);
 }
 
@@ -234,8 +246,8 @@ This seperates the content from the header
   border-style: none;
   border-radius: 2px;
   background-color: transparent;
-  border: solid 1px #f2a365;
-  color: #f2a365;
+  border: solid 1px var(--pop);
+  color: var(--pop);
 }
 
 /* .puForm {
@@ -295,8 +307,23 @@ td {
 /**profileChoices.js*/
 
 .profile-choices {
-  height: 500px;
-  width: 100%;
+  border-radius: 5px;
+  height: 20.2%;
+  width: 40%;
   background-color: grey;
-  transform: translateY(100%);
+  position: absolute;
+  top: 13.5%;
+  left: 90%;
+  z-index: 4;
+}
+
+.profile-caret {
+  height: 5%;
+  width: 10px;
+  border-top: 12.5px solid transparent;
+  border-right: 25px solid grey;
+  border-bottom: 12.5px solid transparent;
+  position: absolute;
+  top: 3.5%;
+  left: -17%;
 }
