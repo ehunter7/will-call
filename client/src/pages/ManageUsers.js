@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import Selection from "../components/Selection";
 import API from "../utils/api";
@@ -12,6 +13,8 @@ const ManageUsers = () => {
   const [users, setUsers] = useState([]);
   const [puList, setPuList] = useState([]);
   const [filtered, setFiltered] = useState([]);
+
+  let history = useHistory();
 
   const alternatingColor = ["#c5c3c6", "#dcdcdd"];
   let index = 0;
@@ -88,6 +91,7 @@ const ManageUsers = () => {
           A bunch of text will go in this box describing the roles of each
           employee
         </p>
+        <button onClick={() => history.push("/newuser")}>New user</button>
       </div>
     </div>
   );

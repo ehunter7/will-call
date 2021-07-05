@@ -8,14 +8,14 @@ const Details = ({ order, handleInput }) => {
   const pickupDate = new Date(order.puDate);
 
   return (
-    <div className="detail-container">
-      <div className="">
-        <div className="">
+    <div className="detail-container  details">
+      <div className={order.status !== "pending" ? "completed-details" : null}>
+        <div className="deets">
           <p className="">
             Created by: <b className="info"> {order.createdBy}</b>
           </p>
         </div>
-        <div>
+        <div className="deets">
           <p className="">
             Created on:{" "}
             <b className="info">
@@ -26,14 +26,13 @@ const Details = ({ order, handleInput }) => {
             </b>
           </p>
         </div>
-
-        <div>
+        <div className="deets">
           <p className="">
             Last Updated By:
             <b className="info"> {order.lastUpdatedBy}</b>
           </p>
         </div>
-        <div>
+        <div className="deets">
           <p className="">
             Last Updated at:{" "}
             <b className="info">
@@ -42,23 +41,27 @@ const Details = ({ order, handleInput }) => {
             </b>
           </p>
         </div>
-        <div>
+        <div className="deets">
           <p className="">
             Receiver:
             <b className="info">{order.receiver}</b>
           </p>
         </div>
       </div>
-      <div>
-        {order.status !== "pending" ? (
-          <>
-            <div className="">
+      {order.status !== "pending" ? (
+        <>
+          <div className="completed-details">
+            <div className="deets">
               <p className="">
                 Loader: <b className="info"> {order.loader}</b>
               </p>
+            </div>
+            <div className="deets">
               <p className="">
                 Carrier: <b className="info"> {order.carrier}</b>
               </p>
+            </div>
+            <div className="deets">
               <p className="">
                 Scheduled Pickup Date:
                 {"  "}
@@ -67,15 +70,15 @@ const Details = ({ order, handleInput }) => {
                 }`}</b>
               </p>
             </div>
-            <div className="">
+            <div className="deets">
               <p className="note">Notes: {order.notes}</p>
             </div>
-            <div className="">
+            <div className="deets">
               <p className="note">Comments: {order.comments}</p>
             </div>{" "}
-          </>
-        ) : null}
-      </div>
+          </div>
+        </>
+      ) : null}
     </div>
   );
 };

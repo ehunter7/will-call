@@ -5,9 +5,11 @@ import Order from "../components/Order";
 import NewPU from "../components/NewPU";
 import { useStateContext, authContext } from "../utils/GlobalState";
 import Filter from "../components/Filter";
+import Profile from "../components/Profile";
 
 import "./style.css";
 import Header from "../components/Header";
+
 const User = ({ setCompletedPage }) => {
   const [state, dispatch] = useStateContext();
   const [puList, setPuList] = useState([]);
@@ -15,6 +17,7 @@ const User = ({ setCompletedPage }) => {
   const [newPU, showNewPU] = useState();
   const { authData } = useContext(authContext);
   const [filtered, setFiltered] = useState([]);
+  const [profile, openProfile] = useState(false);
 
   useEffect(() => {
     API.getPickups().then((res) => {
@@ -164,13 +167,19 @@ const User = ({ setCompletedPage }) => {
       {!state.openNewPickup ? null : (
         <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
       )}
+      {profile ? <Profile /> : null}
+
       <div className="content">
         <div className="content-buttons">
           <Selection setCompletedPage={setCompletedPage} />
           <Filter handleFilterInput={handlePendingFilter} />
         </div>
         <div className="header">
-          <Header pageTitle="Pending Pickups" />
+          <Header
+            pageTitle="Pending Pickups"
+            openProfile={openProfile}
+            profile={profile}
+          />
         </div>
         <div className="  mainContent">
           <div className="Order-header">

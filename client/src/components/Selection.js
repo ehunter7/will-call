@@ -5,12 +5,10 @@ import { Button, DropdownButton, Dropdown } from "react-bootstrap";
 import "./style.css";
 import { useStateContext, authContext } from "../utils/GlobalState";
 import API from "../utils/api";
-import ProfileChoices from "./profileChoices";
 
-const Selection = ({}) => {
+const Selection = () => {
   const [state, dispatch] = useStateContext();
   const { authData } = useContext(authContext);
-  const [profileChoices, openProfileChoices] = useState(false);
 
   // const { logout } = useAuth();
   let history = useHistory();
@@ -25,63 +23,9 @@ const Selection = ({}) => {
     }
   };
 
-  // handles log out
-  const handleLogout = async () => {
-    try {
-      // await logout();
-      API.logout();
-      history.push("/login");
-    } catch {
-      console.log("Error loggin out");
-    }
-  };
-
   return (
     <>
-      <div className=" ">
-        <div className="logout">
-          <button className="selcBTN">
-            <Dropdown
-              id="user-dropdown"
-              title={authData.user.fullname}
-              id="dropdown-basic-button"
-            >
-              {authData.user.role === "Admin" ? (
-                <Dropdown.Item
-                  eventKey="4.1"
-                  onClick={() => history.push("/userslist")}
-                >
-                  Manage Users
-                </Dropdown.Item>
-              ) : null}
-              {authData.user.role === "Admin" ? (
-                <Dropdown.Item
-                  eventKey="4.2"
-                  onClick={() => history.push("/newuser")}
-                >
-                  Create New User
-                </Dropdown.Item>
-              ) : null}
-              {/* <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
-          <NavDropdown.Item eventKey="4.3">
-            Something else here
-          </NavDropdown.Item> */}
-              <Dropdown.Divider />
-              <Dropdown.Item eventKey="4.3" onClick={handleLogout}>
-                Logout
-              </Dropdown.Item>
-            </Dropdown>
-          </button>
-        </div>
-      </div>
       <div className="selectionGroup ">
-        <button
-          className=" selcBTN"
-          onClick={() => openProfileChoices(!profileChoices)}
-        >
-          Profile
-        </button>
-        {profileChoices ? <ProfileChoices /> : null}
         <button
           className=" selcBTN"
           onClick={() => dispatch({ type: "open-new-pickup" })}

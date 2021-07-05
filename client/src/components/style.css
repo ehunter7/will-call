@@ -54,6 +54,12 @@
 
 .puInput {
   margin: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#update-label {
+  border: 1px solid black;
 }
 
 .puButton {
@@ -133,7 +139,7 @@ Need to figure out why i cant change the color
 
   background-color: var(--main);
   padding: 1em;
-  margin-top: 3em;
+  padding-top: 5rem;
 }
 
 .selcBTN {
@@ -163,7 +169,7 @@ Need to figure out why i cant change the color
 
 .page-title {
   margin-left: 4rem;
-  margin-top: 1rem;
+  margin-top: 2.7rem;
   letter-spacing: 2px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -263,8 +269,27 @@ This seperates the content from the header
   justify-content: space-evenly;
 }
 
+.details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.deets {
+  width: 209px;
+}
+
+.completed-details {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 100%;
+}
+
 .detail-info {
   margin-top: 2em;
+  display: flex;
+  flex-direction: column;
 }
 
 .Update-fields {
@@ -288,7 +313,7 @@ td {
 }
 
 .note {
-  margin-left: 8.75%;
+  /* margin-left: 8.75%; */
 }
 
 .notesEdit:hover {
@@ -307,23 +332,39 @@ td {
 /**profileChoices.js*/
 
 .profile-choices {
-  border-radius: 5px;
-  height: 20.2%;
-  width: 40%;
-  background-color: grey;
+  color: var(--accessorial); /* border: 2px solid white; */
+  border-radius: 3px;
+  padding: 1rem;
+  background-color: var(--main);
   position: absolute;
-  top: 13.5%;
-  left: 90%;
-  z-index: 4;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 25%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.profile-caret {
-  height: 5%;
-  width: 10px;
-  border-top: 12.5px solid transparent;
-  border-right: 25px solid grey;
-  border-bottom: 12.5px solid transparent;
-  position: absolute;
-  top: 3.5%;
-  left: -17%;
+.header-icons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--pop);
+  margin-left: auto;
+  width: 20%;
+  height: 94.5%;
+  font-size: 2.5em;
+}
+
+.user-icon {
+  transition: transform 300ms ease;
+}
+
+.user-icon:hover {
+  cursor: pointer;
+  transform: scale(1.2) perspective(1px);
+}
+
+.user-icon:active {
+  transform: scale(0.8) perspective(1px);
 }

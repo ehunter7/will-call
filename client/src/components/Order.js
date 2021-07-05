@@ -130,8 +130,9 @@ const Order = ({
           </p>
         ) : null}
       </div>
+
       <div className="detail-container">
-        <div className="d-flex">
+        <div className="">
           {order.showDetails ? (
             <div className="detail-info">
               <Details
@@ -142,18 +143,20 @@ const Order = ({
             </div>
           ) : null}
         </div>
-        <div className="Update-fields">
-          {order.showDetails && order.status === "pending" ? (
-            <div>
-              <Updates
-                handleInput={handleInput}
-                order={order}
-                handleUpdate={handleUpdate}
-                handlePickedUp={handlePickedUp}
-              />
-            </div>
-          ) : null}
-        </div>
+        {order.status !== "pending" ? null : (
+          <div className="Update-fields">
+            {order.showDetails && order.status === "pending" ? (
+              <div>
+                <Updates
+                  handleInput={handleInput}
+                  order={order}
+                  handleUpdate={handleUpdate}
+                  handlePickedUp={handlePickedUp}
+                />
+              </div>
+            ) : null}
+          </div>
+        )}
       </div>
     </div>
   );
