@@ -26,6 +26,8 @@ const reducer = (state, action) => {
     case "open-new-pickup":
       return { ...state, openNewPickup: !state.openNewPickup };
 
+    case "open-profile":
+      return { ...state, openProfile: !state.openProfile };
     default:
       break;
   }
@@ -37,6 +39,7 @@ const StateProvider = ({ value = false, ...props }) => {
     pickups: [],
     completedPage: false,
     openNewPickup: false,
+    openProfile: false,
   });
   return <Provider value={[state, dispatch]} {...props} />;
 };

@@ -11,7 +11,7 @@ const Filter = ({ handleFilterInput }) => {
               className="filter"
               id="puNum"
               type="number"
-              name="pickedupNumber"
+              name="pickupNumber"
               onChange={(e) => handleFilterInput(e)}
             ></input>
           </div>

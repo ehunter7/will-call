@@ -17,7 +17,6 @@ const User = ({ setCompletedPage }) => {
   const [newPU, showNewPU] = useState();
   const { authData } = useContext(authContext);
   const [filtered, setFiltered] = useState([]);
-  const [profile, openProfile] = useState(false);
 
   useEffect(() => {
     API.getPickups().then((res) => {
@@ -78,6 +77,7 @@ const User = ({ setCompletedPage }) => {
         puOn: Date,
       });
     });
+    dispatch({ type: "open-new-pickup" });
   };
 
   //Handles updates to a pickup
@@ -144,8 +144,8 @@ const User = ({ setCompletedPage }) => {
     const { name, value } = e.target;
 
     const filteredList = puList.filter((order) => {
-      if (name === "pickedupNumber") {
-        return (order.pickedupNumber + "").indexOf(value) > -1;
+      if (name === "pickupNumber") {
+        return (order.pickupNumber + "").indexOf(value) > -1;
       } else if (name === "pro") {
         return (order.pro + "").indexOf(value) > -1;
       } else if (name === "puDate") {
@@ -167,7 +167,7 @@ const User = ({ setCompletedPage }) => {
       {!state.openNewPickup ? null : (
         <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
       )}
-      {profile ? <Profile /> : null}
+      {state.openProfile ? <Profile /> : null}
 
       <div className="content">
         <div className="content-buttons">
@@ -175,11 +175,7 @@ const User = ({ setCompletedPage }) => {
           <Filter handleFilterInput={handlePendingFilter} />
         </div>
         <div className="header">
-          <Header
-            pageTitle="Pending Pickups"
-            openProfile={openProfile}
-            profile={profile}
-          />
+          <Header pageTitle="Pending Pickups" />
         </div>
         <div className="  mainContent">
           <div className="Order-header">

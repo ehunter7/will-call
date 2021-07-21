@@ -1,11 +1,20 @@
-const NewPU = ({ handleInput, handleSubmit,showNewPU }) => {
+import { useStateContext } from "../utils/GlobalState";
+
+const NewPU = ({ handleInput, handleSubmit, showNewPU }) => {
+  const [state, dispatch] = useStateContext();
+
   return (
     <div className="newPUForm">
       <h1 className="text-center">New Pick-up</h1>
-      <p className="close-newPickup" onClick={() => showNewPU(false)}>X</p>
+      <p
+        className="close-newPickup"
+        onClick={() => dispatch({ type: "open-new-pickup" })}
+      >
+        X
+      </p>
       <div className="pickup-info">
-        <div>
-          <div className="puInput">
+        <div className="d-flex">
+          <div className=" mr-1">
             <label htmlFor="pro">PRO</label>
             <input
               className="newPUInput"
@@ -17,7 +26,7 @@ const NewPU = ({ handleInput, handleSubmit,showNewPU }) => {
             ></input>
           </div>
 
-          <div className="puInput">
+          <div className="">
             <label htmlFor="carrier">Carrier</label>
             <input
               className="newPUInput"
@@ -29,8 +38,8 @@ const NewPU = ({ handleInput, handleSubmit,showNewPU }) => {
             ></input>
           </div>
         </div>
-        <div>
-          <div className="puInput">
+        <div className="d-flex">
+          <div className=" mr-1">
             <label htmlFor="puDate">pickup Date</label>
             <input
               className="newPUInput"
@@ -41,8 +50,7 @@ const NewPU = ({ handleInput, handleSubmit,showNewPU }) => {
               onChange={(e) => handleInput(e)}
             ></input>
           </div>
-
-          <div className="puInput">
+          <div className="">
             <label htmlFor="puTime">pickup Time</label>
             <input
               className="newPUInput"
@@ -56,8 +64,8 @@ const NewPU = ({ handleInput, handleSubmit,showNewPU }) => {
         </div>
       </div>
 
-      <div className="puInput">
-        <div className="">
+      <div className="">
+        <div className="w-100">
           <label htmlFor="notes">Notes</label>
           <textarea
             id="notes"
@@ -67,7 +75,10 @@ const NewPU = ({ handleInput, handleSubmit,showNewPU }) => {
           ></textarea>
         </div>
         <div className="puButton">
-          <button className="newPUButton " onClick={(e) => handleSubmit(e)}>
+          <button
+            className="newPUButton selcBTN"
+            onClick={(e) => handleSubmit(e)}
+          >
             Submit
           </button>
         </div>

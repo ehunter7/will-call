@@ -120,7 +120,7 @@ const Order = ({
         </div>
 
         {order.status !== "completed" ? (
-          <p className="note">
+          <p className="note ml-5">
             Notes: {getNotes()}
             {editor ? (
               <button onClick={() => showEditor(!editor)}>cancel</button>

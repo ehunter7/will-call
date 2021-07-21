@@ -18,7 +18,7 @@
 }
 
 .newPUForm {
-  color: var(--accessorial); /* border: 2px solid white; */
+  color: var(--accessorial);
   border-radius: 3px;
   padding: 1rem;
   background-color: var(--main);
@@ -42,18 +42,18 @@
 }
 /** controls the fields within the new pickup form*/
 .pickup-info {
-  /* width: 50%; */
   display: flex;
+  flex-direction: column;
   /* justify-content: space-between; */
 }
 
 .newPUInput {
   width: 100%;
   padding: 5px;
+  height: 50%;
 }
 
 .puInput {
-  margin: 10px;
   display: flex;
   justify-content: space-evenly;
 }
@@ -81,11 +81,6 @@
   width: 100%;
 }
 
-/* .puInput {
-  display: flex;
-  justify-content: space-evenly;
-} */
-
 .user-card {
   display: flex;
 
@@ -109,6 +104,13 @@
 Need to have the hover effect display in text what the icon does
 */
 .edit-icon:hover {
+  cursor: pointer;
+
+  transform: scale(1.08) perspective(1px);
+}
+
+.edit-icon:active {
+  transform: scale(0.9);
 }
 
 .page-header {
@@ -193,7 +195,7 @@ Spaces out thetop of each order
 .orderCard {
   /* border-bottom: solid 0.1px #30475e; */
   border-bottom: solid 0.1px var(--main);
-
+  padding-top: 0.8em;
   transition: background-color 0.9s ease !important;
 }
 

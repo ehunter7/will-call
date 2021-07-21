@@ -8,6 +8,7 @@ import Filter from "../components/Filter";
 import Header from "../components/Header";
 import API from "../utils/api";
 import NewPU from "../components/NewPU";
+import Profile from "../components/Profile";
 
 const Completed = () => {
   const [state, dispatch] = useStateContext();
@@ -48,8 +49,8 @@ const Completed = () => {
     const { name, value } = e.target;
 
     const filteredList = completed.filter((order) => {
-      if (name === "pickedupNumber") {
-        return (order.pickedupNumber + "").indexOf(value) > -1;
+      if (name === "pickupNumber") {
+        return (order.pickupNumber + "").indexOf(value) > -1;
       } else if (name === "pro") {
         return (order.pro + "").indexOf(value) > -1;
       } else if (name === "puDate") {
@@ -91,6 +92,7 @@ const Completed = () => {
         loader: "",
         puOn: Date,
       });
+      dispatch({ type: "open-new-pickup" });
     });
   };
 
@@ -99,6 +101,8 @@ const Completed = () => {
       {!state.openNewPickup ? null : (
         <NewPU handleSubmit={handleSubmit} handleInput={handleInput} />
       )}
+      {state.openProfile ? <Profile /> : null}
+
       <div className="content">
         <div className="content-buttons">
           <Selection />

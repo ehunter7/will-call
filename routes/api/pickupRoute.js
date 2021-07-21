@@ -10,11 +10,14 @@ router.post("/newPickup", async (req, res) => {
   let pickupNum;
 
   try {
-
-    await Pickup.findOne({}, {}, { sort: { 'createdOn' : -1 } }, function(err, post) {
-      console.log( post.pickupNumber );
-      pickupNum = post.pickupNumber + 1;
-    });
+    await Pickup.findOne(
+      {},
+      {},
+      { sort: { createdOn: -1 } },
+      function (err, post) {
+        pickupNum = post.pickupNumber + 1;
+      }
+    );
 
     const newPU = new Pickup({
       csr: "",
@@ -33,7 +36,7 @@ router.post("/newPickup", async (req, res) => {
       status: "pending",
       createdBy: user,
       lastUpdatedBy: user,
-      pickupNumber: pickupNum
+      pickupNumber: pickupNum,
     });
 
     await newPU.save();

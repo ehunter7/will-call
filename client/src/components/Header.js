@@ -8,7 +8,7 @@ import { useStateContext, authContext } from "../utils/GlobalState";
 import "./style.css";
 import API from "../utils/api";
 
-const Header = ({ pageTitle, openProfile, profile }) => {
+const Header = ({ pageTitle, profile }) => {
   const [state, dispatch] = useStateContext();
   const { authData } = useContext(authContext);
 
@@ -40,7 +40,7 @@ const Header = ({ pageTitle, openProfile, profile }) => {
           <CgProfile
             title="View Proifile"
             className="user-icon"
-            onClick={() => openProfile(!profile)}
+            onClick={() => dispatch({ type: "open-profile" })}
           />
           <IoMdLogOut
             title="Logout"
