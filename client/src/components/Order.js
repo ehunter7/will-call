@@ -12,6 +12,7 @@ const Order = ({
   color,
   handleUpdate,
   handlePickedUp,
+  handleSetToCancel,
 }) => {
   //global state
   const [state, dispatch] = useStateContext();
@@ -152,6 +153,7 @@ const Order = ({
                   order={order}
                   handleUpdate={handleUpdate}
                   handlePickedUp={handlePickedUp}
+                  handleSetToCancel={handleSetToCancel}
                 />
               </div>
             ) : null}

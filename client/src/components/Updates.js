@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 
+import API from "../utils/api";
 import { Form } from "react-bootstrap";
 import { authContext } from "../utils/GlobalState";
 
-const Updates = ({ handleInput, order, handleUpdate, handlePickedUp }) => {
+const Updates = ({ handleInput, order, handleUpdate, handlePickedUp, handleSetToCancel }) => {
   const { authData } = useContext(authContext);
+
+
   return (
     <div className="updates">
       <div className="d-flex justify-content-center">
@@ -70,7 +73,12 @@ const Updates = ({ handleInput, order, handleUpdate, handlePickedUp }) => {
         </>
       ) : (
         <div className="puSubmit">
-          <button className="w-50 mt-5 selcBTN">Cancel Pick-up</button>
+          <button
+            className="w-50 mt-5 selcBTN"
+            onClick={() => handleSetToCancel(order)}
+          >
+            Cancel Pick-up
+          </button>
         </div>
       )}
     </div>

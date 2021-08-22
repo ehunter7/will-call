@@ -109,11 +109,6 @@ const User = ({ setCompletedPage }) => {
   const handlePickedUp = (e, id, puNumber) => {
     e.preventDefault();
     API.pickedUp(id, pickup, puNumber).then((res) => {
-      // const puRemoved = state.pickups.filter(
-      //   (order) => order._id !== res.data._id
-      // );
-      // dispatch({ type: "set-pickups", payload: puRemoved });
-
       const puUpdated = state.pickups.filter((order) => {
         if (order._id !== res.data._id) {
           return { ...order, status: "completed" };
@@ -154,13 +149,35 @@ const User = ({ setCompletedPage }) => {
         const month = pu.getMonth() + 1;
         const year = pu.getFullYear();
         const dateString = `${month}/${day}/${year}`;
-        console.log(month);
+
         return dateString.includes(value);
       }
       return null;
     });
     setFiltered(filteredList);
   };
+
+  function handleSetToCancel(order) {
+    //! [WARNING] NEEDS ATTENTION
+    /**
+     * TODO:
+     * if cancelled by CS, nonotificaation
+     * TODO:
+     * if cancelled by receiver or admin, have cs confirm
+     */
+    API.setToCancel(order).then((res) => {
+      const puUpdated = state.pickups.filter((order) => {
+        if (order._id !== res.data._id) {
+          return { ...order, status: "cancelled" };
+        }
+        return order;
+      });
+      dispatch({ type: "set-pickups", payload: puUpdated });
+      setPuList(puUpdated);
+      //line is used to refresh the page once a pickup is made.
+      setPickedup(!pickedup);
+    });
+  }
 
   return (
     <>
@@ -206,6 +223,7 @@ const User = ({ setCompletedPage }) => {
                     openUpdates={openUpdates}
                     handleUpdate={handleUpdate}
                     handlePickedUp={handlePickedUp}
+                    handleSetToCancel={handleSetToCancel}
                   />
                 );
               }

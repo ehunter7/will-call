@@ -108,32 +108,40 @@ router.put("/pickedUp", async (req, res) => {
       { new: true }
     );
 
-    // const completed = new Complete({
-    //   _id: completedPickup._id,
-    //   csr: completedPickup.csr,
-    //   pro: completedPickup.pro,
-    //   carrier: completedPickup.carrier,
-    //   receiver: "",
-    //   puDate: completedPickup.puDate,
-    //   puTime: completedPickup.puTime,
-    //   loader: completedPickup.loader,
-    //   notes: completedPickup.notes,
-    //   comments: completedPickup.comments,
-    //   confirmingReceiver: "",
-    //   confirmingCSR: "",
-    //   showDetails: false,
-    //   showUpdates: false,
-    //   status: "completed",
-    //   puOn: completedPickup.puOn,
-    //   pickedupNumber: puNumber,
-    // });
-
-    // await completed.save();
     res.json(completedPickup);
-
-    // const removePU = await Pickup.findByIdAndRemove(id);
   } catch (error) {
     console.log(error);
+  }
+});
+
+router.delete("/cancelPickup", async (req, res, next) => {
+  const { _id } = req.body;
+
+  try {
+    await Pickup.deleteOne({ _id: _id });
+    res.status(200).json({ message: "Post deleted" });
+    next();
+  } catch (error) {
+    console.log("====================================");
+    console.log("[WARNING] Error pickup delete route");
+    console.log(error);
+    console.log("====================================");
+  }
+});
+
+router.put("/setToCancel", async (req, res) => {
+  try {
+    const updatedPickup = await Pickup.findByIdAndUpdate(req.body.data._id, {
+      status: "cancelled",
+      updatedOn: Date.now(),
+    });
+
+    res.json(updatedPickup);
+  } catch (error) {
+    console.log("====================================");
+    console.log("[WARNING] SET TO CANCEL");
+    console.log(error);
+    console.log("====================================");
   }
 });
 

@@ -18,6 +18,14 @@ export default {
   getCompleted: () => {
     return axios.get("/api/pu/getCompleted");
   },
+  cancelPickup: (data) => {
+    return axios.delete("/api/pu/cancelPickup", { data });
+  },
+  setToCancel: (data) => {
+    return axios.put("/api/pu/setToCancel", { data })
+  },
+  
+
   //user routes
   newuser: (data) => {
     return axios.post("/api/users/newuser", data);
