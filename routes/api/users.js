@@ -1,6 +1,7 @@
 const router = require("express").Router();
 // const bcrypt = require("bcrypt.js");
 const bcrypt = require("bcrypt");
+const { update } = require("../../models/user");
 const User = require("../../models/user");
 
 router.post("/newuser", async (req, res) => {
@@ -83,6 +84,32 @@ router.get("/getusers", async (req, res) => {
   } catch (error) {
     console.log("[WARNING]  Error getting all users!");
     console.log(error);
+  }
+});
+
+router.put("/updateUser", async (req, res) => {
+  const { field, update } = req.body;
+
+  const id = req.body.data._id;
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      { _id: id },
+      {
+        [field.toLowerCase()]: update,
+      },
+      {
+        new: true,
+      }
+    );
+    console.log("====================================");
+    console.log(updatedUser);
+    console.log("====================================");
+    return res.json(updatedUser);
+  } catch (error) {
+    console.log("====================================");
+    console.log(`[WARNING] ${error}`);
+    console.log("====================================");
   }
 });
 

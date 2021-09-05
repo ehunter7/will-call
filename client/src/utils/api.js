@@ -22,9 +22,8 @@ export default {
     return axios.delete("/api/pu/cancelPickup", { data });
   },
   setToCancel: (data) => {
-    return axios.put("/api/pu/setToCancel", { data })
+    return axios.put("/api/pu/setToCancel", { data });
   },
-  
 
   //user routes
   newuser: (data) => {
@@ -38,5 +37,8 @@ export default {
   },
   getUsers: () => {
     return axios.get("/api/users/getusers");
+  },
+  updateUser: (data, field, update) => {
+    return axios.put("/api/users/updateUser", { data, field, update });
   },
 };
