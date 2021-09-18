@@ -12,6 +12,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { authContext, StateProvider } from "./utils/GlobalState";
 import NewUser from "./components/NewUser";
 import ManageUsers from "./pages/ManageUsers";
+import Cancelled from "./pages/Cancelled";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -33,6 +34,7 @@ function App() {
               <PrivateRoute exact path={"/newuser"} component={NewUser} />
               <PrivateRoute component={User} exact path={["/", "/pending"]} />
               <PrivateRoute exact path={"/completed"} component={Completed} />
+              <PrivateRoute exact path={"/cancelled"} component={Cancelled} />
               <PrivateRoute exact path={"/userslist"} component={ManageUsers} />
             </Switch>
           </Router>

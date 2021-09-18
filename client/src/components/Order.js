@@ -82,7 +82,7 @@ const Order = ({
     <div
       style={{ backgroundColor: color }}
       className="orderCard"
-      onClick={() => (order.status === "completed" ? handleDetails() : null)}
+      onClick={() => (order.status === "cancelled" ? handleDetails() : null)}
     >
       <div
         onClick={() =>

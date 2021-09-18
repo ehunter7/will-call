@@ -164,6 +164,8 @@ const User = ({ setCompletedPage }) => {
      * if cancelled by CS, nonotificaation
      * TODO:
      * if cancelled by receiver or admin, have cs confirm
+     * TODO: 
+     * CS should be the only one to cancel and they should have to put reason why cancelling. 
      */
     API.setToCancel(order).then((res) => {
       const puUpdated = state.pickups.filter((order) => {

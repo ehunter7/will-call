@@ -1,28 +1,24 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, DropdownButton, Dropdown } from "react-bootstrap";
 // import { useAuth } from "../contexts/AuthContext";
 import "./style.css";
 import { useStateContext, authContext } from "../utils/GlobalState";
-import API from "../utils/api";
 
 const Selection = () => {
   const [state, dispatch] = useStateContext();
-  const { authData } = useContext(authContext);
 
-  // const { logout } = useAuth();
   let history = useHistory();
 
   const handleClick = (e) => {
     dispatch({ type: "set-completed" });
-
-    if (e.target.name === "completed") {
-      history.push("/completed");
-    } else {
-      history.push("/pending");
-    }
+    history.push(`/${e.target.name}`);
+    // if (e.target.name === "completed") {
+    //   history.push("/completed");
+    // } else {
+    //   history.push("/pending");
+    // }
   };
-
+  //TODO: button should be a component
   return (
     <>
       <div className="selectionGroup ">
@@ -45,7 +41,14 @@ const Selection = () => {
           onClick={(e) => handleClick(e)}
         >
           View Completed
-        </button>{" "}
+        </button>
+        <button
+          className=" selcBTN"
+          name="cancelled"
+          onClick={(e) => handleClick(e)}
+        >
+          View Cancelled
+        </button>
       </div>
     </>
   );
